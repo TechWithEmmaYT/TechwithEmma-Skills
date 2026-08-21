@@ -42,6 +42,16 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-better-auth
 
 The complete instructions are in [`skills/expo-better-auth/SKILL.md`](skills/expo-better-auth/SKILL.md).
 
+### Full-stack Monorepo Setup
+
+Scaffolds a pnpm and Turborepo workspace with a Node.js API, React admin using shadcn/ui, Expo mobile app, and focused shared TypeScript packages that remain independently deployable.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill fullstack-monorepo-setup
+```
+
+The complete instructions are in [`skills/fullstack-monorepo-setup/SKILL.md`](skills/fullstack-monorepo-setup/SKILL.md).
+
 ## Repository structure
 
 ```text
@@ -54,6 +64,10 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/nativewind-theme.md
+├── fullstack-monorepo-setup/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   └── references/deployment.md
 └── nodejs-scaffolding/
     ├── SKILL.md
     └── agents/openai.yaml

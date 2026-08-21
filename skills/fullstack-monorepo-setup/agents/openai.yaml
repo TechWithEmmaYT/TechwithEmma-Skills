@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full-stack Monorepo Setup"
+  short_description: "Scaffold API, admin, Expo, and shared packages"
+  default_prompt: "Use $fullstack-monorepo-setup to scaffold a pnpm monorepo with a Node.js API, React admin, Expo mobile app, and shared packages."
