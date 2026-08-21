@@ -9,6 +9,7 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 ### Added
 
 - Claude Code plugin metadata for installing and discovering the skill collection as a plugin.
+- `plan-project` for interviewing users, resolving product and technical ambiguity, and producing a validated specification before implementation planning.
 
 ### Changed
 

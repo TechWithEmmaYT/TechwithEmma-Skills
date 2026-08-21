@@ -54,6 +54,16 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill fullstack-monorepo-set
 
 The complete instructions are in [`skills/fullstack-monorepo-setup/SKILL.md`](skills/fullstack-monorepo-setup/SKILL.md).
 
+### Plan Project
+
+Interviews the user in focused batches, resolves product and technical ambiguity, and produces a validated project specification before implementation planning begins.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill plan-project
+```
+
+The complete instructions are in [`skills/plan-project/SKILL.md`](skills/plan-project/SKILL.md).
+
 ## Repository structure
 
 ```text
@@ -72,7 +82,10 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/deployment.md
-└── nodejs-scaffolding/
+├── nodejs-scaffolding/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+└── plan-project/
     ├── SKILL.md
     └── agents/openai.yaml
 site/
