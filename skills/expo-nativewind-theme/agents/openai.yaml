@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo NativeWind Theme"
+  short_description: "Set up NativeWind themes and Google fonts"
+  default_prompt: "Use $expo-nativewind-theme to add NativeWind v4, semantic light and dark themes, and Google fonts to my Expo app."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo Better Auth"
+  short_description: "Add secure Expo email and social auth"
+  default_prompt: "Use $expo-better-auth to add Better Auth email, Google, and Apple sign-in to my Expo app."

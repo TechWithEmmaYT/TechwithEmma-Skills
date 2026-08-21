@@ -6,14 +6,6 @@
   "files": [
     "skills"
   ],
-  "skill": {
-    "entry": "skills/nodejs-scaffolding/SKILL.md",
-    "harnesses": [
-      "claude-code",
-      "cursor",
-      "codex"
-    ]
-  },
   "scripts": {
     "serve": "python3 -m http.server --directory site 4173"
   }

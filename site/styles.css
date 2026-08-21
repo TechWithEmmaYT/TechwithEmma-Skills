@@ -143,6 +143,11 @@ footer {
   line-height: 0.95;
 }
 
+.skill-grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
 .catalogue header p,
 .skill-card p {
   max-width: 46rem;
@@ -231,6 +236,19 @@ button:disabled {
   .hero { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
   .command-block,
   .agents { align-self: end; }
+
+  .skill-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .skill-card {
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .skill-card__install {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 39.99rem) {
