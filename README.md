@@ -10,6 +10,8 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills
 
 The installer discovers every `skills/*/SKILL.md` entry and lets you choose which skills to install. Use `--skill <name>` to install one directly.
 
+The repository also includes Claude Code plugin metadata in [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json). See [CHANGELOG.md](CHANGELOG.md) for release history.
+
 ## Current skills
 
 ### Node.js Scaffolding
@@ -44,7 +46,7 @@ The complete instructions are in [`skills/expo-better-auth/SKILL.md`](skills/exp
 
 ### Full-stack Monorepo Setup
 
-Scaffolds a pnpm and Turborepo workspace with a Node.js API, React admin using shadcn/ui, Expo mobile app, and focused shared TypeScript packages that remain independently deployable.
+Scaffolds a pnpm and Turborepo workspace with a Node.js API, Vite React admin using shadcn/ui, Expo mobile app, and focused shared TypeScript packages that remain independently deployable.
 
 ```bash
 npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill fullstack-monorepo-setup
@@ -55,6 +57,8 @@ The complete instructions are in [`skills/fullstack-monorepo-setup/SKILL.md`](sk
 ## Repository structure
 
 ```text
+.claude-plugin/
+└── plugin.json
 skills/
 ├── expo-better-auth/
 │   ├── SKILL.md
@@ -76,6 +80,7 @@ site/
 ├── app.js
 ├── styles.css
 └── tokens.css
+CHANGELOG.md
 ```
 
 Run the static site locally:

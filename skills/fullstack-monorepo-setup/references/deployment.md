@@ -38,7 +38,7 @@ Set health checks to the API's real health route. Store database URLs, auth secr
 
 ## Render admin
 
-For a client-rendered React or Vite admin, create a separate Render Static Site rather than serving its output through the API.
+For the Vite React admin, create a separate Render Static Site rather than serving its output through the API.
 
 Typical build command:
 
@@ -52,11 +52,11 @@ Serving the admin from Node is valid when a single deployable unit is an explici
 
 ## Vercel or Cloudflare admin
 
-Create a separate project connected to the same repository. Configure the detected framework, scoped build command, and output directory for `apps/admin`.
+Create a separate project connected to the same repository. Configure Vite as the framework, use the scoped build command, and publish `apps/admin/dist` when commands run from the repository root.
 
 On Vercel, select the admin Root Directory and enable access to source files outside it when required by workspace dependencies, or retain a root build context and use a filtered command. Keep internal dependencies explicit so affected-project detection works.
 
-On Cloudflare, choose Pages for a static SPA or Workers when the selected React framework requires server execution. Configure the workspace install and build from a context that includes shared packages.
+On Cloudflare, deploy the Vite SPA with Pages. Configure the workspace install and build from a context that includes shared packages, and add the platform's SPA fallback for client-side routes.
 
 ## Expo and EAS
 

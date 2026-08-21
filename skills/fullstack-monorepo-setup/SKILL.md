@@ -1,6 +1,6 @@
 ---
 name: fullstack-monorepo-setup
-description: Scaffold or reorganize a pnpm and Turborepo workspace containing a Node.js API, React admin dashboard with shadcn/ui, Expo mobile app, and shared TypeScript packages. Use when starting a full-stack product whose web, mobile, and backend apps should live in one repository and deploy independently.
+description: Scaffold or reorganize a pnpm and Turborepo workspace containing a Node.js API, Vite React admin dashboard with shadcn/ui, Expo mobile app, and shared TypeScript packages. Use when starting a full-stack product whose web, mobile, and backend apps should live in one repository and deploy independently.
 ---
 
 # Full-stack Monorepo Setup
@@ -14,7 +14,7 @@ Use this skill when the product needs at least two related applications and bene
 ```text
 apps/
 ├── api/       # Node.js and TypeScript backend
-├── admin/     # React, Tailwind CSS, and shadcn/ui
+├── admin/     # Vite, React, Tailwind CSS, and shadcn/ui
 └── mobile/    # Expo and React Native
 packages/
 ├── config/    # Shared TypeScript and lint configuration
@@ -50,7 +50,9 @@ Do not choose a database, authentication provider, or ORM unless requested. Keep
 
 ### Admin
 
-Create a React TypeScript admin application with the requested router or build tool. Add Tailwind CSS using the setup that matches the installed version, then initialize shadcn/ui inside `apps/admin` with the official CLI.
+Create `apps/admin` with Vite's React TypeScript template. Do not substitute Next.js, Remix, TanStack Start, or another React framework. Add the requested client-side router only when the project needs multiple routes.
+
+Add Tailwind CSS using the Vite setup that matches the installed version, then initialize shadcn/ui inside `apps/admin` with the official CLI. Keep the Vite build output at its normal `dist` location unless the deployment target requires a deliberate change.
 
 Install only the shadcn components the requested screens use. Do not create a shared UI registry, a primitives package, or a cross-platform component layer. Web shadcn components remain owned by the admin app.
 

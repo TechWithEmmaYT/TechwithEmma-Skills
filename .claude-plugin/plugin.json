@@ -1,0 +1,21 @@
+{
+  "name": "techwithemma-skills",
+  "description": "Production-minded skills for Node.js, Vite React, Expo, Better Auth, NativeWind, and full-stack monorepo setup",
+  "version": "0.1.0",
+  "author": {
+    "name": "TechWithEmma"
+  },
+  "homepage": "https://github.com/TechWithEmmaYT/TechwithEmma-Skills",
+  "repository": "https://github.com/TechWithEmmaYT/TechwithEmma-Skills",
+  "keywords": [
+    "skills",
+    "nodejs",
+    "vite",
+    "react",
+    "expo",
+    "react-native",
+    "better-auth",
+    "nativewind",
+    "monorepo"
+  ]
+}
