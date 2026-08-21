@@ -1,0 +1,247 @@
+/* Hallmark · macrostructure: Catalogue · tone: technical · anchor hue: blue-neutral · theme: custom · enrichment: command panel */
+@import "./tokens.css";
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+body { padding: clamp(0.75rem, 2vw, 1.5rem); }
+
+main,
+footer {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+}
+
+.hero {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-2xl);
+  border-radius: var(--radius-panel);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.hero__title,
+.command-block,
+.agents {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-md);
+}
+
+.brand,
+.tagline,
+.command-block > span,
+.agents > span,
+.skill-card__top {
+  margin: 0;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.hero h1 {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: var(--text-display);
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  line-height: 1;
+}
+
+.hero__definition {
+  max-width: 54rem;
+  margin: 0;
+  align-self: center;
+  color: color-mix(in oklch, var(--color-paper) 62%, transparent);
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  letter-spacing: -0.04em;
+  line-height: 1.22;
+}
+
+.command {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  border-radius: 0.75rem;
+  padding: var(--space-lg);
+  background: color-mix(in oklch, var(--color-paper) 9%, transparent);
+}
+
+.command code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-code);
+  line-height: 1.5;
+}
+
+.command button,
+.catalogue a,
+.skill-card__install a {
+  min-height: 2.75rem;
+  border: 0;
+  padding-inline: var(--space-md);
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.command button {
+  border-radius: 999px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.agents > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.agents strong { font-size: 0.875rem; }
+
+.catalogue {
+  display: grid;
+  gap: var(--space-xl);
+  padding-block: var(--space-3xl);
+}
+
+.catalogue > header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.catalogue > header > div {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.catalogue h2 {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: var(--text-section);
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.catalogue header p,
+.skill-card p {
+  max-width: 46rem;
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+.skill-card {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-2xl);
+  border: var(--rule-thin) solid var(--color-rule);
+  border-radius: var(--radius-panel);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--color-surface);
+}
+
+.skill-card__top,
+.skill-card__install {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.skill-card__body {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.skill-card h3 {
+  margin: 0;
+  font-family: var(--font-code);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+.skill-card__install {
+  align-items: flex-end;
+  border-block-start: var(--rule-thin) solid var(--color-rule);
+  padding-block-start: var(--space-lg);
+}
+
+.skill-card__install code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-code);
+  line-height: 1.6;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  border-block-start: var(--rule-thin) solid var(--color-rule);
+  padding-block: var(--space-xl);
+  color: var(--color-muted);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+button:active,
+a:active { transform: translateY(1px); }
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (min-width: 40rem) {
+  .catalogue > header {
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
+  .command-block,
+  .agents { align-self: end; }
+}
+
+@media (max-width: 39.99rem) {
+  .command,
+  .skill-card__install {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:active,
+  a:active { transform: none; }
+}
