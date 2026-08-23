@@ -1,0 +1,4 @@
+interface:
+  display_name: "Node.js Testing"
+  short_description: "Add reliable unit, integration, and API E2E tests"
+  default_prompt: "Use $nodejs-testing to inspect this Node.js backend and add the right unit, integration, and API end-to-end tests without unnecessarily replacing its existing test stack."

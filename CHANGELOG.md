@@ -10,10 +10,19 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 
 - Claude Code plugin metadata for installing and discovering the skill collection as a plugin.
 - `plan-project` for interviewing users, resolving product and technical ambiguity, and producing a validated specification before implementation planning.
+- `nodejs-testing` for risk-focused unit, HTTP integration, real-dependency integration, and API end-to-end testing.
+- `nodejs-security` for evidence-backed, read-only-first backend audits and explicitly approved security fixes.
+- `nodejs-payments` for Stripe, Polar, or Paddle billing with verified webhooks, idempotency, subscription state, and entitlements.
+- `nodejs-organizations` for a framework-neutral Node.js organization domain with memberships, invitations, teams, RBAC, ownership protection, audit events, and tenant isolation.
+- `expo-nativewind-design` for intentional Expo screens and flows with a compact design brief, responsive spacing, complete UI states, and native accessibility guidance.
+- `expo-app-assets` for generating and configuring iOS icons, Android adaptive and monochrome layers, and Expo splash screens.
 
 ### Changed
 
 - Fixed `fullstack-monorepo-setup` to use Vite, React, and TypeScript for the admin application instead of leaving the React framework open-ended.
+- Added a concise pre-change proposal and explicit confirmation checkpoint to the new Node.js testing, security, payments, and organizations skills.
+- Expanded `expo-nativewind-theme` with color and layout-token discovery, a 4-point spacing system, semantic shape/component sizing, and optional Sonner Native toast infrastructure.
+- Expanded `expo-nativewind-design` with flexible heterogeneous onboarding steps, reusable NativeWind component contracts, opt-in Lottie guidance, and native-versus-universal UI decisions.
 
 ## [0.1.0] - 2026-08-21
 

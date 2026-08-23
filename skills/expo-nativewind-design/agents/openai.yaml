@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo NativeWind Design"
+  short_description: "Design polished Expo screens with NativeWind"
+  default_prompt: "Use $expo-nativewind-design to design and implement a polished Expo screen with consistent tokens, responsive spacing, accessibility, and complete UI states."

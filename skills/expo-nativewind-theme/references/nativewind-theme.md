@@ -35,7 +35,7 @@ The Expo web config uses Metro, and the TypeScript declaration file contains:
 
 Do not name that file `nativewind.d.ts`.
 
-## Semantic variable pattern
+## Semantic token pattern
 
 Keep one palette as the source of truth, then expose variables for Tailwind:
 
@@ -50,6 +50,10 @@ export const colors = {
     border: "#E2E8F0",
     primary: "#2563EB",
     primaryForeground: "#FFFFFF",
+    secondary: "#E2E8F0",
+    secondaryForeground: "#0F172A",
+    accent: "#DBEAFE",
+    accentForeground: "#1E3A8A",
     muted: "#F1F5F9",
     mutedForeground: "#64748B",
   },
@@ -60,6 +64,10 @@ export const colors = {
     border: "#242C3E",
     primary: "#3B82F6",
     primaryForeground: "#FFFFFF",
+    secondary: "#242C3E",
+    secondaryForeground: "#F8FAFC",
+    accent: "#172554",
+    accentForeground: "#DBEAFE",
     muted: "#1C2436",
     mutedForeground: "#94A3B8",
   },
@@ -78,6 +86,10 @@ const makeTheme = (theme: (typeof colors)["light"]) =>
     "--color-border": rgb(theme.border),
     "--color-primary": rgb(theme.primary),
     "--color-primary-foreground": rgb(theme.primaryForeground),
+    "--color-secondary": rgb(theme.secondary),
+    "--color-secondary-foreground": rgb(theme.secondaryForeground),
+    "--color-accent": rgb(theme.accent),
+    "--color-accent-foreground": rgb(theme.accentForeground),
     "--color-muted": rgb(theme.muted),
     "--color-muted-foreground": rgb(theme.mutedForeground),
   });
@@ -112,6 +124,14 @@ module.exports = {
           DEFAULT: color("primary"),
           foreground: color("primary-foreground"),
         },
+        secondary: {
+          DEFAULT: color("secondary"),
+          foreground: color("secondary-foreground"),
+        },
+        accent: {
+          DEFAULT: color("accent"),
+          foreground: color("accent-foreground"),
+        },
         muted: {
           DEFAULT: color("muted"),
           foreground: color("muted-foreground"),
@@ -123,6 +143,41 @@ module.exports = {
 ```
 
 Use a root `View` with `style={themes[resolvedScheme]}` so all descendants receive the variables.
+
+## Layout-token baseline
+
+Tailwind's common spacing utilities already follow a 4-point rhythm. Prefer them over arbitrary values, and extend only semantic values the app will reuse:
+
+```js
+theme: {
+  extend: {
+    spacing: {
+      "screen-sm": "16px",
+      screen: "20px",
+      "screen-lg": "24px",
+      section: "32px",
+      control: "48px",
+    },
+    borderRadius: {
+      control: "12px",
+      card: "16px",
+    },
+  },
+}
+```
+
+These are starting points, not universal values. Adjust them to the approved density and existing product language. Keep touchable controls at least 44 points in both dimensions even when their visible surface is smaller.
+
+## Toast integration contract
+
+- Install with the project's Expo-aware package command and check current peer requirements.
+- Keep exactly one app-wide `Toaster` unless separate roots are intentional.
+- Mount it after router/navigation content, within the gesture root and providers it needs.
+- Resolve colors from the same semantic palette as the rest of the app.
+- Exercise only the default, success, error, warning, loading/promise, action, and dismiss variants the product uses.
+- For web, use platform-specific adapter files when following Sonner Native's web recommendation.
+
+Consult the current [Sonner Native README](https://www.npmjs.com/package/sonner-native) because its peer dependencies and customization API can change.
 
 ## Font-loading pattern
 

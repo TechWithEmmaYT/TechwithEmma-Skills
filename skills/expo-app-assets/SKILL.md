@@ -1,0 +1,59 @@
+---
+name: expo-app-assets
+description: Generate, configure, or replace production Expo app icons, Android adaptive and monochrome icon layers, iOS icon variants, and light or dark splash screens. Use when an Expo or React Native app needs launcher artwork, themed icons, splash branding, or corrected app asset configuration.
+---
+
+# Expo App Assets
+
+Create a coherent app-icon and splash-screen asset set, then configure it without damaging the project's existing Expo setup.
+
+## Inspect before proposing changes
+
+Read the app config, Expo SDK, `package.json`, existing assets, and native directories. Determine whether the project uses app JSON, dynamic JS/TS config, Continuous Native Generation, or manually maintained native projects. Preserve dynamic config and existing plugins.
+
+Ask only for missing brand decisions: app purpose, dominant symbol, primary/background colors, visual style, whether light/dark/tinted variants are wanted, and whether the splash uses the same mark. If the app already answers these questions, summarize the inferred direction instead.
+
+Before generating images or changing files, show no more than five short bullets covering the concept, planned assets, platform variants, config changes, and verification. Wait for confirmation. Provider-backed image generation can cost money, so name the provider before running it.
+
+## Create and approve the source concept
+
+Prefer an existing logo or user-supplied source when one exists. Otherwise use an available image-generation tool to create two or three square concepts.
+
+Before writing any generated file, create a unique staging directory such as `generated/app-assets/20260823-1430/`. Add a short suffix if that path already exists. Put every concept and derived asset from the current run there. Never overwrite, rename, or delete the project's existing icon or splash files during generation.
+
+If the current model cannot generate images, tell the user to switch to an image-capable model. If switching is unavailable, provide a polished copy-ready prompt for Gemini or another image model, including the app concept, visual style, composition, colors, square format, and exclusions. Ask the user to generate and upload the result before producing platform assets or configuring file paths. Never claim an image was generated when only a prompt was provided.
+
+Keep the concept recognizable at small size: one dominant mark, clean silhouette, restrained detail, no device mockup, no wordmark-sized text, no baked-in rounded corners, and no fake app-store badge. Show the concepts and let the user select one before producing the final platform assets.
+
+## Produce distinct deliverables
+
+Read [references/expo-asset-config.md](references/expo-asset-config.md) before exporting or editing the app config.
+
+Create only the variants the app needs inside the new staging directory, using clear names. A typical set is:
+
+- `icon.png`: opaque 1024x1024 master for the top-level or legacy icon;
+- optional iOS light, dark, and tinted 1024x1024 icons;
+- `adaptive-icon-foreground.png`: transparent Android foreground with the mark inside the safe zone;
+- either a full-bleed Android background image or an approved background color;
+- `adaptive-icon-monochrome.png`: a single-color silhouette on transparency for themed icons;
+- `splash-icon.png` and an optional dark variant: transparent PNG artwork for `expo-splash-screen`.
+
+Do not reuse a flattened full-color icon as Android foreground, background, and monochrome layers. Do not add transparency to a standard iOS PNG icon. Only create an iOS `.icon` directory through the supported Icon Composer workflow when the user requests it and the project SDK supports it; do not invent Icon Composer metadata.
+
+## Configure Expo conservatively
+
+After previewing the completed staging folder, ask the user to choose whether to copy the files manually, keep the new folder as the final location, or approve replacing specific existing assets. If the request was only to generate assets, stop without editing app config. Clearly show the source-to-destination mapping the user can copy.
+
+Only after approval, merge the selected final paths into the existing app config. Use `android.adaptiveIcon` for Android layers and the `expo-splash-screen` config plugin for native splash screens. Prefer the plugin over deprecated `splash`, `ios.splash`, or `android.splash` fields. Do not point production config at a temporary staging path unless the user chooses to keep that folder as the final location.
+
+Do not replace unrelated plugins, identifiers, permissions, schemes, or build settings. If `expo-splash-screen` is missing, propose `npx expo install expo-splash-screen` and wait for approval before installing. Explain that icon and splash configuration requires a new native build and is not delivered by an over-the-air JavaScript update.
+
+## Verify the real output
+
+- Confirm every referenced file exists, is PNG where required, has the intended dimensions, and has the correct opaque or transparent background.
+- Preview Android foreground and background together under circle, squircle, and rounded-square masks. Ensure the essential mark remains within the 66x66 safe zone of the 108x108 adaptive-icon canvas.
+- Preview the monochrome layer under multiple system tints and inspect iOS icons on light and dark wallpapers.
+- Resolve the final config with `npx expo config --type public` when available. Do not run a clean prebuild if it would overwrite manually maintained native changes without explicit approval.
+- Test splash screens with preview or production builds, not Expo Go. Report which platforms and appearance variants were actually inspected.
+
+Keep the handoff concise: list generated assets, config fields changed, commands run, previews/builds checked, and any platform verification still outstanding.

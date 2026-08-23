@@ -1,0 +1,4 @@
+interface:
+  display_name: "Node.js Payments"
+  short_description: "Build secure Stripe, Polar, or Paddle payments"
+  default_prompt: "Use $nodejs-payments to implement or review secure Node.js payments for my chosen provider, including verified idempotent webhooks and server-owned entitlements."

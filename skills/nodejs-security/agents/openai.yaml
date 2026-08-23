@@ -1,0 +1,4 @@
+interface:
+  display_name: "Node.js Security"
+  short_description: "Audit backends and propose selected security fixes"
+  default_prompt: "Use $nodejs-security to audit this Node.js backend for security and resource-abuse risks, show evidence-backed findings first, and implement only the fixes I approve."
