@@ -1,6 +1,6 @@
 {
   "name": "techwithemma-skills",
-  "description": "Production-minded skills for Node.js, testing, security, payments, organizations, Expo design and app assets, and full-stack monorepos",
+  "description": "Production-minded skills for Node.js, mobile UI planning, Expo design and app assets, and full-stack monorepos",
   "version": "0.1.0",
   "author": {
     "name": "TechWithEmma"
@@ -21,6 +21,8 @@
     "better-auth",
     "nativewind",
     "mobile-design",
+    "mobile-ui",
+    "image-prompts",
     "app-icons",
     "splash-screen",
     "monorepo"

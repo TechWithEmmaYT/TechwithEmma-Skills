@@ -71,6 +71,8 @@ Make destructive actions visually distinct and require confirmation when recover
 
 ## Verify visually and functionally
 
-Run the project's typecheck and lint, then start Expo and inspect at least one native target. Exercise navigation, gestures, keyboard behavior, safe areas, loading/empty/error/success states, theme modes, and touch targets relevant to the change. Compare against supplied references without claiming pixel accuracy unless screenshots were actually inspected.
+Use a bounded loop: implement, run or capture the screen, compare it with the approved design and tokens, fix relevant mismatches, then verify again. Stop when the requested UI and relevant checks pass, or report the blocker. Do not expand scope.
+
+Run the project's typecheck and lint, then start Expo and inspect at least one native target. Exercise navigation, gestures, keyboard behavior, safe areas, loading/empty/error/success states, theme modes, and touch targets relevant to the change. If visual inspection is unavailable, say so instead of claiming a visual match.
 
 Report completed screens, reused/created components, design tokens followed, commands run, native targets visually checked, and remaining states or platform checks. Keep the handoff concise.

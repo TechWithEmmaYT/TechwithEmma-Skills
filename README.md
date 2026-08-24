@@ -124,6 +124,16 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill plan-project
 
 The complete instructions are in [`skills/plan-project/SKILL.md`](skills/plan-project/SKILL.md).
 
+### Mobile UI Blueprint
+
+Turns a mobile app idea, plan, codebase, or references into a complete screen inventory, an approved visual direction, and a copy-ready concept or full-app board prompt. It works standalone and can optionally produce a portable `mobile-design.md` handoff.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill mobile-ui-blueprint
+```
+
+The complete instructions are in [`skills/mobile-ui-blueprint/SKILL.md`](skills/mobile-ui-blueprint/SKILL.md).
+
 ## Repository structure
 
 ```text
@@ -158,6 +168,12 @@ skills/
 │       ├── deployment.md
 │       ├── expo-monorepo.md
 │       └── package-layout.md
+├── mobile-ui-blueprint/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   └── references/
+│       ├── board-prompt.md
+│       └── mobile-design-file.md
 ├── nodejs-scaffolding/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml

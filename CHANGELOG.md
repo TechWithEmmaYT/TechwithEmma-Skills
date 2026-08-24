@@ -16,6 +16,7 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 - `nodejs-organizations` for a framework-neutral Node.js organization domain with memberships, invitations, teams, RBAC, ownership protection, audit events, and tenant isolation.
 - `expo-nativewind-design` for intentional Expo screens and flows with a compact design brief, responsive spacing, complete UI states, and native accessibility guidance.
 - `expo-app-assets` for generating and configuring iOS icons, Android adaptive and monochrome layers, and Expo splash screens.
+- `mobile-ui-blueprint` for building a complete mobile screen inventory and an adaptive prompt-only, concept-board, or full-app-board handoff without requiring other skills.
 
 ### Changed
 
