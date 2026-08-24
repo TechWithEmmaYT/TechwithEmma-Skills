@@ -55,7 +55,7 @@ Before every refinement, read the draft, change only what the user requested, pr
 
 ## Always write the complete board prompt
 
-Read [references/board-prompt.md](references/board-prompt.md) and generate the entire board-ready prompt before offering image generation. Cover the complete product and screen inventory so the user can copy it elsewhere without additional work. The user should not need to fill placeholders or know design terminology.
+Read [references/board-prompt.md](references/board-prompt.md) and generate the entire board-ready prompt or prompt set before offering image generation. Cover the complete product and screen inventory so the user can copy it elsewhere without additional work. The user should not need to fill placeholders or know design terminology.
 
 The prompt must specify:
 
@@ -63,7 +63,7 @@ The prompt must specify:
 - every screen in the approved inventory and its important content;
 - navigation and relationships between screens;
 - visual direction and reusable interface language;
-- both readable concept-board and full-app-board composition guidance;
+- readable board composition and flow-based grouping;
 - legibility, realism, accessibility, and output quality;
 - product-specific visual mistakes to avoid.
 
@@ -71,13 +71,15 @@ On the initial pass, do not generate an image yet. Present the complete prompt o
 
 1. refine the prompt;
 2. generate a concept board using 3–5 recommended representative screens;
-3. generate a full-app board using the complete inventory.
+3. generate one numbered full-app board from the complete prompt set.
 
 If the user already requested a particular board, still show the complete prompt before its first generation. After that, use the latest stored prompt internally and do not repeat it unless requested. Keep a design-system board separate and optional.
 
 ## Generate only when requested
 
-If an image-generation tool is available and the user approves one option, adapt the composition instructions for that board and generate only that image. For a large full-app inventory, mention the readability tradeoff before generation and let the user decide whether to keep one overview or use grouped boards.
+Never place more than four portrait screens in one row or more than eight screens on one board. Use one row for 1–4 screens and a balanced grid of up to four columns by two rows for 5–8 screens. Centre an incomplete final row. Split larger inventories into numbered boards grouped by user flow.
+
+If an image-generation tool is available and the user approves one option, generate only the requested board. Do not generate every numbered board automatically.
 
 If no image-generation tool is available, say so after presenting the prompt. Recommend pasting it into [ChatGPT Images](https://help.openai.com/en/articles/11084440-im) or [Gemini Apps image generation](https://support.google.com/gemini/answer/14286560), then ask whether the user wants the prompt refined for concept-board or full-app-board generation. Do not pretend an image was generated or tell the user to switch models without giving them the usable prompt first.
 
@@ -100,8 +102,9 @@ Before finishing, confirm:
 - the visual direction is specific enough to reproduce;
 - refinements preserve locked tokens and component rules from the working draft;
 - the prompt contains all required screen content and no empty placeholders;
+- no board exceeds four columns or eight screens;
 - competitor names or generic legal warnings were not added to the prompt;
 - no image was generated before prompt approval;
-- the user was offered refine, concept board, or full-app board after receiving the prompt;
+- the user was offered refine, concept board, or a numbered full-app board after receiving the prompt;
 - optional tools or skills were not presented as dependencies;
 - the handoff, when requested, is portable and implementation-ready.

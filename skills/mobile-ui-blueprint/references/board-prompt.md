@@ -36,7 +36,7 @@ SCREENS
 
 BOARD GENERATION OPTIONS
 - Concept board: use [3–5 RECOMMENDED SCREEN NAMES] in [READABLE LAYOUT AND ASPECT RATIO]. Keep the screens large enough to judge hierarchy, components, and content.
-- Full-app board: include all [SCREEN COUNT] screens in [ORDERLY OVERVIEW LAYOUT AND ASPECT RATIO]. Preserve flow order and accept smaller details in exchange for complete coverage.
+- Full app: divide the complete inventory into [NUMBERED FLOW-BASED BOARDS], with no more than eight screens per board.
 - Shared composition: [background, spacing, device framing, annotations if any, and how the flow should read]. Do not add a design-system panel unless requested.
 
 QUALITY
@@ -48,7 +48,7 @@ AVOID
 
 ## After presenting the prompt
 
-After showing the initial complete prompt, ask the user to choose: refine it, generate the concept board, or generate the full-app board. During later refinements, update the stored prompt and show only a concise change summary. Reprint the full prompt only when requested.
+After showing the initial complete prompt or prompt set, ask the user to choose: refine it, generate the concept board, or generate a specific numbered full-app board. During later refinements, update the stored prompt and show only a concise change summary. Reprint the full prompt only when requested.
 
 ## Generation guidance
 
@@ -61,10 +61,12 @@ After showing the initial complete prompt, ask the user to choose: refine it, ge
 
 ### Full-app board
 
-- Include every approved screen from the inventory.
-- Choose rows, columns, grouping, and aspect ratio from the number of screens.
-- Preserve flow order and label groups only when labels improve comprehension.
-- Warn the user when one overview will trade detail for coverage; do not split it into extra image generations without approval.
+- Include every approved screen across the complete prompt set.
+- Use one row for 1–4 screens.
+- For 5–8 screens, use two balanced rows with no more than four columns; centre an incomplete final row.
+- Split inventories above eight screens into numbered boards grouped by user flow.
+- Preserve flow order and consistent design rules across boards.
+- Generate only the board the user approves; do not generate the full set automatically.
 
 - The prompt itself must always contain the full inventory, even when the user later generates only the concept board.
 - Return copy-ready text with no unresolved bracket placeholders.
