@@ -11,7 +11,7 @@ An application importing a workspace package needs access to:
 - the application's directory
 - every internal package in its dependency graph
 
-If a provider's Root Directory feature excludes those files, leave the build context at the repository root and scope commands with pnpm filters. Do not copy shared source into an app during deployment.
+If a provider's Root Directory feature excludes those files, leave the build context at the repository root and scope commands with pnpm filters. Do not copy workspace source into an app during deployment.
 
 Use the real package names from the workspace. Given `@repo/api`, `@repo/admin`, and `@repo/mobile`, filtered commands commonly take this shape:
 
@@ -25,7 +25,7 @@ The trailing `...` includes the selected package's workspace dependencies. Confi
 
 ## Render API
 
-Create a Render Web Service connected to the monorepo. When the API consumes shared packages, use the repository root as the effective build context.
+Create a Render Web Service connected to the monorepo. Use the repository root as the effective build context when the API needs the root lockfile or workspace tooling packages.
 
 Typical commands:
 
@@ -56,11 +56,13 @@ Create a separate project connected to the same repository. Configure Vite as th
 
 On Vercel, select the admin Root Directory and enable access to source files outside it when required by workspace dependencies, or retain a root build context and use a filtered command. Keep internal dependencies explicit so affected-project detection works.
 
-On Cloudflare, deploy the Vite SPA with Pages. Configure the workspace install and build from a context that includes shared packages, and add the platform's SPA fallback for client-side routes.
+On Cloudflare, deploy the Vite SPA with Pages. Configure the workspace install and build from a context that includes `packages/ui` and the shared configuration packages, and add the platform's SPA fallback for client-side routes.
 
 ## Expo and EAS
 
-Keep `eas.json` and the Expo app configuration in `apps/mobile`. Run EAS commands from that application directory while retaining the monorepo's root workspace files in Git:
+Run every EAS CLI command from the Expo application's directory, not the monorepo root. Keep that app's Expo configuration, `eas.json`, and `credentials.json` in `apps/mobile`. If the monorepo contains multiple Expo apps, each app owns its own EAS files.
+
+Retain the monorepo's root workspace files in Git, then run:
 
 ```bash
 cd apps/mobile
@@ -68,11 +70,13 @@ eas build --platform ios
 eas build --platform android
 ```
 
-EAS installs workspace dependencies during the remote build. Verify that shared packages needed by mobile contain no Node-only or browser-only code. Use EAS Update or store submission only when the user requests those workflows.
+EAS installs workspace dependencies during the remote build. Do not make the mobile app depend on the DOM-based `packages/ui`; any future package consumed by mobile must remain free of Node-only and browser-only code. Use EAS Update or store submission only when the user requests those workflows.
+
+Do not add an app-level `postinstall` automatically. If a workspace dependency must emit compiled output before the native build, add a narrowly scoped `postinstall` in `apps/mobile/package.json` that returns to the workspace root and builds only the required package or dependency graph. Use the repository's real package names and package manager, then verify the command in a clean install. No extra build step is needed for source packages Metro already consumes correctly.
 
 ## Change-based builds
 
-Configure provider build filters only after normal deployment succeeds. Changes to `packages/shared`, root workspace configuration, or the lockfile may affect multiple apps and should trigger every dependent deployment.
+Configure provider build filters only after normal deployment succeeds. Changes to `packages/ui`, `packages/typescript-config`, `packages/eslint-config`, root workspace configuration, or the lockfile may affect multiple apps and should trigger every dependent deployment.
 
 ## Official references
 

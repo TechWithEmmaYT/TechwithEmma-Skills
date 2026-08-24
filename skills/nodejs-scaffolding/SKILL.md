@@ -1,11 +1,11 @@
 ---
 name: nodejs-scaffolding
-description: Scaffold or extend production-minded TypeScript Express projects with a fixed src architecture, shared error handling, optional Passport JWT cookie authentication, and opt-in MongoDB setup. Use when creating a Node.js API, adding authentication to one, or configuring MongoDB for it.
+description: Scaffold or extend production-minded TypeScript Express projects with a fixed src architecture, shared error handling, security headers, rate limiting, console logging, graceful shutdown, optional Passport JWT cookie authentication, and opt-in MongoDB setup. Use when creating a Node.js API, adding authentication to one, or configuring MongoDB for it.
 ---
 
 # Node.js Scaffolding
 
-Build a compact, teachable TypeScript Express API. Preserve existing project choices and files; do not replace a working structure unless the user explicitly asks for a rewrite.
+Build a compact TypeScript Express API whose structure and code are readable and understandable to the person using or maintaining it. Preserve existing project choices and files; do not replace a working structure unless the user explicitly asks for a rewrite.
 
 ## Choose the requested mode
 
@@ -28,6 +28,7 @@ src/
 ├── middlewares/
 ├── models/
 ├── routes/
+│   └── v1/
 ├── services/
 ├── types/
 ├── utils/
@@ -47,7 +48,7 @@ Initialize `package.json` when it does not exist, then use `npm install` command
 For the base scaffold, install the runtime and TypeScript packages the implementation actually uses. A typical Express base needs:
 
 ```bash
-npm install express cors cookie-parser dotenv zod bcryptjs
+npm install express cors cookie-parser dotenv zod bcryptjs helmet express-rate-limit winston
 npm install --save-dev typescript ts-node nodemon @types/node @types/express @types/cors @types/cookie-parser
 ```
 
@@ -62,18 +63,33 @@ src/config/env.config.ts
 src/config/http-status.config.ts
 src/middlewares/asyncHandler.middleware.ts
 src/middlewares/errorHandler.middleware.ts
+src/middlewares/rateLimiter.middleware.ts
+src/routes/v1/index.ts
 src/utils/app-error.ts
 src/utils/bcrypt.ts
 src/utils/get-env.ts
+src/utils/logger.ts
 src/index.ts
 .gitignore
 nodemon.json
 tsconfig.json
 ```
 
-The base `env.config.ts` should expose `NODE_ENV` and `PORT`, using `getEnv` with sensible defaults. Do not include `MONGO_URI`, `database.config.ts`, or `connectDatabase` in `index.ts` until MongoDB is explicitly requested.
+The base `env.config.ts` should expose `NODE_ENV`, `PORT`, and `LOG_LEVEL`, using `getEnv` with sensible defaults. Do not include `MONGO_URI`, `database.config.ts`, or `connectDatabase` in `index.ts` until MongoDB is explicitly requested.
 
-Configure `index.ts` with Express JSON and URL-encoded parsing, cookies, CORS when an origin is configured, a `GET /health` route, and `errorHandler` last. Keep the health response small and deterministic.
+Configure `index.ts` with Helmet, Express JSON and URL-encoded parsing, cookies, CORS when an origin is configured, rate limiting for API routes, a `GET /health` route, and `errorHandler` last. Keep the health response small and deterministic. Do not rate-limit the health endpoint used by the hosting platform.
+
+Put feature routers in `src/routes/v1` and combine them in `src/routes/v1/index.ts`. Mount the combined router at `/api/v1`; controllers and services must not repeat that prefix. Keep infrastructure endpoints such as `/health` outside API versioning.
+
+Read [references/security-logging-shutdown.md](references/security-logging-shutdown.md) when building the base scaffold. Use one Winston console transport: readable colored lines in development, structured JSON in production, and silent output in tests. Do not add Logtail, files, or another logging transport unless the user requests a logging service.
+
+Store the result of `app.listen()` and register graceful shutdown with exactly this signal list:
+
+```ts
+const shutdownSignals: NodeJS.Signals[] = ["SIGTERM", "SIGINT"];
+```
+
+Stop accepting requests, close the HTTP server, then close any configured database connection. Log startup, shutdown, and unexpected failures without logging secrets, cookies, authorization headers, passwords, tokens, or raw request bodies.
 
 Use `asyncHandler.middleware.ts` to forward rejected controller promises to Express error middleware. Keep both `asyncHandler` and `errorHandler` in `src/middlewares`, not `src/utils`.
 
@@ -89,6 +105,7 @@ export const ErrorCodes = {
   ERR_FORBIDDEN: "ERR_FORBIDDEN",
   ERR_NOT_FOUND: "ERR_NOT_FOUND",
   ERR_VALIDATION: "ERR_VALIDATION",
+  ERR_TOO_MANY_REQUESTS: "ERR_TOO_MANY_REQUESTS",
 } as const;
 ```
 
@@ -119,7 +136,7 @@ Add:
 src/config/passport.config.ts
 src/controllers/auth.controller.ts
 src/models/user.model.ts
-src/routes/auth.route.ts
+src/routes/v1/auth.route.ts
 src/services/auth.service.ts
 src/services/user.service.ts
 src/utils/cookie.ts
@@ -132,7 +149,7 @@ Add `JWT_SECRET` and `JWT_EXPIRES_IN` to `env.config.ts`. The Passport strategy 
 const cookieExtractor = (req: Request) => req?.cookies?.accessToken ?? null;
 ```
 
-Use `session: false`, initialize Passport in `index.ts`, mount the auth router, and protect the auth-status endpoint with the JWT middleware.
+Use `session: false`, initialize Passport in `index.ts`, mount the auth router from `src/routes/v1/index.ts`, and protect the auth-status endpoint with the JWT middleware.
 
 `cookie.ts` must expose `setJwtAuthCookie` and `clearJwtAuthCookie`. The cookie should be HTTP-only, secure in production, and use an intentional `sameSite` policy. Clear it with the same path and relevant options used when setting it.
 
@@ -147,6 +164,7 @@ Only when the user explicitly asks to configure MongoDB:
 3. Add `MONGO_URI` to `env.config.ts` and `.env.example` if that file exists.
 4. Connect from the server startup path before reporting that the API is ready.
 5. Keep connection errors visible and terminate startup cleanly when the initial connection fails.
+6. Enable Mongoose `sanitizeFilter` before accepting queries, validate request input with Zod, and construct filters/updates from allowed fields. Never pass `req.body` or `req.query` directly to Mongoose.
 
 If authentication is requested without a database choice, do not silently choose MongoDB. Ask for or adapt to the project's existing persistence layer.
 

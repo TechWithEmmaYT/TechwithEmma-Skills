@@ -16,7 +16,7 @@ The repository also includes Claude Code plugin metadata in [`.claude-plugin/plu
 
 ### Node.js Scaffolding
 
-Builds compact TypeScript Express APIs with a predictable source structure, typed errors, optional Passport JWT authentication, opt-in MongoDB, and real runtime verification.
+Builds compact TypeScript Express APIs with versioned routes, typed errors, Helmet, rate limiting, console-only Winston logging, graceful shutdown, optional Passport JWT authentication, and opt-in MongoDB protection.
 
 ```bash
 npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill nodejs-scaffolding
@@ -106,7 +106,7 @@ The complete instructions are in [`skills/expo-better-auth/SKILL.md`](skills/exp
 
 ### Full-stack Monorepo Setup
 
-Scaffolds a pnpm and Turborepo workspace with a Node.js API, Vite React admin using shadcn/ui, Expo mobile app, and focused shared TypeScript packages that remain independently deployable.
+Scaffolds a pnpm and Turborepo workspace with a Node.js API, Vite React admin, Expo mobile app, shared ESLint and TypeScript configs, and a Tailwind web UI package. shadcn/ui stays optional.
 
 ```bash
 npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill fullstack-monorepo-setup
@@ -154,10 +154,14 @@ skills/
 ├── fullstack-monorepo-setup/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
-│   └── references/deployment.md
+│   └── references/
+│       ├── deployment.md
+│       ├── expo-monorepo.md
+│       └── package-layout.md
 ├── nodejs-scaffolding/
 │   ├── SKILL.md
-│   └── agents/openai.yaml
+│   ├── agents/openai.yaml
+│   └── references/security-logging-shutdown.md
 ├── nodejs-testing/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml

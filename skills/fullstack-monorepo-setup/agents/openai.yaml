@@ -1,4 +1,4 @@
 interface:
   display_name: "Full-stack Monorepo Setup"
-  short_description: "Scaffold API, Vite admin, Expo, and shared packages"
-  default_prompt: "Use $fullstack-monorepo-setup to scaffold a pnpm monorepo with a Node.js API, Vite React admin, Expo mobile app, and shared packages."
+  short_description: "Scaffold API, admin, Expo, configs, and web UI"
+  default_prompt: "Use $fullstack-monorepo-setup to scaffold a pnpm monorepo with a Node.js API, Vite React admin, Expo mobile app, shared ESLint and TypeScript configs, and a Tailwind web UI package."
