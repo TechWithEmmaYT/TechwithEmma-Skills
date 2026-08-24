@@ -37,6 +37,38 @@ Create only what the current product uses:
 
 Do not wrap platform controls such as `Switch`, pickers, navigation headers, or native sheets solely to make everything appear under `components/ui`. Wrap them only when the app needs repeated product-specific behavior or styling.
 
+## Screen contract
+
+When the app has multiple routes, a compact `Screen` primitive should guarantee the full-height semantic shell and allow each route to choose its safe-area edges:
+
+```tsx
+import type { PropsWithChildren } from "react";
+import type { Edge } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+type ScreenProps = PropsWithChildren<{
+  className?: string;
+  edges?: Edge[];
+}>;
+
+export function Screen({
+  children,
+  className,
+  edges = ["top", "right", "bottom", "left"],
+}: ScreenProps) {
+  return (
+    <SafeAreaView
+      edges={edges}
+      className={`flex-1 bg-background ${className ?? ""}`}
+    >
+      {children}
+    </SafeAreaView>
+  );
+}
+```
+
+Adapt this to the project's `cn` helper and forwarded native props when needed. A tab screen may omit `bottom`; a native-header screen may omit `top`. For full-bleed artwork, use a `flex-1 bg-background` outer view and place only the content layer inside `Screen` or `SafeAreaView`. Scrollable screens still need a full-height outer shell; use `contentContainerStyle={{ flexGrow: 1 }}` only when the scroll content itself must stretch.
+
 ## Quality checks
 
 - Forward native props and refs when consumers need them.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Database"
+  short_description: "Design a concise, scalable database plan"
+  default_prompt: "Use $plan-database to inspect my project and propose a concise database diagram, query-backed indexes, Redis decision, and MVP-to-scale plan."

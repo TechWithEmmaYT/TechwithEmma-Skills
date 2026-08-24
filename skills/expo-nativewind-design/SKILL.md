@@ -33,6 +33,7 @@ Use familiar mobile patterns unless the product benefits from a deliberate alter
 - When the user wants a platform-native control, native tabs, or guidance choosing between Expo UI, universal React Native UI, and another package, read [references/native-and-universal-ui.md](references/native-and-universal-ui.md).
 - For a multi-step first-run experience, read [references/onboarding-flows.md](references/onboarding-flows.md). Share the shell and navigation, not one forced card layout.
 - Before creating or expanding `components/ui`, read [references/reusable-components.md](references/reusable-components.md).
+- For forms, authentication, chat composers, or screens where the keyboard can cover content or actions, read [references/keyboard-controller.md](references/keyboard-controller.md).
 - When the approved design uses Lottie, read [references/lottie.md](references/lottie.md). Do not install or add animation merely because onboarding is present.
 
 ## Use the existing design system
@@ -41,15 +42,30 @@ Consume semantic tokens such as `background`, `foreground`, `card`, `border`, `p
 
 Use a consistent 4-point spacing rhythm. Related elements sit closer than unrelated groups; section gaps should be visibly larger than internal gaps. Prefer existing NativeWind utilities and shared screen gutters over arbitrary values. Keep typography roles, control heights, border radii, icon sizes, and elevation consistent.
 
+Use semantic utilities throughout the screen: `bg-background` for the screen, `bg-card` for raised surfaces, `text-foreground` for primary copy, `text-muted-foreground` for supporting copy, and token-backed border and action colors. Do not fall back to `text-black`, `text-white`, `bg-white`, `bg-gray-*`, or raw colors unless the design intentionally needs fixed contrast over media or another non-themed surface.
+
 If NativeWind, theme tokens, fonts, or toast infrastructure are missing or broken, report the gap and offer the `expo-nativewind-theme` foundation as a separate approved change. Do not silently turn a screen-design request into project-wide configuration work.
+
+## Enforce a complete screen shell
+
+Every route screen must have a full-height semantic root. Use either the project's reusable `Screen` component or `SafeAreaView` from `react-native-safe-area-context`, and ensure the root applies `flex-1 bg-background`. Do not rely on content height or a third-party component's `className` to fill the viewport.
+
+Choose safe-area edges intentionally:
+
+- include `top` when no native header already protects the content;
+- include `bottom` when no tab bar, sheet, or navigator already manages it;
+- avoid applying the same inset in both the navigator and screen;
+- for full-bleed images, maps, video, or gradients, keep the background in a `flex-1` outer view and place interactive content inside a safe-area layer.
+
+Use `react-native-safe-area-context`, not React Native's deprecated `SafeAreaView`. When multiple screens share this behavior, read [references/reusable-components.md](references/reusable-components.md) and create one small `Screen` primitive instead of repeating wrappers.
 
 ## Implement for React Native
 
 - Reuse project components before creating new ones; extract a component only when it has a real second use, establishes a design-system contract, or isolates meaningful complexity.
 - Use `Pressable` states and disabled/loading behavior intentionally.
 - Choose `ScrollView`, `FlatList`, or `SectionList` according to content size and virtualization needs.
-- Apply safe-area insets only to surfaces that touch system edges.
-- Account for the keyboard on forms and keep the focused input and submission action reachable.
+- Verify that every screen root fills the viewport, uses the semantic background, and protects content that touches system edges.
+- On keyboard-heavy screens, use the project's existing solution or `react-native-keyboard-controller`; keep the focused input and submission action reachable and avoid layering another keyboard library on top.
 - Respect platform navigation, back behavior, status bars, bottom tabs, sheets, and modals.
 - Use the project's icon system. Do not substitute emoji or text glyphs for interface icons unless the product direction calls for them.
 - Add motion or haptics only when they communicate state, orientation, or completion; do not make them a default decoration.

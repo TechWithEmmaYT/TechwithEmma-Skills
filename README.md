@@ -134,6 +134,16 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill mobile-ui-blueprint
 
 The complete instructions are in [`skills/mobile-ui-blueprint/SKILL.md`](skills/mobile-ui-blueprint/SKILL.md).
 
+### Plan Database
+
+Inspects a product or codebase and proposes a concise database diagram, ORM choice, query-backed indexes, Redis decision, and MVP-to-scale plan.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill plan-database
+```
+
+The complete instructions are in [`skills/plan-database/SKILL.md`](skills/plan-database/SKILL.md).
+
 ## Repository structure
 
 ```text
@@ -156,6 +166,7 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/
+│       ├── keyboard-controller.md
 │       ├── lottie.md
 │       ├── mobile-design-conventions.md
 │       ├── native-and-universal-ui.md
@@ -194,6 +205,12 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/organizations.md
+├── plan-database/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   └── references/
+│       ├── database-plan-template.md
+│       └── managed-redis.md
 └── plan-project/
     ├── SKILL.md
     └── agents/openai.yaml

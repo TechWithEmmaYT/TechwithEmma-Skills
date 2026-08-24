@@ -36,7 +36,7 @@ The v4 setup normally includes:
 
 - `nativewind`, `react-native-reanimated`, and `react-native-safe-area-context`
 - Tailwind CSS 3 and the NativeWind preset
-- a CSS file containing the three Tailwind directives
+- a CSS file containing the three Tailwind directives, imported once by the root layout
 - NativeWind's Babel preset and Metro wrapper
 - Metro as the Expo web bundler
 - a TypeScript declaration file referencing `nativewind/types`
@@ -53,6 +53,10 @@ Prefer semantic color names such as `background`, `foreground`, `card`, `card-fo
 Define a restrained 4-point spacing scale and reuse it through NativeWind utilities. Include only values the product uses, typically `0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64`. Establish intentional screen gutters, section gaps, control heights, border radii, and typography/line-height roles. Avoid arbitrary values such as `mt-[13px]` unless matching a supplied design requires them.
 
 Apply the active variable object to a root `View`. Set `userInterfaceStyle` to `automatic` when the app should follow the device. Use `useColorScheme()` for reading and changing the mode, and support `light`, `dark`, and `system` when the product offers a manual selector.
+
+The themed root view must be full height and provide a native fallback background in addition to NativeWind classes: use `className="flex-1 bg-background"` together with `style={[themes[resolvedScheme], { flex: 1, backgroundColor: colors[resolvedScheme].background }]}`. This prevents a collapsed or white root if styles load late and ensures descendants receive the active variables.
+
+NativeWind variables do not theme React Navigation by themselves. In an Expo Router app, create matching light and dark navigation themes and wrap the root navigator with React Navigation's `ThemeProvider`. Build those themes from the existing palette exported by `app-theme.ts`; do not create a second navigation palette. Map React Navigation's `background`, `card`, `text`, `border`, `primary`, and `notification` roles to the corresponding semantic app colors. Read the navigation-theme bridge in [references/nativewind-theme.md](references/nativewind-theme.md) and resolve a missing or system scheme before indexing the theme objects.
 
 Do not add persistence unless the user requests it. If persistence is requested, restore the preference before rendering themed UI to avoid a visible theme flash.
 
@@ -79,7 +83,7 @@ Use toasts for global asynchronous outcomes and actions. Keep field validation b
 
 ## Integrate the app shell
 
-Keep NativeWind, Expo Router's `ThemeProvider`, the status bar, and native navigation surfaces on the same resolved color scheme. Avoid blanket safe-area wrappers and global hardcoded background colors that fight the theme.
+Keep NativeWind, Expo Router's React Navigation `ThemeProvider`, the status bar, and native navigation surfaces on the same resolved color scheme. Avoid blanket safe-area wrappers and global hardcoded background colors that fight the theme.
 
 ## Verify
 

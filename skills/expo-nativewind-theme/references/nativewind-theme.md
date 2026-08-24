@@ -144,6 +144,79 @@ module.exports = {
 
 Use a root `View` with `style={themes[resolvedScheme]}` so all descendants receive the variables.
 
+## React Navigation theme bridge
+
+NativeWind variables style descendants, but they do not replace React Navigation's theme. Build navigation themes from the palette already defined in `app-theme.ts`; never duplicate these colors in the root layout:
+
+```ts
+import { DarkTheme, DefaultTheme } from "expo-router";
+
+export const navigationThemes = {
+  light: {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: colors.light.background,
+      card: colors.light.card,
+      text: colors.light.foreground,
+      border: colors.light.border,
+      primary: colors.light.primary,
+      notification: colors.light.secondary,
+    },
+  },
+  dark: {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      background: colors.dark.background,
+      card: colors.dark.card,
+      text: colors.dark.foreground,
+      border: colors.dark.border,
+      primary: colors.dark.primary,
+      notification: colors.dark.secondary,
+    },
+  },
+};
+```
+
+Use the same resolved scheme for the NativeWind variables and navigation provider:
+
+```tsx
+import { ThemeProvider } from "@react-navigation/native";
+import { useColorScheme } from "nativewind";
+import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardProvider } from "react-native-keyboard-controller";
+
+import { colors, navigationThemes, themes } from "@/theme/app-theme";
+import "../global.css"; // Use the correct relative path from the root layout.
+
+export default function RootLayout() {
+  const { colorScheme } = useColorScheme();
+  const scheme = colorScheme === "dark" ? "dark" : "light";
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <KeyboardProvider>
+        <ThemeProvider value={navigationThemes[scheme]}>
+          <View
+            className="flex-1 bg-background"
+            style={[
+              themes[scheme],
+              { flex: 1, backgroundColor: colors[scheme].background },
+            ]}
+          >
+            {/* StatusBar, Stack or Slot, then one app-wide Toaster. */}
+          </View>
+        </ThemeProvider>
+      </KeyboardProvider>
+    </GestureHandlerRootView>
+  );
+}
+```
+
+This example includes `GestureHandlerRootView` for gesture-based UI and Sonner Native, plus `KeyboardProvider` when `react-native-keyboard-controller` is installed. Omit providers the project does not use. Keep `ThemeProvider` around the router content rather than mounting it inside an individual screen. Preserve existing providers and resolve a nullable or `system` preference to `light` or `dark` first.
+
 ## Layout-token baseline
 
 Tailwind's common spacing utilities already follow a 4-point rhythm. Prefer them over arbitrary values, and extend only semantic values the app will reuse:

@@ -25,6 +25,10 @@
     "image-prompts",
     "app-icons",
     "splash-screen",
-    "monorepo"
+    "monorepo",
+    "database-design",
+    "postgresql",
+    "mongodb",
+    "redis"
   ]
 }
