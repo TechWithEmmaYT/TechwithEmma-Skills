@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo NativeWind Build"
+  short_description: "Build polished Expo screens with NativeWind"
+  default_prompt: "Use $expo-nativewind-build to implement an approved mobile design as polished Expo screens with consistent tokens, responsive spacing, accessibility, and complete UI states."

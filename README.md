@@ -74,15 +74,15 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-nativewind-theme
 
 The complete instructions are in [`skills/expo-nativewind-theme/SKILL.md`](skills/expo-nativewind-theme/SKILL.md).
 
-### Expo NativeWind Design
+### Expo NativeWind Build
 
 Designs and implements polished Expo screens and flows with a compact design brief, consistent NativeWind tokens, flexible onboarding step types, reusable component contracts, optional Lottie motion, complete UI states, and accessibility checks.
 
 ```bash
-npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-nativewind-design
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-nativewind-build
 ```
 
-The complete instructions are in [`skills/expo-nativewind-design/SKILL.md`](skills/expo-nativewind-design/SKILL.md).
+The complete instructions are in [`skills/expo-nativewind-build/SKILL.md`](skills/expo-nativewind-build/SKILL.md).
 
 ### Expo App Assets
 
@@ -124,15 +124,15 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill plan-project
 
 The complete instructions are in [`skills/plan-project/SKILL.md`](skills/plan-project/SKILL.md).
 
-### Mobile UI Blueprint
+### Mobile UI Design
 
 Turns a mobile app idea, plan, codebase, or references into a complete screen inventory, an approved visual direction, and a copy-ready concept or full-app board prompt. It works standalone and can optionally produce a portable `mobile-design.md` handoff.
 
 ```bash
-npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill mobile-ui-blueprint
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill mobile-ui-design
 ```
 
-The complete instructions are in [`skills/mobile-ui-blueprint/SKILL.md`](skills/mobile-ui-blueprint/SKILL.md).
+The complete instructions are in [`skills/mobile-ui-design/SKILL.md`](skills/mobile-ui-design/SKILL.md).
 
 ### Plan Database
 
@@ -162,7 +162,7 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/nativewind-theme.md
-├── expo-nativewind-design/
+├── expo-nativewind-build/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/
@@ -179,7 +179,7 @@ skills/
 │       ├── deployment.md
 │       ├── expo-monorepo.md
 │       └── package-layout.md
-├── mobile-ui-blueprint/
+├── mobile-ui-design/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/

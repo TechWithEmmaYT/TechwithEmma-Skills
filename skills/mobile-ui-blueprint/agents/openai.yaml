@@ -1,4 +1,0 @@
-interface:
-  display_name: "Mobile UI Blueprint"
-  short_description: "Validate mobile UI direction before implementation"
-  default_prompt: "Use $mobile-ui-blueprint to turn my mobile app idea into an approved screen inventory, visual direction, and copy-ready UI board prompt."

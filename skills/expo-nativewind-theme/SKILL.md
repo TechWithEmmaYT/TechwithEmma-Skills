@@ -52,11 +52,21 @@ Prefer semantic color names such as `background`, `foreground`, `card`, `card-fo
 
 Define a restrained 4-point spacing scale and reuse it through NativeWind utilities. Include only values the product uses, typically `0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64`. Establish intentional screen gutters, section gaps, control heights, border radii, and typography/line-height roles. Avoid arbitrary values such as `mt-[13px]` unless matching a supplied design requires them.
 
-Apply the active variable object to a root `View`. Set `userInterfaceStyle` to `automatic` when the app should follow the device. Use `useColorScheme()` for reading and changing the mode, and support `light`, `dark`, and `system` when the product offers a manual selector.
+Apply the active variable object to a root `View`. Set `userInterfaceStyle` to `automatic` when the app should follow the device. Import `useColorScheme` from `nativewind`, never from `react-native`, and use it for reading and changing the mode. Support `light`, `dark`, and `system` when the product offers a manual selector.
+
+```ts
+import { useColorScheme } from "nativewind";
+```
 
 The themed root view must be full height and provide a native fallback background in addition to NativeWind classes: use `className="flex-1 bg-background"` together with `style={[themes[resolvedScheme], { flex: 1, backgroundColor: colors[resolvedScheme].background }]}`. This prevents a collapsed or white root if styles load late and ensures descendants receive the active variables.
 
 NativeWind variables do not theme React Navigation by themselves. In an Expo Router app, create matching light and dark navigation themes and wrap the root navigator with React Navigation's `ThemeProvider`. Build those themes from the existing palette exported by `app-theme.ts`; do not create a second navigation palette. Map React Navigation's `background`, `card`, `text`, `border`, `primary`, and `notification` roles to the corresponding semantic app colors. Read the navigation-theme bridge in [references/nativewind-theme.md](references/nativewind-theme.md) and resolve a missing or system scheme before indexing the theme objects.
+
+Import the navigation theme APIs from Expo Router so the app uses its compatible navigation exports:
+
+```ts
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider, type Theme } from "expo-router";
+```
 
 Do not add persistence unless the user requests it. If persistence is requested, restore the preference before rendering themed UI to avoid a visible theme flash.
 
@@ -68,6 +78,19 @@ Install the requested `@expo-google-fonts/<family>` package through Expo's insta
 - Use the package's `useFonts` hook for a simple Expo Router setup or Expo Go workflow.
 
 For runtime loading, call `SplashScreen.preventAutoHideAsync()` at module scope, load only the weights the UI uses in the root layout, hide the splash screen when fonts either load or error, and render nothing until then. Map the loaded font names in Tailwind once and use those utilities consistently.
+
+For Plus Jakarta Sans, import the hook and available app weights from its family package:
+
+```ts
+import {
+  PlusJakartaSans_400Regular,
+  PlusJakartaSans_500Medium,
+  PlusJakartaSans_600SemiBold,
+  PlusJakartaSans_700Bold,
+  PlusJakartaSans_800ExtraBold,
+  useFonts,
+} from "@expo-google-fonts/plus-jakarta-sans";
+```
 
 ## Add global toast feedback
 

@@ -14,9 +14,9 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 - `nodejs-security` for evidence-backed, read-only-first backend audits and explicitly approved security fixes.
 - `nodejs-payments` for Stripe, Polar, or Paddle billing with verified webhooks, idempotency, subscription state, and entitlements.
 - `nodejs-organizations` for a framework-neutral Node.js organization domain with memberships, invitations, teams, RBAC, ownership protection, audit events, and tenant isolation.
-- `expo-nativewind-design` for intentional Expo screens and flows with a compact design brief, responsive spacing, complete UI states, and native accessibility guidance.
+- `expo-nativewind-build` for implementing intentional Expo screens and flows with responsive spacing, complete UI states, and native accessibility guidance.
 - `expo-app-assets` for generating and configuring iOS icons, Android adaptive and monochrome layers, and Expo splash screens.
-- `mobile-ui-blueprint` for building a complete mobile screen inventory and an adaptive prompt-only, concept-board, or full-app-board handoff without requiring other skills.
+- `mobile-ui-design` for building a complete mobile screen inventory and an adaptive prompt-only, concept-board, or full-app-board handoff without requiring other skills.
 - `plan-database` for concise database diagrams, query-backed indexes, Redis decisions, and trigger-based MVP-to-scale planning.
 
 ### Changed
@@ -26,9 +26,9 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 - Added a concise pre-change proposal and explicit confirmation checkpoint to the new Node.js testing, security, payments, and organizations skills.
 - Expanded `expo-nativewind-theme` with color and layout-token discovery, a 4-point spacing system, semantic shape/component sizing, and optional Sonner Native toast infrastructure.
 - Added a React Navigation theme bridge to `expo-nativewind-theme` so Expo Router scene backgrounds follow the active NativeWind light or dark palette.
-- Added a required full-height, semantic, safe-area-aware screen shell to `expo-nativewind-design`, with navigator-aware edges and a reusable `Screen` contract.
+- Added a required full-height, semantic, safe-area-aware screen shell to `expo-nativewind-build`, with navigator-aware edges and a reusable `Screen` contract.
 - Added `react-native-keyboard-controller` guidance for keyboard-aware Expo forms and strengthened semantic token and root-provider requirements across the NativeWind skills.
-- Expanded `expo-nativewind-design` with flexible heterogeneous onboarding steps, reusable NativeWind component contracts, opt-in Lottie guidance, and native-versus-universal UI decisions.
+- Expanded `expo-nativewind-build` with flexible heterogeneous onboarding steps, reusable NativeWind component contracts, opt-in Lottie guidance, and native-versus-universal UI decisions.
 - Expanded `nodejs-scaffolding` with `/api/v1` route aggregation, Helmet, Express rate limiting, console-only Winston logging, graceful signal shutdown, and Mongoose query-filter sanitization.
 
 ## [0.1.0] - 2026-08-21

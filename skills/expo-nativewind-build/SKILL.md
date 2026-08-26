@@ -1,9 +1,9 @@
 ---
-name: expo-nativewind-design
-description: Design, implement, audit, or improve polished Expo and React Native screens and components using NativeWind, an existing app design system, responsive mobile layouts, accessible interactions, and complete UI states. Use for Expo screen design, mobile UI redesigns, onboarding flows, dashboards, forms, navigation surfaces, or requests to make a React Native interface look and feel more intentional.
+name: expo-nativewind-build
+description: Build, implement, audit, or improve polished Expo and React Native screens and components from an approved design using NativeWind, responsive mobile layouts, accessible interactions, and complete UI states. Use when turning mobile designs into working Expo UI or improving an existing implementation. Do not use to generate design-board prompts.
 ---
 
-# Expo NativeWind Design
+# Expo NativeWind Build
 
 Create mobile interfaces that feel intentional, product-specific, and native to the app. Preserve working navigation, data flow, business logic, dependencies, and established design decisions.
 
@@ -73,6 +73,8 @@ Use `react-native-safe-area-context`, not React Native's deprecated `SafeAreaVie
 ## Design every relevant state
 
 Implement the states the screen can actually reach: initial/loading, populated, empty, error, disabled, selected/pressed, offline, and success where applicable. Keep form validation next to the field. Use the existing global toaster for asynchronous outcomes that are not tied to one field; avoid duplicate inline and toast messages.
+
+For forms that need validation, use React Hook Form with Zod and `@hookform/resolvers/zod`. Keep the Zod schema as the validation source, show field errors beside their controls, preserve entered values after recoverable failures, and disable duplicate submissions while pending. Install missing packages with the project's package manager instead of guessing versions.
 
 Make destructive actions visually distinct and require confirmation when recovery is difficult. Preserve user input after recoverable errors.
 

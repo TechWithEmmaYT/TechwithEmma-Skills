@@ -1,9 +1,9 @@
 ---
-name: mobile-ui-blueprint
+name: mobile-ui-design
 description: Turn a mobile app idea, plan, codebase, or references into a complete screen inventory, an approved visual direction, an adaptive UI-board prompt, optional image generation, and a portable mobile-design.md handoff. Use when planning or visualizing a mobile product before implementation. Do not use to implement the screens.
 ---
 
-# Mobile UI Blueprint
+# Mobile UI Design
 
 Define the mobile product visually before implementation. Work standalone: never assume another skill, framework, image tool, or planning document is available.
 
