@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo App Assets"
+  short_description: "Generate Expo icons, adaptive layers, and splash screens"
+  default_prompt: "Use $expo-app-assets-v2 to generate and configure production app icons, Android adaptive and monochrome layers, and a splash screen for my Expo app."

@@ -11,19 +11,25 @@ Create a coherent app-icon and splash-screen asset set, then configure it withou
 
 Read the app config, Expo SDK, `package.json`, existing assets, and native directories. Determine whether the project uses app JSON, dynamic JS/TS config, Continuous Native Generation, or manually maintained native projects. Preserve dynamic config and existing plugins.
 
-Ask only for missing brand decisions: app purpose, dominant symbol, primary/background colors, visual style, whether light/dark/tinted variants are wanted, and whether the splash uses the same mark. If the app already answers these questions, summarize the inferred direction instead.
+Ask only for missing brand decisions: app purpose, dominant symbol, primary/background colors, whether light/dark/tinted variants are wanted, and whether the splash uses the same mark. If the app already answers these questions, summarize the inferred direction instead. Do not make the user repeat information visible in the project.
 
-Before generating images or changing files, show no more than five short bullets covering the concept, planned assets, platform variants, config changes, and verification. Wait for confirmation. Provider-backed image generation can cost money, so name the provider before running it.
+If the user has not approved both a concept and a style, read [references/icon-concept-and-prompt.md](references/icon-concept-and-prompt.md). Inspect the product and offer a diverse exploration board or one focused direction. Keep concept selection separate from rendering style and preserve explicit brand choices.
+
+Before generating images or changing files, show no more than five short bullets covering the concept, planned assets, platform variants, config changes, and verification. Wait only when the concept or style is unapproved, generation was not requested, or a separate paid-provider charge may apply. Otherwise proceed from the user's existing approval without adding another gate.
 
 ## Create and approve the source concept
 
-Prefer an existing logo or user-supplied source when one exists. Otherwise use an available image-generation tool to create two or three square concepts.
+Prefer an existing logo or user-supplied source when one exists. Otherwise propose an exploration board and let the user choose: generate several numbered concepts in one image when the user wants options, or generate one concept when the direction is already approved. A board is for selection only; regenerate the chosen concept as a clean standalone source instead of treating the board crop as the final asset.
+
+Before generating any image, show the complete copy-ready prompt. Keep it specific to the inspected app and include the concept, selected visual direction, palette, material, lighting, composition, square canvas requirements, and exclusions. Then ask whether the user wants to generate from that prompt, refine it, or choose another direction. Do not regenerate or reprint an updated prompt after every concept unless the user asks for it.
 
 Before writing any generated file, create a unique staging directory such as `generated/app-assets/20260823-1430/`. Add a short suffix if that path already exists. Put every concept and derived asset from the current run there. Never overwrite, rename, or delete the project's existing icon or splash files during generation.
 
-If the current model cannot generate images, tell the user to switch to an image-capable model. If switching is unavailable, provide a polished copy-ready prompt for Gemini or another image model, including the app concept, visual style, composition, colors, square format, and exclusions. Ask the user to generate and upload the result before producing platform assets or configuring file paths. Never claim an image was generated when only a prompt was provided.
+If the current model cannot generate images, tell the user to switch to an image-capable model. If switching is unavailable, provide a polished copy-ready prompt for Chatgpt (recommended), Gemini or another image model, including the app concept, visual style, composition, colors, square format, and exclusions. Ask the user to generate and upload the result before producing platform assets or configuring file paths. Never claim an image was generated when only a prompt was provided.
 
-Keep the concept recognizable at small size: one dominant mark, clean silhouette, restrained detail, no device mockup, no wordmark-sized text, no baked-in rounded corners, and no fake app-store badge. Show the concepts and let the user select one before producing the final platform assets.
+Keep the concept recognizable at small size: one cohesive dominant subject, strong silhouette, restrained detail, no device mockup, no wordmark-sized text, no baked-in rounded corners, and no fake app-store badge. Reject stock-like category symbols, corporate logos in boxes, disconnected pieces, and ideas that require explanation. Show the concepts and let the user choose before producing final platform assets.
+
+When a separate Android foreground or reusable splash mark is needed, prefer generating or extracting one transparent source subject, then compose approved backgrounds and platform variants from that same subject. This keeps the iOS composite, Android adaptive icon, monochrome icon, and splash visually consistent. Do not independently regenerate each layer and claim they match.
 
 ## Produce distinct deliverables
 
