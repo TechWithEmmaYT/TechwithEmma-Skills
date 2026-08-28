@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo Tailwind Builder"
+  short_description: "Build Expo UI with Uniwind or NativeWind"
+  default_prompt: "Use $expo-tailwind-builder to detect my Expo project's Uniwind or NativeWind setup and implement the approved mobile design with consistent tokens, responsive spacing, accessibility, and complete UI states."

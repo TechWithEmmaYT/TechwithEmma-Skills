@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo Uniwind Theme"
+  short_description: "Set up Expo themes with Uniwind and Tailwind CSS v4"
+  default_prompt: "Use $expo-uniwind-theme to set up a semantic Uniwind theme with Tailwind CSS v4, light and dark modes, Expo Router navigation colors, spacing, radii, fonts, and optional toast feedback in my Expo app."

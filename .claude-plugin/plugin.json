@@ -20,6 +20,8 @@
     "react-native",
     "better-auth",
     "nativewind",
+    "uniwind",
+    "tailwindcss",
     "mobile-design",
     "mobile-ui",
     "image-prompts",

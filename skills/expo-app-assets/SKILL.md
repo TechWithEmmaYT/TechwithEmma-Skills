@@ -13,7 +13,7 @@ Read the app config, Expo SDK, `package.json`, existing assets, and native direc
 
 Ask only for missing brand decisions: app purpose, dominant symbol, primary/background colors, whether light/dark/tinted variants are wanted, and whether the splash uses the same mark. If the app already answers these questions, summarize the inferred direction instead. Do not make the user repeat information visible in the project.
 
-If the user has not approved both a concept and a style, read [references/icon-concept-and-prompt.md](references/icon-concept-and-prompt.md). Inspect the product and offer a diverse exploration board or one focused direction. Keep concept selection separate from rendering style and preserve explicit brand choices.
+If the user has not approved both a concept and a style, read [references/icon-concept.md](references/icon-concept.md). Inspect the product and offer a diverse exploration board or one focused direction. Keep concept selection separate from rendering style and preserve explicit brand choices.
 
 Before generating images or changing files, show no more than five short bullets covering the concept, planned assets, platform variants, config changes, and verification. Wait only when the concept or style is unapproved, generation was not requested, or a separate paid-provider charge may apply. Otherwise proceed from the user's existing approval without adding another gate.
 
@@ -21,11 +21,13 @@ Before generating images or changing files, show no more than five short bullets
 
 Prefer an existing logo or user-supplied source when one exists. Otherwise propose an exploration board and let the user choose: generate several numbered concepts in one image when the user wants options, or generate one concept when the direction is already approved. A board is for selection only; regenerate the chosen concept as a clean standalone source instead of treating the board crop as the final asset.
 
-Before generating any image, show the complete copy-ready prompt. Keep it specific to the inspected app and include the concept, selected visual direction, palette, material, lighting, composition, square canvas requirements, and exclusions. Then ask whether the user wants to generate from that prompt, refine it, or choose another direction. Do not regenerate or reprint an updated prompt after every concept unless the user asks for it.
+When an image-capable model is available and the user requested generation, read [references/icon-generation.md](references/icon-generation.md) and use it directly with the inspected product as image-model context. Generate the image first; do not show, manufacture, or ask approval for an intermediate prompt. Briefly tell the user that using the skill directly in an image-capable model usually preserves more design context and produces better results than relaying a generated prompt.
+
+Use the fallback section in the generation reference only when the user explicitly requests a copy-ready prompt or the current model cannot generate images.
 
 Before writing any generated file, create a unique staging directory such as `generated/app-assets/20260823-1430/`. Add a short suffix if that path already exists. Put every concept and derived asset from the current run there. Never overwrite, rename, or delete the project's existing icon or splash files during generation.
 
-If the current model cannot generate images, tell the user to switch to an image-capable model. If switching is unavailable, provide a polished copy-ready prompt for Chatgpt (recommended), Gemini or another image model, including the app concept, visual style, composition, colors, square format, and exclusions. Ask the user to generate and upload the result before producing platform assets or configuring file paths. Never claim an image was generated when only a prompt was provided.
+If the current model cannot generate images, recommend switching to an image-capable model and explain that direct skill use generally works better. If switching is unavailable, use the generation reference to provide a concise copy-ready prompt for ChatGPT, Gemini, or another image model. Ask the user to generate and upload the result before producing platform assets or configuring file paths. Never claim an image was generated when only a prompt was provided.
 
 Keep the concept recognizable at small size: one cohesive dominant subject, strong silhouette, restrained detail, no device mockup, no wordmark-sized text, no baked-in rounded corners, and no fake app-store badge. Reject stock-like category symbols, corporate logos in boxes, disconnected pieces, and ideas that require explanation. Show the concepts and let the user choose before producing final platform assets.
 

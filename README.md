@@ -74,15 +74,25 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-nativewind-theme
 
 The complete instructions are in [`skills/expo-nativewind-theme/SKILL.md`](skills/expo-nativewind-theme/SKILL.md).
 
-### Expo NativeWind Build
+### Expo Uniwind Theme
 
-Designs and implements polished Expo screens and flows with a compact design brief, consistent NativeWind tokens, flexible onboarding step types, reusable component contracts, optional Lottie motion, complete UI states, and accessibility checks.
+Sets up a lighter Tailwind CSS v4 theme with semantic tokens, Uniwind light/dark/system switching, platform selectors, Expo Router navigation colors, fonts, and optional toast feedback.
 
 ```bash
-npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-nativewind-build
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-uniwind-theme
 ```
 
-The complete instructions are in [`skills/expo-nativewind-build/SKILL.md`](skills/expo-nativewind-build/SKILL.md).
+The complete instructions are in [`skills/expo-uniwind-theme/SKILL.md`](skills/expo-uniwind-theme/SKILL.md).
+
+### Expo Tailwind Builder
+
+Detects whether an Expo project uses Uniwind or NativeWind, then implements polished screens and flows without mixing their setup, tokens, hooks, or platform styling.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-tailwind-builder
+```
+
+The complete instructions are in [`skills/expo-tailwind-builder/SKILL.md`](skills/expo-tailwind-builder/SKILL.md).
 
 ### Expo App Assets
 
@@ -162,7 +172,11 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/nativewind-theme.md
-├── expo-nativewind-build/
+├── expo-uniwind-theme/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   └── references/uniwind-theme.md
+├── expo-tailwind-builder/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/
