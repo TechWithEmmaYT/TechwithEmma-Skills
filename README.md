@@ -84,25 +84,15 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-uniwind-theme
 
 The complete instructions are in [`skills/expo-uniwind-theme/SKILL.md`](skills/expo-uniwind-theme/SKILL.md).
 
-### Expo Tailwind Builder
+### Expo Native Builder
 
-Detects whether an Expo project uses Uniwind or NativeWind, then implements polished screens and flows without mixing their setup, tokens, hooks, or platform styling.
-
-```bash
-npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-tailwind-builder
-```
-
-The complete instructions are in [`skills/expo-tailwind-builder/SKILL.md`](skills/expo-tailwind-builder/SKILL.md).
-
-### Expo App Assets
-
-Generates and configures production app icons, Android adaptive and monochrome layers, iOS variants, and light or dark splash screens without flattening platform-specific artwork.
+Follows an Expo project's existing Uniwind, NativeWind, or StyleSheet system, then builds polished screens and flows with native navigation, purposeful motion, restrained gradients, complete states, and accessibility.
 
 ```bash
-npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-app-assets
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill expo-native-builder
 ```
 
-The complete instructions are in [`skills/expo-app-assets/SKILL.md`](skills/expo-app-assets/SKILL.md).
+The complete instructions are in [`skills/expo-native-builder/SKILL.md`](skills/expo-native-builder/SKILL.md).
 
 ### Expo Better Auth
 
@@ -160,10 +150,6 @@ The complete instructions are in [`skills/plan-database/SKILL.md`](skills/plan-d
 .claude-plugin/
 └── plugin.json
 skills/
-├── expo-app-assets/
-│   ├── SKILL.md
-│   ├── agents/openai.yaml
-│   └── references/expo-asset-config.md
 ├── expo-better-auth/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
@@ -176,7 +162,7 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/uniwind-theme.md
-├── expo-tailwind-builder/
+├── expo-native-builder/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/

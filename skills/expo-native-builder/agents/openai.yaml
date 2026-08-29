@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expo Native Builder"
+  short_description: "Build polished Expo UI with the existing style system"
+  default_prompt: "Use $expo-native-builder to follow my Expo project's existing Uniwind, NativeWind, or StyleSheet system and implement the approved design with native navigation, purposeful motion, restrained gradients, accessibility, and complete UI states."

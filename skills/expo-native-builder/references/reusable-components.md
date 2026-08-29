@@ -20,7 +20,7 @@ Define only the dimensions each component genuinely supports:
 - **content**: label, children, icons, description, or trailing content with clear types;
 - **override**: `className`, `contentClassName`, or `style` for layout adjustments without allowing every caller to replace the component's identity.
 
-Use token-backed class maps supported by the detected Uniwind or NativeWind setup and the project's existing class merge helper. Add a variant library only when it is already installed or repeated complexity justifies an approved dependency.
+Use the project's active styling contract: token-backed class maps for Uniwind or NativeWind, or token-backed style objects for StyleSheet. Reuse its existing class/style merge helper. Add a variant library only when it is already installed or repeated complexity justifies an approved dependency.
 
 ## Recommended primitives
 
@@ -67,7 +67,7 @@ export function Screen({
 }
 ```
 
-Adapt this to the project's `cn` helper and forwarded native props when needed. A tab screen may omit `bottom`; a native-header screen may omit `top`. For full-bleed artwork, use a `flex-1 bg-background` outer view and place only the content layer inside `Screen` or `SafeAreaView`. Scrollable screens still need a full-height outer shell; use `contentContainerStyle={{ flexGrow: 1 }}` only when the scroll content itself must stretch.
+Adapt this to the project's styling system and forwarded native props. In a StyleSheet project, replace `className` with semantic style objects. A tab screen may omit `bottom`; a native-header screen may omit `top`. For full-bleed artwork, use a full-height semantic outer view and place only the content layer inside `Screen` or `SafeAreaView`. Scrollable screens still need a full-height outer shell; use `contentContainerStyle={{ flexGrow: 1 }}` only when the scroll content itself must stretch.
 
 ## Quality checks
 

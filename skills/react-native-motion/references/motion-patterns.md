@@ -39,6 +39,25 @@ Patterns include:
 - section locking;
 - scroll-linked progress.
 
+A collapsing header is one movement, not two headers.
+
+Identify what persists between the expanded and compact states — usually an
+image, a title, an avatar or a control — and travel, scale and recolor the
+same element into its compact slot.
+
+Supporting content such as subtitles, stats and secondary actions is the only
+part that should be allowed to leave.
+
+Let the surface resolve underneath the persisting elements, with background,
+border, blur and depth arriving as the collapse completes.
+
+Anchor navigation controls in place and animate only their tint, so the back
+affordance is never lost.
+
+Let overscroll stretch the hero rather than reveal a gap behind it.
+
+Do not cross-fade an expanded header out and a compact header in.
+
 Sticky motion should preserve hierarchy and continuity, not merely show off an
 interpolation.
 
@@ -82,6 +101,32 @@ Use when one state logically becomes another:
 - 3D perspective.
 
 Prefer spatial continuity over arbitrary screen replacement.
+
+## Navigation container
+
+Use when a surface and the content behind it move as one spatial system:
+
+- drawer;
+- side navigation;
+- bottom sheet;
+- expandable panel;
+- modal surface;
+- stacked card;
+- peek and commit.
+
+Derive translation, scale, corner radius, clipping, overlay, depth and
+supporting content from one shared interaction progress.
+
+The background is not a backdrop. It is the other half of the same movement.
+
+Prefer direct manipulation. The surface should follow the gesture continuously.
+
+Preserve velocity, thresholds, interruption and reversal.
+
+Supporting content such as navigation items, headers and controls should enter
+as a window on the same progress, not as a sequence played after opening.
+
+Do not reduce an interactive container to a canned slide-in animation.
 
 ## Transition
 

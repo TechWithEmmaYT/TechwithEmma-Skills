@@ -1,4 +1,0 @@
-interface:
-  display_name: "Expo App Assets"
-  short_description: "Design memorable app icons and produce production Expo/iOS/Android icon and splash assets"
-  default_prompt: "Use $expo-app-assets to explore app icon concepts for my Expo app, then turn the approved one into production iOS, Android adaptive, monochrome, and splash assets."

@@ -7,7 +7,7 @@ Use this reference only when the user requests a native-looking surface, Expo Ro
 First inspect the Expo SDK, Expo Router version, supported platforms, existing navigation, and installed UI packages. Ask which platforms must share the feature when that is not already clear. Do not convert the whole app to one UI technology because one control should feel native.
 
 - Use `@expo/ui` when the requested component exists for every required target and the user wants SwiftUI, Jetpack Compose, or its universal API.
-- Use React Native core components plus the project's active Uniwind or NativeWind setup when consistent branding, shared behavior, web support, or one cross-platform implementation matters most.
+- Use React Native core components plus the project's existing Uniwind, NativeWind, or StyleSheet system when consistent branding, shared behavior, web support, or one cross-platform implementation matters most.
 - Use Expo Router Native Tabs only when the user explicitly wants a system tab bar and accepts its current alpha status and SDK requirements. Keep JavaScript or custom tabs when the design needs behavior the system tab bar cannot provide.
 - Use an established third-party package only when Expo or React Native does not provide the required behavior. Check current Expo compatibility and maintenance first, explain the choice, and install only after approval.
 
@@ -23,7 +23,7 @@ First inspect the Expo SDK, Expo Router version, supported platforms, existing n
 
 Hide platform differences behind a small shared component or platform files such as `Control.ios.tsx`, `Control.android.tsx`, and `Control.web.tsx`. Keep validation, business state, analytics, and data transformations outside the native view implementation.
 
-Uniwind and NativeWind style React Native surfaces. Expo UI components use their documented props and modifiers, so do not assume Tailwind classes work on SwiftUI or Jetpack Compose views. Map the app's semantic colors, spacing, and typography through each API it supports.
+Uniwind, NativeWind, and StyleSheet style React Native surfaces. Expo UI components use their documented props and modifiers, so do not assume Tailwind classes or React Native style objects work on SwiftUI or Jetpack Compose views. Map the app's semantic colors, spacing, and typography through each API it supports.
 
 Do not replace navigation, install packages, or introduce platform-specific files without briefly telling the user what will change. Verify the interaction on every supported native platform and on web when web is in scope.
 

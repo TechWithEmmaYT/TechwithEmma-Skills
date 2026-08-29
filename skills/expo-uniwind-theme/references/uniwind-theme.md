@@ -107,6 +107,25 @@ Use Uniwind's platform selectors for visual differences:
 
 Prefer selectors over `Platform.select()` when only styles differ. Use `Platform.select()`, platform files, or conditional rendering when the platform changes behavior, native APIs, props, or the component itself. Platform-wide token differences may instead use `@variant ios`, `@variant android`, or `@variant web` inside `@layer theme`.
 
+## CSS functions
+
+Uniwind supports `hairlineWidth()`, `fontScale()`, `pixelRatio()`, and `light-dark()`. Define them inside named `@utility` rules in `global.css`, then use the resulting complete utility name in `className`. They cannot be used directly as arbitrary class values.
+
+Use them only for real device-aware needs: hairline separators, accessibility-scaled type, density-aware dimensions, or a compact two-theme value. Do not replace the semantic theme or spacing system with custom functions.
+
+## Data selectors
+
+Use `data-[prop=value]:utility` for component state driven by a prop on that same component:
+
+```tsx
+<Pressable
+  data-selected={selected}
+  className="border-border data-[selected=true]:bg-primary"
+/>
+```
+
+Use semantic property names such as `selected`, `checked`, `state`, `status`, or `size`. Boolean values compare with `true` or `false`. Only equality checks are supported; do not use presence selectors such as `data-[selected]` or other CSS operators. Prefer interactive variants for pressed, focused, or hovered interaction states.
+
 ## Expo Router navigation bridge
 
 Import `DarkTheme`, `DefaultTheme`, `ThemeProvider`, and the navigator from `expo-router`. Read semantic colors reactively with `useCSSVariable`, construct matching navigation themes with `useMemo`, and select one using `theme` plus `hasAdaptiveThemes`. Map at least:

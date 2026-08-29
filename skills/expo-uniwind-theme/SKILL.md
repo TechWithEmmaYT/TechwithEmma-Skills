@@ -31,6 +31,10 @@ Components must use semantic utilities such as `bg-background`, `text-foreground
 
 For styling differences only, use Uniwind platform selectors directly in complete `className` strings: `ios:`, `android:`, `web:`, or `native:`. Prefer these over `Platform.select()` for colors, spacing, typography, sizing, and layout. Keep `Platform.select()` or platform files for different behavior, APIs, data, or component implementations.
 
+Use data selectors such as `data-[selected=true]:...` for prop-driven component states. Use only equality selectors with semantic `data-*` props; presence-only selectors are unsupported. Keep interactive variants for interaction state.
+
+Use `hairlineWidth()`, `fontScale()`, `pixelRatio()`, or `light-dark()` only inside named `@utility` rules in `global.css`; do not place them directly in arbitrary `className` values. Prefer ordinary semantic tokens and utilities when device-specific computation is unnecessary.
+
 Uniwind requires no app theme provider. Switch modes with `Uniwind.setTheme("light" | "dark" | "system")` and read theme state with `useUniwind` only when component logic truly needs it. Prefer theme-aware classes for styling.
 
 Do not add theme persistence unless requested. If requested, restore it before themed UI appears so the app does not flash the wrong theme.
@@ -68,5 +72,7 @@ Do not claim runtime or visual verification unless it was performed.
 - [Uniwind quickstart](https://docs.uniwind.dev/quickstart)
 - [Uniwind theming](https://docs.uniwind.dev/theming/basics)
 - [Uniwind platform selectors](https://docs.uniwind.dev/api/platform-select)
+- [Uniwind CSS functions](https://docs.uniwind.dev/api/css-functions)
+- [Uniwind data selectors](https://docs.uniwind.dev/api/data-selectors)
 - [Uniwind full model reference](https://docs.uniwind.dev/llms-full.txt)
 - [Expo fonts](https://docs.expo.dev/develop/user-interface/fonts/)

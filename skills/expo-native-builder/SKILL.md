@@ -1,9 +1,9 @@
 ---
-name: expo-tailwind-builder
-description: Build, implement, audit, or improve polished Expo and React Native screens from an approved design using the project's existing Uniwind or NativeWind setup, responsive mobile layouts, accessible interactions, and complete UI states. Use when turning mobile designs into working Expo UI or improving an existing Tailwind-styled implementation. Do not use to configure a theme or generate design-board prompts.
+name: expo-native-builder
+description: Build, implement, audit, or improve polished Expo and React Native screens using the project's existing Uniwind, NativeWind, or StyleSheet system, native navigation patterns, purposeful motion, restrained gradients, accessible interactions, and complete UI states. Use when turning an approved mobile design into working UI or improving an existing implementation. Do not use to generate design-board prompts.
 ---
 
-# Expo Tailwind Builder
+# Expo Native Builder
 
 Create mobile interfaces that feel intentional, product-specific, and native to the app. Preserve working navigation, data flow, business logic, dependencies, and established design decisions.
 
@@ -22,15 +22,25 @@ If the user provides only a primary color, propose an accessible supporting pale
 
 Before changing files, show no more than five short bullets covering the screen/flow, design direction, affected files, components/assets, and verification. Wait for confirmation, then implement only that scope.
 
-## Detect the styling engine
+## Recommend companion skills only when useful
+
+This skill must remain usable on its own. Never require, install, or invoke another skill automatically.
+
+- When the user wants a new product or flow designed but provides no approved design, screenshots, or reproducible visual direction, briefly recommend `mobile-ui-design` first. Offer to continue directly from the current brief if the user prefers.
+- When an approved design, `mobile-design.md`, screenshots, or an established interface already defines the direction, continue without recommending a design skill.
+- Handle ordinary transitions, press feedback, gradients, haptics, and onboarding motion here. Recommend `react-native-motion` only for complex gestures, shaders, coordinated animation systems, or a dedicated app-wide motion identity.
+- If a companion skill is unavailable, continue with the guidance in this skill and state any resulting limitation. Do not block the task.
+
+## Detect the styling system
 
 Before writing UI, inspect `package.json`, Metro and Babel configs, `global.css`, generated type declarations, root layout imports, and existing components.
 
 - Use **Uniwind** when the active project uses `uniwind`, `withUniwindConfig`, and `@import "uniwind"`.
 - Use **NativeWind** when the active project uses `nativewind`, its Metro/Babel setup, or NativeWind theme variables.
+- Use **StyleSheet** when screens use `StyleSheet.create`, theme objects, or inline React Native styles without an active Tailwind binding.
 - If both packages exist, follow the configuration and imports used by the running app. If that remains ambiguous, ask one concise question.
 
-Never mix their providers, hooks, Metro wrappers, CSS syntax, or generated types, and never migrate between them unless requested. Use the existing package manager and installed versions.
+Follow the established system and component patterns. Never introduce Tailwind into a StyleSheet project, convert styles, or mix providers, hooks, Metro wrappers, CSS syntax, or generated types unless migration was explicitly requested. Use the existing package manager and installed versions.
 
 ## Establish the screen hierarchy
 
@@ -45,22 +55,23 @@ Use familiar mobile patterns unless the product benefits from a deliberate alter
 - Before creating or expanding `components/ui`, read [references/reusable-components.md](references/reusable-components.md).
 - For forms, authentication, chat composers, or screens where the keyboard can cover content or actions, read [references/keyboard-controller.md](references/keyboard-controller.md).
 - When the approved design uses Lottie, read [references/lottie.md](references/lottie.md). Do not install or add animation merely because onboarding is present.
+- When implementing transitions, gesture feedback, animated gradients, or other visual polish, read [references/motion-and-gradients.md](references/motion-and-gradients.md).
 
 ## Use the existing design system
 
 Consume semantic tokens such as `background`, `foreground`, `card`, `border`, `primary`, `secondary`, `accent`, `muted`, `destructive`, `success`, and `warning`. Do not add raw hex colors or unrelated fonts inside screens when tokens exist.
 
-Use a consistent 4-point spacing rhythm. Related elements sit closer than unrelated groups; section gaps should be visibly larger than internal gaps. Prefer utilities supported by the detected styling engine and shared screen gutters over arbitrary values. Keep typography roles, control heights, border radii, icon sizes, and elevation consistent.
+Use a consistent 4-point spacing rhythm. Related elements sit closer than unrelated groups; section gaps should be visibly larger than internal gaps. Prefer tokens and primitives supported by the detected styling system over arbitrary values. Keep typography roles, control heights, border radii, icon sizes, and elevation consistent.
 
-Use semantic utilities throughout the screen: `bg-background` for the screen, `bg-card` for raised surfaces, `text-foreground` for primary copy, `text-muted-foreground` for supporting copy, and token-backed border and action colors. Do not fall back to `text-black`, `text-white`, `bg-white`, `bg-gray-*`, or raw colors unless the design intentionally needs fixed contrast over media or another non-themed surface.
+With Uniwind or NativeWind, use semantic utilities such as `bg-background`, `bg-card`, `text-foreground`, and `text-muted-foreground`. With StyleSheet, consume the equivalent semantic theme object through the project's existing hook or module. Do not scatter raw colors or create a competing theme system.
 
 If the styling foundation, theme tokens, fonts, or toast infrastructure are missing or broken, report the gap. Offer `expo-uniwind-theme` for Uniwind or `expo-nativewind-theme` for NativeWind as a separate approved change. Do not silently turn a screen request into project-wide configuration work.
 
-For platform-only visual differences, prefer the detected engine's supported `ios:`, `android:`, `web:`, or `native:` modifiers in complete class strings. In Uniwind, prefer these selectors over `Platform.select()` for colors, spacing, typography, sizing, and layout. Use `Platform.select()`, platform files, or conditional rendering when behavior, APIs, props, or component implementations differ.
+For platform-only visual differences in Uniwind or NativeWind, prefer supported `ios:`, `android:`, `web:`, or `native:` modifiers in complete class strings. In a StyleSheet project, follow its existing `Platform.select()` or platform-file convention. Use platform files or conditional rendering when behavior, APIs, props, or component implementations differ.
 
 ## Enforce a complete screen shell
 
-Every route screen must have a full-height semantic root. Use either the project's reusable `Screen` component or `SafeAreaView` from `react-native-safe-area-context`, and ensure the root applies `flex-1 bg-background`. Do not rely on content height or a third-party component's `className` to fill the viewport.
+Every route screen must have a full-height semantic root. Use either the project's reusable `Screen` component or `SafeAreaView` from `react-native-safe-area-context`, and apply the equivalent of `flex: 1` plus the semantic background through the active styling system. Do not rely on content height or a third-party component to fill the viewport.
 
 Choose safe-area edges intentionally:
 
@@ -81,6 +92,14 @@ Use `react-native-safe-area-context`, not React Native's deprecated `SafeAreaVie
 - Respect platform navigation, back behavior, status bars, bottom tabs, sheets, and modals.
 - Use the project's icon system. Do not substitute emoji or text glyphs for interface icons unless the product direction calls for them.
 - Add motion or haptics only when they communicate state, orientation, or completion; do not make them a default decoration.
+
+## Apply native-quality polish
+
+Study supplied references or representative shipping apps for hierarchy, navigation grammar, control choice, spacing, and motion behavior; extract patterns rather than copying pixels or branding.
+
+Prefer native controls and navigator-owned headers, searches, sheets, and transitions when they meet the product need. Decide whether destinations push, replace, present as a sheet, or present as a modal based on what back should do. Finished onboarding, authentication walls, completed purchases, and other one-way doors must not remain reachable through back navigation.
+
+Use one accent family, one neutral family, and one intentional radius scale. Gradients need a product or hierarchy reason and must not become the default background for every card or action. Read [references/motion-and-gradients.md](references/motion-and-gradients.md) before adding custom motion or gradient treatments.
 
 ## Design every relevant state
 
@@ -103,6 +122,6 @@ Make destructive actions visually distinct and require confirmation when recover
 
 Use a bounded loop: implement, run or capture the screen, compare it with the approved design and tokens, fix relevant mismatches, then verify again. Stop when the requested UI and relevant checks pass, or report the blocker. Do not expand scope.
 
-Run the project's typecheck and lint, then start Expo and inspect at least one native target. Exercise navigation, gestures, keyboard behavior, safe areas, loading/empty/error/success states, theme modes, and touch targets relevant to the change. If visual inspection is unavailable, say so instead of claiming a visual match.
+Run the project's typecheck and lint, then start Expo and inspect at least one native target. Exercise navigation, gestures, keyboard behavior, safe areas, loading/empty/error/success states, theme modes, and touch targets relevant to the change. When motion changed, record the complete affected flow and inspect it at normal speed and frame by frame for flashes, jumps, clipped springs, and keyboard discontinuities. If visual inspection is unavailable, say so instead of claiming a visual match.
 
 Report completed screens, reused/created components, design tokens followed, commands run, native targets visually checked, and remaining states or platform checks. Keep the handoff concise.

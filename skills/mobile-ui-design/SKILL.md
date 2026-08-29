@@ -45,6 +45,8 @@ Propose one coherent direction containing:
 
 If a logo is missing, use a neutral wordmark or placeholder treatment. Do not invent a detailed logo and silently make it part of the product identity.
 
+When the product includes onboarding, a quiz, personalization, or a pre-paywall journey, read [references/premium-onboarding.md](references/premium-onboarding.md). Design it as a product-specific value journey with varied step bodies, not a repeated questionnaire or a fixed long funnel.
+
 References are evidence, not templates. Abstract useful qualities such as density, hierarchy, warmth, or navigation. Never inject competitor names, trademark warnings, or generic legal disclaimers into the generated design prompt unless the user explicitly asks for them.
 
 ## Keep a working design memory

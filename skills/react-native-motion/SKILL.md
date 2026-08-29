@@ -76,12 +76,15 @@ image is a storyboard, not a substitute for runtime verification.
 
 Read `references/motion-patterns.md`.
 
+For onboarding, quizzes, personalization, or plan-building journeys, also read `references/onboarding-choreography.md`. Choreograph answers, calculations, charts, carousels, imagery, progress, and result states as one continuous journey rather than replaying a generic entrance on every screen.
+
 Consider appropriate combinations of:
 
 - micro-interaction;
 - gesture and physics;
 - scroll and sticky motion;
 - transform and morph;
+- navigation container;
 - screen transition;
 - loading and processing;
 - data and progress;
