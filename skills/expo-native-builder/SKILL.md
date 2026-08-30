@@ -54,8 +54,8 @@ Use familiar mobile patterns unless the product benefits from a deliberate alter
 - For a multi-step first-run experience, read [references/onboarding-flows.md](references/onboarding-flows.md). Share the shell and navigation, not one forced card layout.
 - Before creating or expanding `components/ui`, read [references/reusable-components.md](references/reusable-components.md).
 - For forms, authentication, chat composers, or screens where the keyboard can cover content or actions, read [references/keyboard-controller.md](references/keyboard-controller.md).
-- When the approved design uses Lottie, read [references/lottie.md](references/lottie.md). Do not install or add animation merely because onboarding is present.
 - When implementing transitions, gesture feedback, animated gradients, or other visual polish, read [references/motion-and-gradients.md](references/motion-and-gradients.md).
+- When motion needs Lottie or another existing library or difficult reusable primitive, read [references/motion-packages.md](references/motion-packages.md). Treat it as a candidate catalogue, verify compatibility, and ask before adding a dependency. Do not add animation merely because onboarding is present.
 
 ## Use the existing design system
 

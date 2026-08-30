@@ -14,9 +14,19 @@ The repository also includes Claude Code plugin metadata in [`.claude-plugin/plu
 
 ## Current skills
 
+### Eve Agent Builder
+
+Adds a production Vercel Eve application agent to an existing Next.js, React, Node.js, or MERN project, with authenticated app tools, approvals, schedules, evals, and shared sidebar/full-page `useEveAgent` interfaces.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill eve-agent-builder
+```
+
+The complete instructions are in [`skills/eve-agent-builder/SKILL.md`](skills/eve-agent-builder/SKILL.md).
+
 ### Node.js Scaffolding
 
-Builds compact TypeScript Express APIs with versioned routes, typed errors, Helmet, rate limiting, console-only Winston logging, graceful shutdown, optional Passport JWT authentication, and opt-in MongoDB protection.
+Builds compact TypeScript Express APIs with a CommonJS-first tsup build, versioned routes, typed errors, Helmet, rate limiting, console logging, graceful shutdown, optional Passport JWT authentication, and opt-in MongoDB protection.
 
 ```bash
 npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill nodejs-scaffolding
@@ -150,6 +160,14 @@ The complete instructions are in [`skills/plan-database/SKILL.md`](skills/plan-d
 .claude-plugin/
 └── plugin.json
 skills/
+├── eve-agent-builder/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   └── references/
+│       ├── application-agent.md
+│       ├── frontend-integration.md
+│       ├── production-checklist.md
+│       └── project-topologies.md
 ├── expo-better-auth/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml

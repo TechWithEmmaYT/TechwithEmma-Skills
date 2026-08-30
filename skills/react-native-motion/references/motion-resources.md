@@ -200,3 +200,6 @@ Choose:
 - [React Native Marquee](https://github.com/animate-react-native/marquee)
 - [Native Springs Shaders](https://github.com/MatthewSRC/native-springs-shaders)
 - [React Native Header Motion](https://github.com/pawicao/react-native-header-motion)
+- [React Native Expanding Circle Transition](https://github.com/alexbrillant/react-native-expanding-circle-transition)
+- [React Native Reanimated Carousel](https://www.npmjs.com/package/react-native-reanimated-carousel)
+- [React Native Fast Confetti](https://github.com/AlirezaHadjar/react-native-fast-confetti)

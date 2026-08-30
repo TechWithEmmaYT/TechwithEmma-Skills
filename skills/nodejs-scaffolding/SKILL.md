@@ -49,7 +49,7 @@ For the base scaffold, install the runtime and TypeScript packages the implement
 
 ```bash
 npm install express cors cookie-parser dotenv zod bcryptjs helmet express-rate-limit winston
-npm install --save-dev typescript ts-node nodemon @types/node @types/express @types/cors @types/cookie-parser
+npm install --save-dev typescript ts-node nodemon tsup @types/node @types/express @types/cors @types/cookie-parser
 ```
 
 Do not install Mongoose, Passport, JWT, sessions, or unused libraries in the base mode.
@@ -73,6 +73,7 @@ src/index.ts
 .gitignore
 nodemon.json
 tsconfig.json
+tsup.config.ts
 ```
 
 The base `env.config.ts` should expose `NODE_ENV`, `PORT`, and `LOG_LEVEL`, using `getEnv` with sensible defaults. Do not include `MONGO_URI`, `database.config.ts`, or `connectDatabase` in `index.ts` until MongoDB is explicitly requested.
@@ -92,6 +93,79 @@ const shutdownSignals: NodeJS.Signals[] = ["SIGTERM", "SIGINT"];
 Stop accepting requests, close the HTTP server, then close any configured database connection. Log startup, shutdown, and unexpected failures without logging secrets, cookies, authorization headers, passwords, tokens, or raw request bodies.
 
 Use `asyncHandler.middleware.ts` to forward rejected controller promises to Express error middleware. Keep both `asyncHandler` and `errorHandler` in `src/middlewares`, not `src/utils`.
+
+### 4. Add the CommonJS development and production build
+
+Default new Express scaffolds to CommonJS unless the project already uses ESM or the user requests it. This keeps extensionless local imports, `__dirname`, and broad package compatibility while tsup produces a clean production bundle.
+
+Use `tsconfig.json` for strict type-checking only; tsup owns JavaScript output:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": ["src", "src/types/**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "tests"]
+}
+```
+
+Set `"type": "commonjs"` and `"main": "dist/index.js"` in `package.json`. Add these scripts without deleting unrelated scripts:
+
+```json
+{
+  "scripts": {
+    "dev": "nodemon",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && tsup",
+    "start": "node dist/index.js"
+  }
+}
+```
+
+Use `nodemon.json` for development:
+
+```json
+{
+  "watch": ["src"],
+  "ignore": ["dist", "node_modules"],
+  "ext": "ts,json",
+  "exec": "ts-node --transpile-only ./src/index.ts"
+}
+```
+
+Use `tsup.config.ts` for production:
+
+```ts
+import { defineConfig } from "tsup";
+
+export default defineConfig({
+  entry: ["src/index.ts"],
+  format: ["cjs"],
+  platform: "node",
+  target: "node20",
+  outDir: "dist",
+  bundle: true,
+  clean: true,
+  skipNodeModulesBundle: true,
+  sourcemap: true,
+  minify: false,
+  splitting: false,
+});
+```
+
+Match `target` to the deployment runtime when it differs. Do not generate declarations for a private API application or produce both CJS and ESM unless the project is a published library that needs them.
+
+Dependencies remain external by default. If an ESM-only dependency causes `ERR_REQUIRE_ESM`, prefer its supported CommonJS entry or dynamic `import()` when appropriate. Otherwise, selectively bundle that dependency with tsup's `noExternal` option and verify it at runtime; do not bundle every dependency to hide one incompatibility.
+
+Copy `package.json` into `dist` only when deployment treats `dist` as a standalone artifact. Otherwise deploy from the project root with production dependencies and run `node dist/index.js`.
 
 ## Error contract
 

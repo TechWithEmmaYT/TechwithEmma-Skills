@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eve Agent Builder"
+  short_description: "Add production Eve agents to existing applications"
+  default_prompt: "Use $eve-agent-builder to add a secure, production-ready Eve agent to this project with authenticated application tools, approvals, evals, and useEveAgent UI."

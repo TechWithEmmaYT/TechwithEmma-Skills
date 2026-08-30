@@ -8,6 +8,7 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 
 ### Added
 
+- `eve-agent-builder` for adding production Eve agents to Next.js, React, Node.js, and MERN applications with authenticated app tools, approvals, schedules, evals, and `useEveAgent` interfaces.
 - Claude Code plugin metadata for installing and discovering the skill collection as a plugin.
 - `plan-project` for interviewing users, resolving product and technical ambiguity, and producing a validated specification before implementation planning.
 - `nodejs-testing` for risk-focused unit, HTTP integration, real-dependency integration, and API end-to-end testing.
@@ -32,7 +33,10 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 - Expanded `expo-native-builder` with flexible heterogeneous onboarding steps, reusable component contracts, opt-in Lottie, purposeful motion and gradients, and native-versus-universal UI decisions.
 - Added premium onboarding guidance across `mobile-ui-design` and `expo-native-builder`: activation-led journeys, varied step layouts, visible personalization, attribution, contextual permissions, verified social proof, commitment interactions, safe store-rating timing, honest result and paywall transitions, cohesive assets and motion, analytics boundaries, and optional companion-skill routing.
 - Strengthened onboarding across `mobile-ui-design`, `react-native-motion`, and `expo-native-builder` with adaptive conversation maps, derived feedback, conditional branches, live charts and controls, cross-screen choreography, recalculation, and branch-boundary verification.
+- Added a complete Base-category React Native motion package catalogue to `expo-native-builder`, with selection boundaries for foundations, gestures, data, feedback, celebration, blur, themes, and GPU effects.
 - Expanded `nodejs-scaffolding` with `/api/v1` route aggregation, Helmet, Express rate limiting, console-only Winston logging, graceful signal shutdown, and Mongoose query-filter sanitization.
+- Added a CommonJS-first tsup production build to `nodejs-scaffolding`, with separate type-checking, Nodemon development, extensionless imports, and selective handling for ESM-only dependencies.
+- Clarified the standalone Eve filesystem, optional root `agent.ts`, required subagent configuration, and root-level `evals/` placement in `eve-agent-builder`.
 
 ### Removed
 
