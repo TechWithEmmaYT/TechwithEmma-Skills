@@ -74,3 +74,19 @@ End with exactly:
 > Ready for me to turn this into an implementation plan?
 
 Do not silently create the implementation plan. Wait for confirmation. If the user asks for code during discovery, explain that discovery is incomplete and ask whether to finish it or abandon it and begin implementation.
+
+## Persist the implementation plan
+
+After the user confirms, create the implementation plan as a real Markdown file inside the project at:
+
+```text
+docs/plans/YYYY-MM-DD-short-feature-name.md
+```
+
+Create `docs/plans/` when needed. Use the project's local date and a short, stable kebab-case name. Update the same file as the plan changes instead of creating duplicates.
+
+Never leave the implementation plan only in chat, a hosted artifact, a temporary directory, or an agent-specific cloud workspace. A cloud artifact may be offered as an additional copy, but the project file is required whenever filesystem access is available.
+
+Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative Markdown link to the plan. Preserve all existing instructions and do not copy the full plan into `AGENTS.md`. If the repository already uses another agent instruction file, do not replace it; the saved project document remains the source of truth.
+
+When filesystem access is unavailable, provide the complete Markdown and clearly state the intended project path so the user can save it there.

@@ -93,6 +93,18 @@ After generation, compare the image with `design-draft.md`: colours, typography,
 
 After approval, convert the working draft into a self-contained `mobile-design.md` using [references/mobile-design-file.md](references/mobile-design-file.md). Include the product summary, full screen inventory, visual decisions, approved prompt, interaction notes, assets, and unresolved decisions.
 
+When filesystem access is available, save the approved handoff inside the project at:
+
+```text
+docs/design/mobile-design.md
+```
+
+Create `docs/design/` when needed. For a design scoped to one feature or flow rather than the whole app, use `docs/design/<feature>-design.md`. Update the same document during refinements instead of creating duplicate versions.
+
+Never leave the approved design only in chat, a hosted artifact, the temporary working-draft directory, or an agent-specific cloud workspace. The temporary `design-draft.md` is working memory only; the approved project document is the source of truth.
+
+Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative Markdown link to the approved design. Preserve existing instructions and do not copy the full design document into `AGENTS.md`. If filesystem access is unavailable, provide the complete Markdown and state the intended project path.
+
 The handoff must work with Expo, React Native, SwiftUI, Jetpack Compose, Flutter, another implementation agent, or a design-only workflow. If optional theming or implementation skills are installed, they may consume this file, but never require or assume them.
 
 ## Quality checks
@@ -109,4 +121,4 @@ Before finishing, confirm:
 - no image was generated before prompt approval;
 - the user was offered refine, concept board, or a numbered full-app board after receiving the prompt;
 - optional tools or skills were not presented as dependencies;
-- the handoff, when requested, is portable and implementation-ready.
+- the handoff, when requested, is portable, implementation-ready, saved under `docs/design/`, and linked from `AGENTS.md` when filesystem access is available.
