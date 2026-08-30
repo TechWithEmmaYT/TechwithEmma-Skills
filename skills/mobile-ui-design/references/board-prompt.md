@@ -40,7 +40,7 @@ BOARD GENERATION OPTIONS
 - Shared composition: [background, spacing, device framing, annotations if any, and how the flow should read]. Do not add a design-system panel unless requested.
 
 QUALITY
-Produce polished, realistic mobile product UI with consistent components, believable content, accurate alignment, strong hierarchy, accessible contrast, and crisp readable text. Keep the product identity consistent across every screen.
+Produce polished, realistic mobile product UI with consistent components, believable representative data, accurate alignment, strong hierarchy, accessible contrast, and crisp readable text. Populate charts, metrics, lists, cards, plans, messages, activity, results, and other data surfaces with realistic content that demonstrates the intended experience. Keep the product identity consistent across every screen. Do not place sample, demo, mock, placeholder, or Lorem ipsum labels inside the UI.
 
 AVOID
 [Only product-specific mistakes, such as excessive gradients, weak contrast, crowded cards, decorative charts, tiny labels, or an inappropriate visual tone.]
@@ -48,7 +48,7 @@ AVOID
 
 ## After presenting the prompt
 
-After showing the initial complete prompt or prompt set, ask the user to choose: refine it, generate the concept board, or generate a specific numbered full-app board. During later refinements, update the stored prompt and show only a concise change summary. Reprint the full prompt only when requested.
+After showing the initial complete prompt or prompt set, ask the user to choose: refine it, generate the concept board, or generate a specific numbered full-app board. After showing a generated design, mention in chat that representative design data should be connected to real sources and approved logic before production; never place that disclaimer inside the generated UI. During later refinements, update the stored prompt and show only a concise change summary. Reprint the full prompt only when requested.
 
 ## Generation guidance
 

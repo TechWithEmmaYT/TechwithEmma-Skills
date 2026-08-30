@@ -38,7 +38,7 @@ Use these when they serve a clear product or business purpose; never force all o
 
 - **Acquisition attribution:** ask where the user heard about the app using a short, skippable list such as search, creator/video, social, referral, advertisement, or other. Place it after initial value, not as the opening screen, and do not pretend it personalizes the result when it does not.
 - **Contextual permissions:** explain the immediate benefit of notifications, health data, location, camera, microphone, or photos before the native prompt. Ask only when the next feature needs it and show the useful fallback.
-- **Real social proof:** use verified ratings, customer counts, outcomes, testimonials, or activity only when the product can substantiate them. Never fabricate live activity or authority statistics.
+- **Social proof presentation:** during design exploration, use realistic representative ratings, customer counts, outcomes, testimonials, or activity when needed to show the intended layout and persuasion hierarchy. Do not mark them as sample content inside the UI. Tell the owner after presenting the design that these claims must be verified, replaced, or removed before production.
 - **Honest comparison:** contrast the user's current approach with the product's approach through specific capabilities, time, effort, or outcome. Avoid vague competitor attacks and unsupported superiority claims.
 - **Commitment moment:** a short pledge, intention, or hold-to-confirm interaction can make a meaningful goal feel deliberate. On completion, a concise congratulations state may combine restrained confetti, one haptic, and optional sound before revealing the next action. Keep it accessible, proportional, and easy to skip; it is not a substitute for legal consent.
 
@@ -56,7 +56,7 @@ Before adding a question, state what its answer changes. It may change the next 
 
 Use acknowledgment intentionally. It may be encouragement, reassurance, a personalized observation, a useful consequence, or simply a more relevant next question. Vary the rhythm so responses feel human rather than repetitive. When answers conflict, explain the tradeoff clearly, recommend a realistic option, and preserve user agency.
 
-During design exploration, clearly labelled sample values, projections, and formulas may demonstrate how the personalized result should look and respond. Record them as illustrative placeholders in the handoff. Production logic must later replace them with the product's approved formula and real collected data, especially in health, finance, or safety contexts.
+During design exploration, freely use realistic representative values, projections, and formulas to demonstrate how the personalized result should look and respond. Present them naturally inside the UI without sample, mock, or placeholder labels. After showing the design, tell the owner in chat that production logic must replace them with approved formulas and real collected data, especially in health, finance, or safety contexts. Record that implementation note in the handoff, outside the UI.
 
 ## Turn answers into visual feedback
 
@@ -68,13 +68,13 @@ Choose the format that best explains the current decision instead of repeating o
 - comparison states for current versus projected outcomes;
 - plan cards and generated summaries that combine earlier answers.
 
-When a control has meaningful consequences, show them while the user interacts. A pace slider may update a timeframe, chart, required commitment, recommendation, and caution state together. Use threshold feedback rather than changing prose on every pixel, and never rely on color alone. These visuals must communicate real product logic, not decorate the funnel.
+When a control has meaningful consequences, show them while the user interacts. A pace slider may update a timeframe, chart, required commitment, recommendation, and caution state together. Use threshold feedback rather than changing prose on every pixel, and never rely on color alone. These visuals should demonstrate plausible intended product logic, not merely decorate the funnel; representative logic is allowed during design and is replaced or validated during implementation.
 
 Build later states from earlier decisions. Selected values, imagery, metrics, and plan fragments should increasingly combine into the result so personalization becomes the product demonstration.
 
 End with something meaningful: a routine, recommendation, forecast, target, first lesson, first task, or preview of the personalized plan. Do not finish with a generic "You're all set" screen or an empty dashboard.
 
-The paywall may follow the result when monetization requires it, but show enough evidence that the result is genuinely personalized. Do not use invented authority statistics, fake scarcity, deceptive loading, or hidden terms.
+The paywall may follow the result when monetization requires it, but show enough evidence that the result feels genuinely personalized. Representative data may complete a design concept, but do not recommend shipping invented authority statistics, fake scarcity, deceptive loading, or hidden terms. Identify anything requiring verification in the post-design chat note and handoff—not on the UI screens.
 
 ## Direct the visual experience
 

@@ -68,8 +68,14 @@ Use the sections that the product needs:
 - Generated image status and path:
 - Optional design-system-board prompt status:
 
+## Representative design data
+- Data shown for visual completeness:
+- Real API, database, CMS, or user source to connect:
+- Formula, claim, rating, testimonial, or live activity requiring approval:
+- Production replacement status:
+
 ## Open decisions
 - <Only unresolved decisions; write “None” when settled.>
 ```
 
-Record decisions accurately; do not invent exact colour values, font names, screen requirements, or assets that the user did not approve. When values are inferred from an image, label them as estimates. Link or name generated files only when they actually exist.
+Record decisions accurately; do not invent exact colour values, font names, screen requirements, or assets that the user did not approve. Representative screen content and data may be invented to demonstrate the UI, but record what must later connect to production sources. When design tokens are inferred from an image, label them as estimates in the handoff, never on the UI. Link or name generated files only when they actually exist.

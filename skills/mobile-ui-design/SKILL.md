@@ -49,6 +49,16 @@ When the product includes onboarding, a quiz, personalization, or a pre-paywall 
 
 References are evidence, not templates. Abstract useful qualities such as density, hierarchy, warmth, or navigation. Never inject competitor names, trademark warnings, or generic legal disclaimers into the generated design prompt unless the user explicitly asks for them.
 
+## Populate the design with representative data
+
+For UI concepts, prototypes, prompts, and boards, make every data-dependent surface look complete. Freely invent realistic representative names, balances, purchases, charts, trends, plans, projections, progress, dates, messages, activity, notifications, recommendations, generated results, and other product content when real data or production logic is not yet available.
+
+Do not weaken the design with empty states, vague boxes, `Lorem ipsum`, repeated zeros, or missing charts merely because an API, database, formula, or final copy has not been supplied. Choose data that demonstrates hierarchy, density, state changes, personalization, and the product's best intended experience.
+
+Do not put `sample`, `demo`, `mock`, `placeholder`, or similar warnings inside the UI or generated artwork. The screen should look like a polished real product. After presenting the design, tell the user in chat that representative design data was used and should be connected to real APIs, approved formulas, verified claims, and production content before release. Record the same implementation note in the handoff, outside the UI specification.
+
+Representative design data is permission to visualize the intended product, not permission to publish false claims. Before production, replace or remove invented ratings, testimonials, customer counts, financial or health calculations, live activity, scarcity, and other factual claims.
+
 ## Keep a working design memory
 
 When filesystem access is available, create `design-draft.md` in a unique OS temporary directory, never inside the project. Tell the user its path. Record the screen inventory, exact colours, typography, spacing, radii, borders, shadows, component rules, locked decisions, rejected ideas, and latest prompt.
@@ -69,6 +79,8 @@ The prompt must specify:
 - legibility, realism, accessibility, and output quality;
 - product-specific visual mistakes to avoid.
 
+Populate the screens with believable representative data whenever it improves the design. Never add in-UI labels that reveal it as sample or placeholder content.
+
 On the initial pass, do not generate an image yet. Present the complete prompt once, then ask the user to choose one concise next action:
 
 1. refine the prompt;
@@ -87,7 +99,7 @@ If no image-generation tool is available, say so after presenting the prompt. Re
 
 ## Review each board
 
-After generation, compare the image with `design-draft.md`: colours, typography, spacing, radii, borders, shadows, required content, and cross-screen consistency. Report mismatches briefly, then ask the user to approve or refine. Never regenerate automatically.
+After generation, compare the image with `design-draft.md`: colours, typography, spacing, radii, borders, shadows, required content, representative data, and cross-screen consistency. Report mismatches briefly, then ask the user to approve or refine. In chat—not inside the UI—state that representative data should be replaced or connected before production. Never regenerate automatically.
 
 ## Create the handoff
 
@@ -116,6 +128,7 @@ Before finishing, confirm:
 - the visual direction is specific enough to reproduce;
 - refinements preserve locked tokens and component rules from the working draft;
 - the prompt contains all required screen content and no empty placeholders;
+- data-dependent screens look convincingly populated and contain no in-UI sample, mock, or placeholder labels;
 - no board exceeds four columns or eight screens;
 - competitor names or generic legal warnings were not added to the prompt;
 - no image was generated before prompt approval;
