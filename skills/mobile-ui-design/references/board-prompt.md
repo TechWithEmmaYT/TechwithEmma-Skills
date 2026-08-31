@@ -16,10 +16,10 @@ PRODUCT DIRECTION
 [Personality, emotional tone, platform expectations, and the main experience the design must communicate.]
 
 VISUAL LANGUAGE
-- Colour: [semantic colour roles, contrast, and light/dark treatment]
+- Colour and background: [semantic colour roles, full-screen background treatment, gradient stops/direction/intensity when requested, contrast, and light/dark treatment]. An unqualified gradient request belongs to the app background first; keep buttons solid unless a gradient button was explicitly requested.
 - Typography: [font character, hierarchy, weights, and numeric treatment]
 - Shape and spacing: [corner language, spacing rhythm, density, and touch-target expectations]
-- Components: [buttons, cards, inputs, navigation, controls, feedback, and media treatment]
+- Components: [solid high-contrast buttons by default, cards, inputs, navigation, controls, feedback, and media treatment]
 - Imagery and icons: [illustration, photography, icon style, and logo treatment]
 - Accessibility: [contrast, text sizing, non-colour cues, and reachable interactions]
 
@@ -43,7 +43,7 @@ QUALITY
 Produce polished, realistic mobile product UI with consistent components, believable representative data, accurate alignment, strong hierarchy, accessible contrast, and crisp readable text. Populate charts, metrics, lists, cards, plans, messages, activity, results, and other data surfaces with realistic content that demonstrates the intended experience. Keep the product identity consistent across every screen. Do not place sample, demo, mock, placeholder, or Lorem ipsum labels inside the UI.
 
 AVOID
-[Only product-specific mistakes, such as excessive gradients, weak contrast, crowded cards, decorative charts, tiny labels, or an inappropriate visual tone.]
+[Only product-specific mistakes, such as putting the requested background gradient only on buttons, scattering unrelated gradients across controls, weak contrast, crowded cards, decorative charts, tiny labels, or an inappropriate visual tone.]
 ```
 
 ## After presenting the prompt

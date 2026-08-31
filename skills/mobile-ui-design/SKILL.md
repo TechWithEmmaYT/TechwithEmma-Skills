@@ -45,7 +45,15 @@ Propose one coherent direction containing:
 
 If a logo is missing, use a neutral wordmark or placeholder treatment. Do not invent a detailed logo and silently make it part of the product identity.
 
-When the product includes onboarding, a quiz, personalization, or a pre-paywall journey, read [references/premium-onboarding.md](references/premium-onboarding.md). Design it as a product-specific value journey with varied step bodies, not a repeated questionnaire or a fixed long funnel.
+### Interpret gradient requests as background direction
+
+When the user asks for a gradient, a gradient feel, or a sleek colour blend without naming a component, treat it as the app's background atmosphere first. Apply it full-bleed behind the screen or across the shared flow shell so content, cards, and controls sit over one coherent colour environment. Keep primary buttons solid and high-contrast by default. Use a gradient inside a button only when the user explicitly requests a gradient button or an approved reference clearly makes it part of the control language.
+
+For a multi-screen flow, decide whether one persistent background should continue behind transparent screen surfaces and subtly evolve with progress, state, or narrative. Specify the gradient's stops, direction, intensity, light and dark treatment, contrast overlays, and which screens intentionally return to a plain background for rest. Do not scatter unrelated gradients across buttons, cards, badges, and icons as a substitute for a background system.
+
+When the product includes onboarding, a quiz, personalization, or a pre-paywall journey, read [references/premium-onboarding.md](references/premium-onboarding.md). Design it as a product-specific value journey with varied step bodies, not a repeated questionnaire or a fixed long funnel. Treat length as a rhythm decision and record the approved beat sequence in the handoff.
+
+When the product includes a subscription, free trial, upgrade, or paywall, read [references/paywall-design.md](references/paywall-design.md). Define the value, plan presentation, pricing clarity, dismissal, restore, and important states without choosing or integrating a billing SDK.
 
 References are evidence, not templates. Abstract useful qualities such as density, hierarchy, warmth, or navigation. Never inject competitor names, trademark warnings, or generic legal disclaimers into the generated design prompt unless the user explicitly asks for them.
 
@@ -59,11 +67,19 @@ Do not put `sample`, `demo`, `mock`, `placeholder`, or similar warnings inside t
 
 Representative design data is permission to visualize the intended product, not permission to publish false claims. Before production, replace or remove invented ratings, testimonials, customer counts, financial or health calculations, live activity, scarcity, and other factual claims.
 
-## Keep a working design memory
+## Keep one project design document
 
-When filesystem access is available, create `design-draft.md` in a unique OS temporary directory, never inside the project. Tell the user its path. Record the screen inventory, exact colours, typography, spacing, radii, borders, shadows, component rules, locked decisions, rejected ideas, and latest prompt.
+When the project filesystem is available, create the real design document as soon as there is enough product context to form the initial inventory and direction:
 
-Before every refinement, read the draft, change only what the user requested, preserve locked decisions, then update the stored prompt. Show only a concise change summary; print the complete updated prompt again only when the user asks. If files are unavailable, maintain the same concise draft in the conversation.
+```text
+docs/design/mobile-design.md
+```
+
+For a feature or flow rather than the whole app, use `docs/design/<feature>-design.md`. Create `docs/design/` when needed. Start the document with `Status: Draft`, use [references/mobile-design-file.md](references/mobile-design-file.md), and update this same file throughout inventory, prompt writing, board generation, and refinement. Do not create an OS-temporary `design-draft.md`, a root-level draft, or separate draft/final copies.
+
+Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative link as soon as the draft is created. Preserve existing instructions and do not copy the design document into `AGENTS.md`.
+
+Before every refinement, read the project design document, change only what the user requested, preserve locked decisions, and update the stored prompt and status. Show only a concise change summary; print the complete updated prompt again only when the user asks. If no project filesystem is available, maintain the draft in conversation and provide the complete Markdown with its intended project path.
 
 ## Always write the complete board prompt
 
@@ -75,6 +91,7 @@ The prompt must specify:
 - every screen in the approved inventory and its important content;
 - navigation and relationships between screens;
 - visual direction and reusable interface language;
+- the full-screen background treatment and gradient behavior across the flow when gradients are part of the direction;
 - readable board composition and flow-based grouping;
 - legibility, realism, accessibility, and output quality;
 - product-specific visual mistakes to avoid.
@@ -99,23 +116,13 @@ If no image-generation tool is available, say so after presenting the prompt. Re
 
 ## Review each board
 
-After generation, compare the image with `design-draft.md`: colours, typography, spacing, radii, borders, shadows, required content, representative data, and cross-screen consistency. Report mismatches briefly, then ask the user to approve or refine. In chat—not inside the UI—state that representative data should be replaced or connected before production. Never regenerate automatically.
+After generation, compare the image with the current project design document: colours, typography, spacing, radii, borders, shadows, required content, representative data, and cross-screen consistency. Record the generated asset path and review outcome in that same document. Report mismatches briefly, then ask the user to approve or refine. In chat—not inside the UI—state that representative data should be replaced or connected before production. Never regenerate automatically.
 
 ## Create the handoff
 
-After approval, convert the working draft into a self-contained `mobile-design.md` using [references/mobile-design-file.md](references/mobile-design-file.md). Include the product summary, full screen inventory, visual decisions, approved prompt, interaction notes, assets, and unresolved decisions.
+After approval, tighten the existing project design document into a concise, self-contained implementation handoff. Change `Status: Draft` to `Status: Approved`; preserve the product summary, complete screen inventory, locked visual decisions, approved prompt or board paths, interaction notes, assets, representative-data replacement notes, and unresolved decisions.
 
-When filesystem access is available, save the approved handoff inside the project at:
-
-```text
-docs/design/mobile-design.md
-```
-
-Create `docs/design/` when needed. For a design scoped to one feature or flow rather than the whole app, use `docs/design/<feature>-design.md`. Update the same document during refinements instead of creating duplicate versions.
-
-Never leave the approved design only in chat, a hosted artifact, the temporary working-draft directory, or an agent-specific cloud workspace. The temporary `design-draft.md` is working memory only; the approved project document is the source of truth.
-
-Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative Markdown link to the approved design. Preserve existing instructions and do not copy the full design document into `AGENTS.md`. If filesystem access is unavailable, provide the complete Markdown and state the intended project path.
+Update the same file rather than generating another final document. Never leave the approved design only in chat, a hosted artifact, an OS temporary directory, or an agent-specific cloud workspace. The linked `docs/design/...` document is the source of truth from first draft through approval.
 
 The handoff must work with Expo, React Native, SwiftUI, Jetpack Compose, Flutter, another implementation agent, or a design-only workflow. If optional theming or implementation skills are installed, they may consume this file, but never require or assume them.
 
@@ -126,7 +133,7 @@ Before finishing, confirm:
 - the screen inventory represents the actual product;
 - the prompt covers the complete product before any board is generated;
 - the visual direction is specific enough to reproduce;
-- refinements preserve locked tokens and component rules from the working draft;
+- refinements preserve locked tokens and component rules from the project design document;
 - the prompt contains all required screen content and no empty placeholders;
 - data-dependent screens look convincingly populated and contain no in-UI sample, mock, or placeholder labels;
 - no board exceeds four columns or eight screens;
@@ -134,4 +141,5 @@ Before finishing, confirm:
 - no image was generated before prompt approval;
 - the user was offered refine, concept board, or a numbered full-app board after receiving the prompt;
 - optional tools or skills were not presented as dependencies;
-- the handoff, when requested, is portable, implementation-ready, saved under `docs/design/`, and linked from `AGENTS.md` when filesystem access is available.
+- the design document was created under `docs/design/`, linked from `AGENTS.md`, updated rather than duplicated, and marked `Approved` only after approval;
+- the approved handoff is concise, portable, and implementation-ready.

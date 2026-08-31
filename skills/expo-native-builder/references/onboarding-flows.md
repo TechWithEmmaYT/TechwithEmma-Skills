@@ -2,7 +2,26 @@
 
 Use this reference for questionnaires, first-run education, permissions, personalization, and account-preparation flows. Onboarding is a sequence of user goals, not a sequence of identical cards.
 
-Implement the approved product journey from `mobile-design.md` or the supplied brief. Do not invent extra questions, a longer funnel, a paywall, fake loading, or new analytics services. If the experience is not designed yet, state the missing decisions instead of turning implementation into an unapproved redesign.
+Implement the approved journey from `mobile-design.md` or the supplied brief. This reference also works when the user calls `expo-native-builder` directly with no design skill or project plan.
+
+When direction is missing, propose one value-first flow and ask the user to correct it once. Flow length follows rhythm, not a fixed screen count: many low-effort screens may feel lighter than a short dense form. Ask whether a trial or paywall belongs at the end when monetization is unclear; do not invent one.
+
+Do not invent extra questions or analytics services. Every step must explain value, collect information that changes the experience, show a response, build justified commitment, or activate the product.
+
+## Pace the flow
+
+Use five beat types: `ask`, `react`, `teach`, `reveal`, and `commit`. Preserve the approved beat sequence; never compress a narrative journey into a questionnaire.
+
+- Place no more than two asks together before a low-effort reaction, lesson, or reveal. Repay each meaningful answer with a visible consequence.
+- Make asks cheap: prefer taps to typing, labelled tiers to raw numbers, and ranges when precision is unnecessary. Auto-advance a reversible single-select when the choice is clear.
+- Keep one idea and one primary action per screen. Split dense explanations or results into low-effort beats.
+- Restate a collected value in escalating frames such as daily, monthly, yearly, visualized impact, and dated outcome. Reveal figures progressively instead of placing every result side by side.
+- Reuse names and selected answers in later copy, calculations, recommendations, and plans. A name is optional; visible answer reuse is not.
+- Maintain continuity with a responsive character, metric, illustration, or product preview. Demonstrate the product with believable live UI when that explains value better than abstract art.
+- Ramp effort from taps to limited typing, optional commitment gesture, and payment only after the personalized payoff.
+- Use phase progress, a subtle progress bar, or no indicator according to the approved design. Never show misleading remaining length or a raw `Step N of M` counter.
+
+For a personalized monetized flow, preserve the high-value arc: `welcome/proof -> useful asks -> product demonstration -> personal calculation -> visualization -> acknowledged outcome -> testimonials/proof -> plan building -> personalized plan -> contextual paywall`. Name entry, rating prompt, permissions, hold-to-commit, and post-dismissal consequence are optional product decisions.
 
 ## Share the shell, vary the step body
 
@@ -34,28 +53,17 @@ Premium flows may also use product demonstrations, full-bleed media, centered in
 
 Translate the approved journey into explicit dependencies rather than a fixed questionnaire. Each question should document what its answer changes: the next step, wording, options, calculation, recommendation, visual state, plan, or final result. Do not collect and forget answers.
 
-Model direct answers separately from derived values, constraints, recommendations, and consequences. Keep calculations pure and deterministic so going back or changing an earlier answer recomputes later state correctly. For an explicitly approved UI prototype, isolate clearly labelled sample calculations behind a mock function or fixture so the intended charts, recommendations, and result structure can be demonstrated. Before production use, replace them with the approved formula and real collected data, especially for health, finance, safety, or business outcomes.
+Model direct answers separately from derived values, constraints, recommendations, and consequences. Keep calculations pure and deterministic so going back or changing an earlier answer recomputes later state correctly. When the real logic is unavailable, isolate realistic representative calculations in one fixture or replaceable function so charts, recommendations, and results look and behave complete. Keep implementation labels in code only, never on the UI. Before production, connect approved formulas and real collected data, especially for health, finance, safety, or business outcomes.
 
 Use a small branch resolver or configured decision function for conditional paths. Preserve genuinely different journeys; reconnect paths only when the product logic calls for the same later step. Derive progress from the active resolved path rather than a universal fixed step count.
 
 ## Model heterogeneous steps
 
-A discriminated union keeps the flow configurable without pretending every step has the same props:
-
-```ts
-type Step =
-  | { key: string; field: string; kind: "single-select"; options: Option[] }
-  | { key: string; field: string; kind: "multi-select"; options: Option[] }
-  | { key: string; field: string; kind: "date"; min?: string; max?: string }
-  | { key: string; field: string; kind: "ruler"; min: number; max: number; unit: string }
-  | { key: string; kind: "info"; body: string; illustration?: ImageSource }
-  | { key: string; kind: "permission"; permission: "notifications" | "camera" | "photos" }
-  | { key: string; kind: "custom"; render: StepRenderer };
-```
-
-Use the project's actual answer types instead of broad `string` fields in production. Keep renderers small and explicit; a switch over `step.kind` is often clearer than a generic component with dozens of optional props.
+Use a discriminated union with explicit kinds such as single-select, multi-select, date, ruler, text, info, permission, and custom. Use real answer types, keep renderers small, and prefer a clear switch over one generic component with many optional props.
 
 Charts, carousels, timelines, comparisons, selected imagery, plan cards, highlighted metrics, and generated summaries are valid step bodies when they explain real state. Choose the simplest component that communicates the approved interaction; do not force every flow to contain all of them.
+
+Before a backend exists, populate the intended journey with believable names, goals, habits, answer-dependent copy, calculations, charts, projections, ratings, testimonials, commitment states, plan-building progress, milestones, dates, recommendations, and personalized results. The UI should look presentation-ready rather than empty or unfinished. Keep all representative sources easy to replace and list them in the final chat handoff after the UI is complete.
 
 For sliders, pickers, carousels, or schedules with meaningful consequences, update derived values and visuals during interaction. Change supporting explanations at meaningful thresholds, preserve the exact selected value, pair caution colors with text or an icon, and offer a recommended alternative without silently overriding the user.
 
@@ -67,52 +75,7 @@ A single route with local state is also valid for a short, inseparable flow. Cho
 
 ### Own the onboarding transition
 
-In the onboarding route-group layout, disable Expo Router's default Stack transition so it does not slide the whole screen on top of the approved custom choreography:
-
-```tsx
-<Stack
-  screenOptions={{
-    headerShown: false,
-    animation: "none",
-  }}
-/>
-```
-
-Individual step content may still animate through the approved motion system. This keeps the shared shell, background, progress, and persistent visual anchors mounted instead of making every step look like an unrelated pushed page.
-
-When one gradient, shader, image, or atmospheric surface spans the full flow, render it once in the group layout. Give the outer root an explicit `flex: 1` and opaque semantic fallback color, then make both the nested navigation theme and Stack scene transparent:
-
-```tsx
-const transparentNavigationTheme: Theme = {
-  ...baseNavigationTheme,
-  colors: {
-    ...baseNavigationTheme.colors,
-    background: "transparent",
-    card: colors.surface,
-    text: colors.text,
-    border: colors.border,
-    primary: colors.accent,
-  },
-};
-
-<View
-  className="flex-1"
-  style={[themeVariables, { flex: 1, backgroundColor: colors.ground }]}
->
-  <FlowBackground />
-  <ThemeProvider value={transparentNavigationTheme}>
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        animation: "none",
-        contentStyle: { backgroundColor: "transparent" },
-      }}
-    />
-  </ThemeProvider>
-</View>
-```
-
-Build `baseNavigationTheme` from the active `DefaultTheme` or `DarkTheme`, and map its colors from the project's actual semantic theme. Keep ordinary non-gradient flows opaque. Do not make the global app navigator transparent when only the onboarding group needs it.
+When approved choreography keeps the shell, progress, background, or visual anchors mounted, disable the onboarding Stack's default transition and animate only step content. For a flow-wide gradient or image, render it once in the group layout over an opaque semantic fallback; make only that nested Stack and navigation background transparent. Keep ordinary flows and the global navigator opaque.
 
 ## Answers and persistence
 
@@ -122,34 +85,33 @@ Validate before advancing when the next screen depends on the answer. Submit pri
 
 ## Permission steps
 
-Explain the benefit before showing the system prompt, and request permission only after an explicit user action. Handle already-granted, denied, restricted, and can-ask-again states. Provide a useful fallback and settings path when permission is denied; do not trap the user unless the feature truly cannot function without it.
+Explain the benefit before the system prompt and request only after explicit action. Handle granted, denied, restricted, and can-ask-again states with a useful fallback or settings path.
 
 Implement acquisition attribution as a skippable categorical answer and send it only through an approved existing analytics or backend contract. Do not install tracking or transmit it to a new service implicitly.
 
-When health or another protected capability is approved, verify the platform entitlement, purpose text, unavailable state, and minimum requested scope before calling the native API.
+For protected capabilities, verify entitlements, purpose text, unavailable state, and minimum requested scope.
 
 ## Commitment interactions
 
-For an approved hold-to-commit action, show continuous press progress and cancel cleanly when the pointer leaves or releases early. On success, show a brief congratulations state with one synchronized haptic; approved confetti and optional sound may reinforce this meaningful milestone. Fire the celebration once, keep it short, respect Reduce Motion and muted/silent preferences, and provide a non-audio accessible success cue. Reuse installed native-compatible packages or assets; ask before adding a confetti or audio dependency. Provide an accessible tap or confirmation alternative when a sustained gesture may be difficult. Never use a hold gesture as legal agreement, payment confirmation, or the only way through onboarding.
+An approved hold-to-commit action must show progress, cancel on early release, and provide an accessible tap alternative. Celebrate once and proportionately with reduced-motion and non-audio feedback. Ask before adding confetti or audio. Never use a hold as legal agreement, payment confirmation, or the only path forward.
 
 ## Store ratings
 
-Do not request an App Store or Play Store rating during first-run onboarding. If the approved product later requests one after a real successful action, use the platform-native review API or the project's existing wrapper. Do not attach it directly to a rating button, ask users whether they like the app first, request a specific star score, assume the prompt will display, or block navigation on its result. Ask before installing `expo-store-review` or another package.
+A designed ratings or social-proof screen may use realistic representative content when it belongs to the approved onboarding story. This does not authorize invoking the native store-review prompt. If a real review request is implemented, connect it later at the approved product moment and ask before installing a package.
 
 ## Motion, gradients, and assets
 
-Read [motion-and-gradients.md](motion-and-gradients.md) when the approved design includes custom transitions or atmospheric backgrounds.
+Read [motion-native.md](motion-native.md) for approved custom transitions and [gradient-background.md](gradient-background.md) for atmospheric backgrounds.
 
 - Use one purposeful motion beat per step rather than replaying the same entrance on every route.
 - Preserve continuity across steps: an important answer, number, card, image, chart, or progress element may transform into the next composition or final plan.
 - Prefer `action -> immediate feedback -> meaningful transformation -> next state` over fade-out, navigation, and repeated fade-in.
 - Drive related motion from the same interaction or derived value so charts, metrics, labels, gradients, and recommendations stay synchronized.
 - Keep selection feedback immediate and pair haptics only with meaningful selection, snap, or completion moments.
-- Preload the next step's critical local image, Lottie, font, or short video when practical; prevent white flashes and temporary wrong-theme backgrounds.
-- Pause or unload media when the step is inactive. Respect Reduce Motion and test on a lower-end Android device.
+- Preload critical local assets when practical; pause media when inactive and prevent white or wrong-theme flashes.
 - Keep readable content and controls inside safe areas while allowing approved media or gradients to extend edge to edge.
 
-Use a real pending state for real calculation or network work. A short result-reveal transition may improve continuity, but do not delay a result merely to imply nonexistent AI processing.
+For a UI build, an approved staged processing or plan-building sequence may demonstrate the intended experience with representative progress and completed results. Keep it skippable in prototype/dev workflows and isolate its timing and messages. Before production, connect it to real work or replace it with a truthful result reveal; identify that connection in the final chat handoff.
 
 ## Result, paywall, and analytics
 
@@ -159,4 +121,8 @@ Use the project's existing analytics abstraction when present. Track only events
 
 ## Completion and verification
 
-Design proportional feedback for meaningful completion, then make the next destination obvious. Test every meaningful branch, calculation boundary, recommendation threshold, answer edit, and path transition, plus forward/back navigation, restored answers where applicable, invalid route keys, rapid taps, keyboard behavior, compact phones, dynamic type, permission denial, interrupted loading, media lifecycle, Reduce Motion, offline behavior where relevant, paywall dismissal, and final submission failure. Record the complete flow and check that transitions do not flash, replay unexpectedly, show stale derived values, or delay interaction.
+Make the completion destination obvious. Test branches, calculation thresholds, answer edits, forward/back, invalid routes, rapid taps, keyboard, compact phones, Dynamic Type, permission denial, interrupted work, media lifecycle, Reduce Motion, relevant offline behavior, paywall dismissal, and submission failure. Record the flow and check for flashes, replays, stale values, or delayed interaction.
+
+## Verify pacing
+
+Walk and record the complete flow. Report its beat sequence, longest run of asks, taps before the first payoff, screens carrying multiple ideas, derived values shown before their source answer, and steps that neither cost little nor change the experience. Fix or remove failed beats.

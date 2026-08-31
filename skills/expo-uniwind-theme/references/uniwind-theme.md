@@ -1,6 +1,6 @@
 # Uniwind Theme Contract
 
-Read this reference when implementing or repairing the theme.
+Read this reference when implementing or repairing the theme and Fonts.
 
 ## Minimum files
 

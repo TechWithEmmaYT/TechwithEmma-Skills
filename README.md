@@ -184,11 +184,12 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/
+│       ├── gradient-background.md
 │       ├── keyboard-controller.md
-│       ├── lottie.md
-│       ├── mobile-design-conventions.md
-│       ├── native-and-universal-ui.md
+│       ├── motion-native.md
+│       ├── native-ui.md
 │       ├── onboarding-flows.md
+│       ├── paywall-ui.md
 │       └── reusable-components.md
 ├── fullstack-monorepo-setup/
 │   ├── SKILL.md
@@ -202,7 +203,9 @@ skills/
 │   ├── agents/openai.yaml
 │   └── references/
 │       ├── board-prompt.md
-│       └── mobile-design-file.md
+│       ├── mobile-design-file.md
+│       ├── paywall-design.md
+│       └── premium-onboarding.md
 ├── nodejs-scaffolding/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml

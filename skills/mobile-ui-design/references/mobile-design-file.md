@@ -1,11 +1,16 @@
-# `MOBILE-DESIGN.md` Handoff
+# `MOBILE-DESIGN.md` Working Document and Handoff
 
-Write this file only after the user approves the visual direction. It is a portable design handoff, not permission to modify application code.
+Create this file in `docs/design/` during the first design pass, once the initial inventory and direction exist. It is the single persistent working document and later becomes the portable implementation handoff; it is not permission to modify application code.
+
+Use `Status: Draft` while exploring. Update this same file after every meaningful decision or generated board. When the user approves the design, make it concise, remove superseded exploration, and change the status to `Approved`. Never create separate temporary, draft, final, or cloud-only copies.
 
 Use the sections that the product needs:
 
 ```markdown
 # Mobile Design — <App name>
+
+Status: Draft | Approved
+Last updated: <date>
 
 ## Product
 - Audience:
@@ -13,7 +18,8 @@ Use the sections that the product needs:
 - Platforms:
 - Core flow:
 
-## Approved direction
+## Direction
+- Approval status:
 - Tone:
 - Reference use:
 - Approved output mode: prompt only | concept board | full-app board
@@ -21,7 +27,8 @@ Use the sections that the product needs:
 - Logo status: supplied | temporary wordmark | unresolved
 
 ## Tokens
-- Paper and surfaces:
+- App background and gradient role:
+- Paper and surfaces above the background:
 - Text and muted text:
 - Primary and primary content:
 - Secondary and status colours:
@@ -37,7 +44,7 @@ Use the sections that the product needs:
 - Type hierarchy:
 
 ## Components
-- Buttons:
+- Buttons, including solid or explicitly approved gradient treatment:
 - Inputs:
 - Cards and lists:
 - Chips and filters:
@@ -46,8 +53,18 @@ Use the sections that the product needs:
 - Empty, loading, error, success, and disabled states:
 
 ## Screen inventory
-1. <screen> — <purpose and primary action>
-2. <screen> — <purpose and primary action>
+1. <screen> — Beat: ask | react | teach | reveal | commit — <purpose and primary action>
+   - Answer changes: <required for asks; otherwise omit>
+2. <screen> — Beat: <beat> — <purpose and primary action>
+
+## Onboarding pacing
+- Activation moment:
+- Beat sequence:
+- Genuine questions and longest consecutive ask run:
+- Revealed value and its escalating frames:
+- Continuity: carried answers, name, character, metric, or visual:
+- Effort ramp:
+- Progress treatment:
 
 ## Interaction and platform rules
 - Safe areas:
@@ -77,5 +94,9 @@ Use the sections that the product needs:
 ## Open decisions
 - <Only unresolved decisions; write “None” when settled.>
 ```
+
+During Draft status, keep the current direction, latest full prompt, generated-board paths, locked decisions, and unresolved questions; omit long discarded alternatives. During Approved status, remove obsolete exploration and retain only what an implementation agent needs.
+
+The approved beat sequence is part of the design and must survive implementation.
 
 Record decisions accurately; do not invent exact colour values, font names, screen requirements, or assets that the user did not approve. Representative screen content and data may be invented to demonstrate the UI, but record what must later connect to production sources. When design tokens are inferred from an image, label them as estimates in the handoff, never on the UI. Link or name generated files only when they actually exist.
