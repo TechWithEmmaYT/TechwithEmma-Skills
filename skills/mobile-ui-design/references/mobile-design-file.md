@@ -53,9 +53,9 @@ Last updated: <date>
 - Empty, loading, error, success, and disabled states:
 
 ## Screen inventory
-1. <screen> — Beat: ask | react | teach | reveal | commit — <purpose and primary action>
-   - Answer changes: <required for asks; otherwise omit>
-2. <screen> — Beat: <beat> — <purpose and primary action>
+1. <screen> — Beat: ask | react | teach | reveal | commit — Layout: heading | showcase | centered | dialogue — <purpose and primary action>
+   - Answer changes: <required for asks: the later screen, options, calculation, or result this answer decides>
+2. <screen> — Beat: <beat> — Layout: <layout> — <purpose and primary action>
 
 ## Onboarding pacing
 - Activation moment:
