@@ -56,7 +56,6 @@ Use existing semantic tokens, typography roles, controls, icons, radii, and elev
 
 If the styling foundation, theme tokens, fonts, or toast infrastructure are missing or broken, report the gap. Offer `expo-uniwind-theme` for Uniwind or `expo-nativewind-theme` for NativeWind as a separate approved change. Do not silently turn a screen request into project-wide configuration work.
 
-Use supported platform modifiers for visual differences and platform files or conditional rendering when APIs or behavior differ.
 
 ## Enforce a complete screen shell
 
@@ -75,6 +74,8 @@ Every route needs a full-height semantic root using the project's `Screen` or `r
 ## Apply native-quality polish
 
 Extract hierarchy and behavior from supplied references without copying branding. Prefer native controls and navigator-owned UI when they fit. Choose push, replace, sheet, or modal from what Back should do; completed one-way flows must not remain reachable. Keep one accent family, one neutral family, and one radius scale.
+
+When custom artwork would materially improve a welcome, result, paywall, or celebration but no approved asset exists, inspect project assets first and avoid recreating complex illustrations with JSX. Build a replaceable image slot with the intended crop and dimensions, use a lightweight temporary visual, and finish the UI. In the final response, provide one shared art direction plus ready-to-paste prompts with filenames, aspect ratios, transparency, safe text space, and theme variants; offer to generate them when the user requests it.
 
 ## Design every relevant state
 
@@ -100,5 +101,7 @@ Make destructive actions visually distinct and require confirmation when recover
 Use a bounded loop: implement, run or capture the screen, compare it with the approved design and tokens, fix relevant mismatches, then verify again. Stop when the requested UI and relevant checks pass, or report the blocker. Do not expand scope.
 
 Run the project's typecheck and lint, then start Expo and inspect at least one native target. Exercise navigation, gestures, keyboard behavior, safe areas, loading/empty/error/success states, theme modes, and touch targets relevant to the change. When motion changed, record the complete affected flow and inspect it at normal speed and frame by frame for flashes, jumps, clipped springs, and keyboard discontinuities. If visual inspection is unavailable, say so instead of claiming a visual match.
+
+Do not treat a missing simulator as the end of visual verification. Work down this ladder and use the first rung available: a native target; a connected device; the web target when `react-native-web` is installed, which renders layout, type scale, colour, and most motion; a static export opened in a browser. Only when every rung fails is the screen unverified—then say plainly that no one has looked at it and list what that leaves unchecked. Compiling, exporting, and passing lint prove a screen builds, never that it looks right; never offer them as evidence of appearance. For a screen whose purpose is visual impact, an unverified appearance is an incomplete deliverable rather than a footnote.
 
 Report completed screens, reused/created components, design tokens followed, commands run, native targets visually checked, and remaining states or platform checks. If representative data was used, explicitly list in the final chat response what must later connect to real APIs, formulas, catalog/pricing, eligibility, verified claims, analytics, or backend state. Keep the handoff concise.

@@ -94,53 +94,6 @@ Uniwind.setTheme("system");
 
 Use complete class strings so Tailwind can detect them. Never build utilities such as ``bg-${color}``; map variants to complete strings instead.
 
-## Platform styling
-
-Use Uniwind's platform selectors for visual differences:
-
-```tsx
-<View className="ios:bg-red-500 android:bg-blue-500 web:bg-green-500" />
-```
-
-- `ios:` targets iOS.
-- `android:` targets Android.
-- `web:` targets web.
-- `native:` targets both iOS and Android.
-
-Prefer selectors over `Platform.select()` when only styles differ. Use `Platform.select()`, platform files, or conditional rendering when the platform changes behavior, native APIs, props, or the component itself. Platform-wide token differences may instead use `@variant ios`, `@variant android`, or `@variant web` inside `@layer theme`.
-
-## CSS functions
-
-Uniwind supports `hairlineWidth()`, `fontScale()`, `pixelRatio()`, and `light-dark()`. Define them inside named `@utility` rules in `global.css`, then use the resulting complete utility name in `className`. They cannot be used directly as arbitrary class values.
-
-Use them only for real device-aware needs: hairline separators, accessibility-scaled type, density-aware dimensions, or a compact two-theme value. Do not replace the semantic theme or spacing system with custom functions.
-
-## Data selectors
-
-Use `data-[prop=value]:utility` for component state driven by a prop on that same component:
-
-```tsx
-<Pressable
-  data-selected={selected}
-  className="border-border data-[selected=true]:bg-primary"
-/>
-```
-
-Use semantic property names such as `selected`, `checked`, `state`, `status`, or `size`. Boolean values compare with `true` or `false`. Only equality checks are supported; do not use presence selectors such as `data-[selected]` or other CSS operators. Prefer interactive variants for pressed, focused, or hovered interaction states.
-
-## Expo Router navigation bridge
-
-Import `DarkTheme`, `DefaultTheme`, `ThemeProvider`, and the navigator from `expo-router`. Read semantic colors reactively with `useCSSVariable`, construct matching navigation themes with `useMemo`, and select one using `theme` plus `hasAdaptiveThemes`. Map at least:
-
-- `background` to `--color-background`
-- `card` to `--color-card`
-- `text` to `--color-foreground`
-- `border` to `--color-border`
-- `primary` to `--color-primary`
-- `notification` to a suitable semantic accent or destructive token
-
-The app root and every screen container should still use `className="flex-1 bg-background"`. The navigation bridge styles navigation-owned surfaces; it does not replace screen backgrounds.
-
 ## Mandatory root-shell contract
 
 An Expo Router implementation is incomplete unless the root layout contains all applicable pieces in this order:
@@ -152,38 +105,125 @@ An Expo Router implementation is incomplete unless the root layout contains all 
 5. the root `Stack`, `Slot`, or tabs navigator;
 6. exactly one app-wide `Toaster` after the navigator.
 
-Use this structure, adapting existing providers rather than replacing them:
+Use this complete runtime-font structure for a typical Expo Router app. Adapt font names, paths, navigator options, tokens, and existing providers rather than copying them blindly:
 
 ```tsx
 import "../global.css";
 
-import { Stack, ThemeProvider, type Theme } from "expo-router";
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+} from "@expo-google-fonts/inter";
+import { useFonts } from "expo-font";
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
+import { useEffect, useMemo } from "react";
 import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Toaster } from "sonner-native";
+import {
+  SafeAreaListener,
+  SafeAreaProvider,
+} from "react-native-safe-area-context";
+import { Uniwind, useCSSVariable, useUniwind } from "uniwind";
 
-type RootProps = {
-  dark: boolean;
-  navigationTheme: Theme;
-};
+import { AppToaster } from "@/components/app-toaster";
 
-export function AppRoot({ dark, navigationTheme }: RootProps) {
+void SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+  });
+  const { theme, hasAdaptiveThemes } = useUniwind();
+  const [background, card, foreground, border, primary, notification, muted] =
+    useCSSVariable([
+      "--color-background",
+      "--color-card",
+      "--color-foreground",
+      "--color-border",
+      "--color-primary",
+      "--color-accent",
+      "--color-muted-foreground",
+    ]);
+  const dark = theme === "dark";
+  const toasterTheme = hasAdaptiveThemes ? "system" : theme;
+
+  const navigationTheme = useMemo(
+    () => ({
+      ...(dark ? DarkTheme : DefaultTheme),
+      colors: {
+        ...(dark ? DarkTheme.colors : DefaultTheme.colors),
+        background: background as string,
+        card: card as string,
+        text: foreground as string,
+        border: border as string,
+        primary: primary as string,
+        notification: notification as string,
+      },
+    }),
+    [background, border, card, dark, foreground, notification, primary],
+  );
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      void SplashScreen.hideAsync();
+    }
+  }, [fontError, fontsLoaded]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider value={navigationTheme}>
-        <View className="flex-1 bg-background">
-          <StatusBar style={dark ? "light" : "dark"} />
-          <Stack />
-          <Toaster />
-        </View>
-      </ThemeProvider>
+      <SafeAreaProvider>
+        <SafeAreaListener
+          onChange={({ insets }) => Uniwind.updateInsets(insets)}
+        >
+          <ThemeProvider value={navigationTheme}>
+            <View className="flex-1 bg-background">
+              <StatusBar style={dark ? "light" : "dark"} />
+              <Stack screenOptions={{ headerShown: false }} />
+              <AppToaster
+                background={card as string}
+                border={border as string}
+                foreground={foreground as string}
+                muted={muted as string}
+                theme={toasterTheme}
+              />
+            </View>
+          </ThemeProvider>
+        </SafeAreaListener>
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 }
 ```
 
-The snippet shows ownership and ordering, not a second component that must be copied verbatim. The actual root layout may inline it. Keep installed auth, query, keyboard, portal, and safe-area providers in their correct order. Do not mount the toaster inside a screen or before the navigator.
+The example uses runtime font loading. When fonts are embedded with the Expo Font config plugin, omit `useFonts` and the font-only splash gate while preserving any other real startup gate. If the app already coordinates auth, database hydration, assets, or localization with the splash screen, add fonts to that readiness condition and keep one owner for `hideAsync()`.
+
+`SafeAreaProvider`, `SafeAreaListener`, and `Uniwind.updateInsets` are required when the app relies on Uniwind Free safe-area utilities. Preserve an existing equivalent provider and do not nest duplicates. Apps that never use those utilities may omit this pair while keeping safe-area handling appropriate for the actual screens.
+
+The root layout may inline this structure. Keep installed auth, query, keyboard, portal, and other providers in their correct order. Do not mount the toaster inside a screen or before the navigator. Every CSS variable read above must exist in every active theme variant.
+
+Map the loaded font names in `global.css` using exact family identifiers:
+
+```css
+@layer theme {
+  :root {
+    --font-sans: "Inter_400Regular";
+    --font-medium: "Inter_500Medium";
+    --font-semibold: "Inter_600SemiBold";
+    --font-bold: "Inter_700Bold";
+  }
+}
+```
 
 ## Toast integration contract
 
@@ -196,33 +236,106 @@ The snippet shows ownership and ordering, not a second component that must be co
 
 Consult the current [Sonner Native README](https://github.com/gunnartorfis/sonner-native-toasts) because its peer dependencies and customization API can change.
 
-## High-impact Uniwind checks
+### Native and web toaster adapters
 
-- Every light, dark, or custom theme variant must define the same semantic variable names.
-- Never construct Tailwind utilities dynamically; map state to complete class strings.
-- Use `withUniwind` only for third-party components, once at module scope.
-- Use `accent-*` with native color bindings such as `colorClassName`.
-- Use `cn()` when component classes can conflict; Uniwind does not automatically deduplicate them.
-- React Native `Switch` does not use ordinary `className`; use its supported prop bindings.
-- Uniwind defaults to a 16-point `rem`; override it only for an intentional migration.
+When Expo Web is supported and the installed Sonner packages use different native and web implementations, keep one import path for app code through platform files.
 
-## Fonts
+`src/lib/sonner.ts`:
 
-Uniwind maps classes to font family names but does not load font files. Use Expo Font's config plugin or `useFonts`, then expose only the loaded names:
+```ts
+export * from "sonner-native";
+```
 
-```css
-@layer theme {
-  :root {
-    --font-sans: "PlusJakartaSans_400Regular";
-    --font-medium: "PlusJakartaSans_500Medium";
-    --font-semibold: "PlusJakartaSans_600SemiBold";
-    --font-bold: "PlusJakartaSans_700Bold";
-  }
+`src/lib/sonner.web.ts`:
+
+```ts
+export * from "sonner";
+```
+
+App code can then use `import { toast } from "@/lib/sonner"` on every platform.
+
+Use the same platform-file approach for the root toaster. Keep its props semantic so the root layout passes live values from `useCSSVariable`.
+
+`src/components/app-toaster.tsx`:
+
+```tsx
+import { Toaster } from "sonner-native";
+
+type Props = {
+  background: string;
+  border: string;
+  foreground: string;
+  muted: string;
+  theme: "light" | "dark" | "system";
+};
+
+export function AppToaster({
+  background,
+  border,
+  foreground,
+  muted,
+  theme,
+}: Props) {
+  return (
+    <Toaster
+      closeButton
+      richColors
+      position="top-center"
+      theme={theme}
+      toastOptions={{
+        style: {
+          backgroundColor: background,
+          borderColor: border,
+          borderRadius: 16,
+          borderWidth: 1,
+        },
+        titleStyle: { color: foreground },
+        descriptionStyle: { color: muted },
+      }}
+    />
+  );
 }
 ```
 
-Use the actual names supplied by the chosen font package or local font configuration.
+`src/components/app-toaster.web.tsx`:
 
-## JavaScript-only token access
+```tsx
+import type { CSSProperties } from "react";
+import { Toaster } from "sonner";
 
-Prefer CSS classes. Use `useCSSVariable` for values passed to third-party or native APIs. If a variable is never referenced by a class, register it in `@theme static` so Uniwind makes it available to JavaScript.
+type Props = {
+  background: string;
+  border: string;
+  foreground: string;
+  muted: string;
+  theme: "light" | "dark" | "system";
+};
+
+export function AppToaster({
+  background,
+  border,
+  foreground,
+  muted,
+  theme,
+}: Props) {
+  return (
+    <Toaster
+      closeButton
+      richColors
+      position="top-center"
+      theme={theme}
+      toastOptions={{
+        style: {
+          "--normal-bg": background,
+          "--normal-border": border,
+          "--normal-text": foreground,
+          "--description-color": muted,
+          borderRadius: "16px",
+        } as CSSProperties,
+      }}
+    />
+  );
+}
+```
+
+These examples reflect the adapter shape, not a promise that every future Sonner release accepts the same props. Inspect the installed types and current README, keep exactly one rendered toaster, and adjust only the package-specific surface while preserving the semantic contract.

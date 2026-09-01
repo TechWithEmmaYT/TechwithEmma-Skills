@@ -45,13 +45,15 @@ Propose one coherent direction containing:
 
 If a logo is missing, use a neutral wordmark or placeholder treatment. Do not invent a detailed logo and silently make it part of the product identity.
 
+When the concept depends on custom illustrations, a mascot, or generated hero artwork that does not exist, read [references/illustration-assets.md](references/illustration-assets.md). Define replaceable asset slots and ready-to-use prompts instead of drawing complicated artwork in UI code. Do not generate assets until the user requests or approves generation.
+
 ### Interpret gradient requests as background direction
 
 When the user asks for a gradient, a gradient feel, or a sleek colour blend without naming a component, treat it as the app's background atmosphere first. Apply it full-bleed behind the screen or across the shared flow shell so content, cards, and controls sit over one coherent colour environment. Keep primary buttons solid and high-contrast by default. Use a gradient inside a button only when the user explicitly requests a gradient button or an approved reference clearly makes it part of the control language.
 
 For a multi-screen flow, decide whether one persistent background should continue behind transparent screen surfaces and subtly evolve with progress, state, or narrative. Specify the gradient's stops, direction, intensity, light and dark treatment, contrast overlays, and which screens intentionally return to a plain background for rest. Do not scatter unrelated gradients across buttons, cards, badges, and icons as a substitute for a background system.
 
-When the product includes onboarding, a quiz, personalization, or a pre-paywall journey, read [references/premium-onboarding.md](references/premium-onboarding.md). Design it as a product-specific value journey with varied step bodies, not a repeated questionnaire or a fixed long funnel. Treat length as a rhythm decision and record the approved beat sequence in the handoff.
+When the product includes onboarding, a quiz, personalization, or a pre-paywall journey, read [references/onboarding-design.md](references/onboarding-design.md). Design it as a product-specific value journey with varied step bodies, not a repeated questionnaire or a fixed long funnel. Treat length as a rhythm decision and record the approved beat sequence in the handoff.
 
 When the product includes a subscription, free trial, upgrade, or paywall, read [references/paywall-design.md](references/paywall-design.md). Define the value, plan presentation, pricing clarity, dismissal, restore, and important states without choosing or integrating a billing SDK.
 
@@ -78,6 +80,8 @@ docs/design/mobile-design.md
 For a feature or flow rather than the whole app, use `docs/design/<feature>-design.md`. Create `docs/design/` when needed. Start the document with `Status: Draft`, use [references/mobile-design-file.md](references/mobile-design-file.md), and update this same file throughout inventory, prompt writing, board generation, and refinement. Do not create an OS-temporary `design-draft.md`, a root-level draft, or separate draft/final copies.
 
 Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative link as soon as the draft is created. Preserve existing instructions and do not copy the design document into `AGENTS.md`.
+
+When the task confines the work to one folder, or the repository is not yours to restructure, keep the document beside the work instead of creating `docs/design/` or editing a root file you were told to leave alone. The document still exists, still follows `references/mobile-design-file.md`, and is still the single source of truth—only its location changes. Say in the final response where it went and where it would normally live, so the owner can move and link it.
 
 Before every refinement, read the project design document, change only what the user requested, preserve locked decisions, and update the stored prompt and status. Show only a concise change summary; print the complete updated prompt again only when the user asks. If no project filesystem is available, maintain the draft in conversation and provide the complete Markdown with its intended project path.
 
@@ -112,7 +116,7 @@ Never place more than four portrait screens in one row or more than eight screen
 
 If an image-generation tool is available and the user approves one option, generate only the requested board. Do not generate every numbered board automatically.
 
-If no image-generation tool is available, say so after presenting the prompt. Recommend pasting it into [ChatGPT Images](https://help.openai.com/en/articles/11084440-im) or [Gemini Apps image generation](https://support.google.com/gemini/answer/14286560), then ask whether the user wants the prompt refined for concept-board or full-app-board generation. Do not pretend an image was generated or tell the user to switch models without giving them the usable prompt first.
+If no image-generation tool is available, say so after presenting the prompt. Recommend pasting it into [ChatGPT Images] or [Gemini Apps image generation], then ask whether the user wants the prompt refined for concept-board or full-app-board generation. Do not pretend an image was generated or tell the user to switch models without giving them the usable prompt first.
 
 ## Review each board
 

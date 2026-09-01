@@ -20,7 +20,7 @@ Do not automatically compress a premium consumer journey into a few setup screen
 
 Pace with five beat types: `ask`, `react`, `teach`, `reveal`, and `commit`. Use only a small number of genuine questions, never place more than two asks together, and repay each ask with a low-effort response. A welcome establishes the promise; later beats prove and personalize it.
 
-For a personalized monetized product, default to the high-value arc: `welcome/proof -> useful asks -> product demonstration -> personal calculation -> visualization -> acknowledged outcome -> testimonials/proof -> plan building -> personalized plan -> contextual paywall`. Keep name entry, rating prompt, permissions, commitment gesture, and post-dismissal consequence optional. Omit a default beat only when the product cannot support it or the user declines it.
+For a personalized monetized product, default to the high-value arc: `welcome/proof -> useful asks -> product demonstration -> personal calculation -> visualization -> acknowledged outcome -> testimonials/proof -> plan building -> personalized result -> contextual paywall -> optional rescue offer`. Keep name entry, rating prompt, permissions, commitment gesture, and post-dismissal consequence optional. Omit a default beat when the product cannot support it or the user declines it.
 
 ## Structure the welcome
 
@@ -39,7 +39,7 @@ Keep one clear purpose and one primary action per screen. Share a coherent shell
 - text, voice, photo, or media input when the product genuinely accepts it;
 - live projection, chart, comparison, or changing target;
 - permission education followed by an explicit request action;
-- plan-building transition, result reveal, or next-action screen;
+- plan-building transition followed by a meaningful result reveal;
 - contextual paywall tied to the result the user just created.
 
 Avoid a sequence of identical option cards. Ask only questions whose answers change content, recommendations, defaults, segmentation, or the result.
@@ -56,7 +56,7 @@ Use these when they serve a clear product or business purpose; never force all o
 - **Contextual permissions:** explain the immediate benefit of notifications, health data, location, camera, microphone, or photos before the native prompt. Ask only when the next feature needs it and show the useful fallback.
 - **Social proof presentation:** during design exploration, use realistic representative ratings, customer counts, outcomes, testimonials, or activity when needed to show the intended layout and persuasion hierarchy. Do not mark them as sample content inside the UI. Tell the owner after presenting the design that these claims must be verified, replaced, or removed before production.
 - **Store rating moment:** when a rating screen is part of the story, design it as standing to join, not as an in-app rating control. The operating system draws its own stars, so an in-app star row beside them duplicates the control or collects a number nothing reads. Place the screen where sentiment peaks, and record that the platform caps how often the sheet appears and shows nothing during development builds.
-- **Post-dismissal consequence:** a screen after a declined paywall may state plainly what the free product is, and may carry one better price. State it once, with no countdown and no invented scarcity. Any discount must be a real offer configured in both stores, or the checkout will contradict the design.
+- **Post-dismissal consequence:** an optional screen after a declined paywall may state plainly what the free product is or carry one genuine eligible offer. Show it once per decision journey, give it a clear decline destination, and never invent scarcity. Design the result, paywall, and rescue together using [paywall-design.md](paywall-design.md).
 - **Honest comparison:** contrast the user's current approach with the product's approach through specific capabilities, time, effort, or outcome. Avoid vague competitor attacks and unsupported superiority claims.
 - **Commitment moment:** a short pledge, intention, or hold-to-confirm interaction can make a meaningful goal feel deliberate. On completion, a concise congratulations state may combine restrained confetti, one haptic, and optional sound before revealing the next action. Keep it accessible, proportional, and easy to skip; it is not a substitute for legal consent.
 
@@ -102,9 +102,7 @@ Build later states from earlier decisions. Selected values, imagery, metrics, an
 
 End with something meaningful: a routine, recommendation, forecast, target, first lesson, first task, or preview of the personalized plan. Do not finish with a generic "You're all set" screen or an empty dashboard.
 
-On a purchase screen, keep the plan choice, the amount due today, and the purchase control together within reach while the pitch scrolls above them; the price and the button that charges it are one decision. Do not design a "free trial enabled" toggle over that decision: trials come from the configured store product, so the control can only misstate what the purchase does.
-
-The paywall may follow the result when monetization requires it, but show enough evidence that the result feels genuinely personalized. A design concept may include representative authority statistics, testimonials, urgency, countdowns, staged processing, and offer states when they are part of the intended experience. Keep them presentation-ready in the UI, isolate them in the handoff, and identify everything that must connect to verified claims, real timing, commerce data, formulas, or backend state in the post-design chat note—not on the UI screens.
+For a monetized journey, treat plan building, the personalized result, the paywall, and any rescue offer as one connected sequence; read [paywall-design.md](paywall-design.md). Keep the result long when it needs to synthesize many answers, but make the paywall a focused, non-scrolling single viewport by default. Use a longer paywall only when the user explicitly approves it. Do not design a "free trial enabled" toggle: trial status comes from the configured store product.
 
 ## Direct the visual experience
 
