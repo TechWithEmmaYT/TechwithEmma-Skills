@@ -22,6 +22,7 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 
 ### Changed
 
+- Added a "Search for the control before building it" rule to `expo-native-builder` so pickers, carousels, sheets, sliders, and similar interaction-heavy controls are looked up on npm before being hand-written in JSX, with a package catalogue for wheel and ruler pickers in `motion-native.md`.
 - Reworked `fullstack-monorepo-setup` around the standard `eslint-config`, `typescript-config`, and Tailwind `ui` packages; shadcn/ui is now an explicit opt-in, and Expo guidance covers Metro, pnpm installs, native dependency integrity, and app-local EAS Build configuration.
 - Fixed `fullstack-monorepo-setup` to use Vite, React, and TypeScript for the admin application instead of leaving the React framework open-ended.
 - Added a concise pre-change proposal and explicit confirmation checkpoint to the new Node.js testing, security, payments, and organizations skills.

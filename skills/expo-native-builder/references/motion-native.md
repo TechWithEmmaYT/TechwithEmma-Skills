@@ -1,153 +1,45 @@
-# Native Motion
+# Native content motion
 
-Use this reference for transitions, gestures, scroll effects, animated data, micro-interactions, and coordinated motion. Motion belongs inside `expo-native-builder`; do not require another skill.
+Use this reference for internal screen choreography, gestures, scroll effects, animated values, micro-interactions, and coordinated motion. Motion belongs inside the Expo builder.
 
-## Decide before animating
+## Decide what moves and why
 
-Inspect the Expo and React Native versions, New Architecture status, navigation, installed animation libraries, affected screens, gestures, lists, sheets, and reduced-motion behavior.
+Inspect the installed animation stack, navigation, affected content, gestures, reduced-motion behavior, and platform targets. Motion should provide feedback, explain a change, preserve continuity, orient the user, or mark rare completion. For onboarding and important reveals, design an original product-specific motion sequence even when no reference animation was supplied; stillness may create contrast, but the whole flow must not be static.
 
-Name the purpose: feedback, continuity, state change, explanation, or rare delight. If none applies, keep the platform default. Prefer a few meaningful moments over entrances on every element.
+Prefer the project's existing primitives. Use Reanimated for gesture-, scroll-, or progress-driven work; Gesture Handler for direct manipulation; and built-in Animated/LayoutAnimation when already used and sufficient. Ask before installing or replacing animation infrastructure.
 
-For complex or app-wide motion, show a compact direction covering the motion character, important interactions, implementation choice, and reduced-motion behavior before coding. Ordinary press feedback and approved screen transitions do not need another approval round.
+## Onboarding and connected paywalls
 
-## Choose the smallest compatible tool
+The nested Stack always uses `animation: "none"`. Do not animate the route container or whole step. Choreograph content within the arriving screen:
 
-- Keep native navigation, tab, sheet, keyboard, and control motion when it already expresses the interaction.
-- Use Reanimated for gesture-, scroll-, or progress-driven motion and coordinated shared values.
-- Use Gesture Handler when the interface directly follows touch.
-- Use React Native Animated or LayoutAnimation when the project already uses them and the interaction is simple.
-- Use Skia or shaders only for custom GPU drawing that transforms and opacity cannot achieve.
+`visual anchor -> headline -> explanation -> interactive body/value -> CTA`
 
-Do not install or replace native animation infrastructure without checking compatibility and getting approval. Follow the project's installed versions and rebuild requirements.
+Adapt that order to meaning rather than staggering everything automatically. Keep progress/background/persistent anchors mounted. A selection responds immediately; its consequence may then transform or reveal. Plan checkpoints resolve from state. A detailed result reveals sections in reading order. The paywall carries one result artifact and gets the most deliberate content entrance.
 
-## Reuse difficult primitives
+Do not wrap an interactive control in an entrance that can leave its visual position different from its hit box. Keep close, skip, Back, Restore, and primary actions usable immediately. Avoid replaying content that has already settled when React re-renders.
 
-Choose in this order: `existing project primitive -> built-in API -> focused maintained package -> custom implementation`.
+## Interaction rules
 
-- Use the existing or Gorhom bottom sheet for production sheet gestures, snapping, scrolling, and keyboard behavior.
-- Consider Reanimated Carousel for gesture paging, Sortables or Reanimated DnD for reordering, Number Flow for values that roll on their own (see Animate numbers), and React Native Graph or Skia for an approved interactive graph.
-- Use Lottie for authored animation assets, MaskedView for shaped reveals, and Expo Blur for native blur when the project and platform support them.
-- Prefer Expo Haptics for ordinary feedback. Add specialized haptics, confetti, shaders, or GPU effects only when the approved interaction materially needs them.
+- Drive related visuals from one meaningful shared value.
+- Start press feedback on press-in; use subtle scale for buttons/cards and opacity/highlight for rows.
+- Let direct manipulation follow the finger, remain interruptible, and release with velocity-aware physics.
+- Use short ease-out timing; exits should be faster than entrances.
+- Keep continuous work off React render paths and favor transform/opacity over per-frame layout changes.
+- Fire haptics once with a meaningful selection, snap, pledge completion, or confirmed success.
+- Never fake network/calculation time merely to display animation.
 
-Verify maintenance, Expo/React Native/New Architecture compatibility, platform support, accessibility, and native cost. Ask before adding a dependency; a compelling demo is not enough.
+For moving numbers, keep units static, use tabular figures, drive gesture-linked digits from shared values, and commit React state on snap. Under Reduce Motion, set final values immediately.
 
-## Build coherent behavior
+## Choose difficult controls carefully
 
-- Drive related responses from one meaningful input such as press, gesture, scroll, selection, playback, or processing progress.
-- Let direct manipulation follow the finger, remain interruptible, and release into physics seeded with gesture velocity.
-- Use short ease-out timing for system-driven transitions; exits should be faster than entrances.
-- Start press feedback on press-in. Scale buttons or cards subtly; use highlight or opacity for rows.
-- Preserve continuity when an answer, image, number, chart, card, or spatial relationship carries into the next state.
-- Keep tabs and frequent navigation on platform motion. Do not add generic slide or fade-up effects to every screen.
-- Fire haptics once, on the same frame as a meaningful selection, snap, threshold, or completion.
-- Do not fake calculation or network time to make a loading animation visible.
+Use `existing project primitive -> built-in API -> installed dependency -> maintained focused package -> custom`.
 
-For onboarding, coordinate `action -> immediate feedback -> meaningful transformation -> next state`. Keep the shared shell, progress, background, and persistent visual anchors mounted when the approved design calls for continuity.
+Before hand-building, investigate compatible maintained packages for carousels, sheets, wheel/ruler pickers, sliders, sortable rows, charts, OTP, zoom, marquees, and confetti. Check Expo/React Native/New Architecture compatibility and ask before installation. A custom control must document its missing physics and accessibility behavior.
 
-## Animate numbers
+Typical candidates include Reanimated Carousel, Gorhom Bottom Sheet, React Native Community Slider/DateTimePicker, Quidone Wheel Picker, Legend Ruler Picker, Number Flow, React Native Graph, Lottie, MaskedView, Expo Blur, Expo Haptics, and an existing project confetti solution. These are candidates, never a dependency bundle.
 
-A number that changes is the most-read element on the screen. Animate the digits and nothing else.
+## Accessibility and verification
 
-- Keep units, currency symbols, and words static. `h`, `m`, `%`, `€`, `a week` belong in sibling `Text`, never inside the animated element: a unit that re-renders with the number wobbles, and a still unit gives the eye a fixed frame to read the moving figure against.
-- Split a compound value into one animated figure per unit (`7` `h` `45` `m`), each with its own worklet formatter derived from one shared split so the halves cannot disagree at a rollover.
-- Zero-pad or fix the width of any figure a unit sits beside, and set `fontVariant: ["tabular-nums"]`, `includeFontPadding: false`, `padding: 0`. Proportional digits change width as they change value and shove the unit sideways.
-- Drive gesture-linked numbers from the shared value, not React state. Reanimated can write a `TextInput`'s `text` prop from a worklet, so the figure tracks the finger at native rates while React never re-renders:
+Respect Reduce Motion: remove large travel, rotation, zoom, parallax, looping, and particles while preserving feedback and comprehension. Pause inactive loops/media and cancel work on unmount.
 
-```tsx
-const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
-
-// Module-scope worklet: digits only, no unit.
-function hourDigits(value: number) {
-  "worklet";
-  return String(Math.floor(value));
-}
-
-const animatedProps = useAnimatedProps(() => ({
-  defaultValue: hourDigits(hours.value),
-  text: hourDigits(hours.value),
-}));
-```
-
-  Commit React state only on snap, so later steps read a stable answer. Give the row one `accessibilityLabel` with the fully formatted value and hide the moving parts from the accessibility tree.
-
-- Reserve per-digit wheel packages such as Number Flow for values that change occasionally and change on their own: a total, a price, a count, a score. They fit poorly on large display type scrubbed by a gesture, where their masks clip tall glyphs, their container breaks baseline alignment with adjacent text, and their default ~900ms roll queues up behind the finger. If one is used there anyway, shorten `spinTiming`/`transformTiming` to roughly the snap interval and verify the headline against a real device screenshot.
-- For a reveal rather than a scrub, count from the previous value with `withTiming` and an ease-out over 300-450ms, and stagger dependent figures so each lands after the one it is derived from. Under Reduce Motion, set the final value immediately.
-
-## Protect performance and accessibility
-
-Keep continuous interaction off React render paths. Prefer UI-thread/shared-value work and properties such as transform and opacity; avoid animating layout dimensions every frame when translation inside a fixed container works.
-
-Cancel loops and work when the owning screen becomes inactive. Test reversal, cancellation, repeated input, navigation interruption, realistic lists, keyboard changes, and lower-end Android performance.
-
-Respect Reduce Motion. Collapse large travel, parallax, rotation, zoom, loops, and particles to a short fade or immediate state while preserving feedback and comprehension.
-
-## Verify motion
-
-Record the complete affected flow on a native target. Watch it once at normal speed and once frame by frame for flashes, jumps, stale values, clipped springs, replayed entrances, gesture conflicts, and keyboard discontinuities. Check iOS, Android, reduced motion, rapid interaction, and a release build when performance matters. Report any platform or device not actually verified.
-
-# React Native Motion Packages
-
-Use this catalogue when an approved interaction needs animation infrastructure. Prefer what the project already has, choose the smallest suitable primitive, verify Expo/React Native/New Architecture compatibility, and ask before installing anything. These are candidates, not a default dependency bundle.
-
-## Foundations
-
-- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) — UI-thread animations, shared values, interpolation, layout transitions, and worklets.
-- [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/) — native touch and gesture recognition for direct manipulation.
-- [React Native Animated and LayoutAnimation](https://reactnative.dev/docs/animations) — built-in granular value animation and global layout transactions; use when sufficient.
-- [Moti](https://moti.fyi/) — declarative universal animation layer built for React Native.
-- [React Native Skia](https://shopify.github.io/react-native-skia/) — high-performance 2D drawing, paths, charts, particles, and custom visual effects.
-- [React Native SVG](https://github.com/software-mansion/react-native-svg) — scalable vector graphics, paths, masks, and cross-platform SVG rendering.
-- [Lottie React Native](https://airbnb.io/lottie/#/react-native) — authored animation assets for onboarding, empty, loading, and celebration states.
-- [React Native Keyboard Controller](https://kirillzyusko.github.io/react-native-keyboard-controller/) — frame-synchronized keyboard movement and interactive keyboard transitions.
-
-## General animation utilities
-
-- [React Native Ease](https://github.com/AppAndFlow/react-native-ease) — lightweight declarative animations powered by platform APIs.
-- [Redash](https://wcandillon.gitbook.io/redash/) — utilities for Reanimated and Gesture Handler; use only when its helpers fit the installed versions.
-- [React Native Stagger](https://github.com/animate-react-native/stagger#readme) — Reanimated-powered stagger orchestration.
-
-## Gestures, drag, and scrolling
-
-- [React Native Expanding Circle Transition](https://github.com/alexbrillant/react-native-expanding-circle-transition)
-- [React Native Reanimated DnD](https://reanimated-dnd-docs.vercel.app/) — drag-and-drop interactions.
-- [React Native Sortables](https://github.com/MatiPl01/react-native-sortables) — ready-to-use sortable lists and grids.
-- [React Native Reanimated Carousel](https://www.npmjs.com/package/react-native-reanimated-carousel) — performant gesture-driven carousel and paging progress.
-- [Gorhom Bottom Sheet](https://github.com/gorhom/react-native-bottom-sheet) — production bottom-sheet gestures, snapping, scrolling, keyboard, and modal behavior.
-- [React Native Collapsible Tab View](https://github.com/PedroBern/react-native-collapsible-tab-view#readme) — Reanimated collapsible headers and tabbed scroll coordination.
-- [React Native Header Motion](https://github.com/pawicao/react-native-header-motion) — high-level scroll-driven header choreography.
-- [React Native Marquee](https://github.com/animate-react-native/marquee#readme) — cross-platform Reanimated marquee motion.
-- [React Native Header Motion](https://github.com/pawicao/react-native-header-motion)
-
-## Data and specialized controls
-
-- [React Native Number Flow](https://github.com/Rednegniw/number-flow-react-native) — rolling and transitioning numeric values.
-- [React Native Graph](https://github.com/margelo/react-native-graph) — Skia-based interactive animated line graphs.
-- [Reanimated Color Picker](https://alabsi91.github.io/reanimated-color-picker/) — gesture-driven color selection.
-
-## Feedback and celebration
-
-
-- [React Native Tickle](https://github.com/Renegades-Studio/react-native-tickle) — transient and continuous AHAP-style haptics.
-- [React Native Turbo Haptics](https://github.com/christianbaroni/react-native-turbo-haptics) — fast worklet-compatible haptics.
-- [React Native Fast Confetti](https://github.com/AlirezaHadjar/react-native-fast-confetti) — Skia Atlas confetti for meaningful 
-celebrations.
-
-Use Expo Haptics or an existing project wrapper for ordinary feedback. Choose specialized haptics only when continuous or worklet timing materially improves the interaction. Celebration must remain proportional and accessible.
-
-## Masks, blur, themes, and GPU effects
-
-- [Expo Blur](https://docs.expo.dev/versions/latest/sdk/blur-view/) — native blur surfaces.
-- [React Native MaskedView](https://github.com/callstack/masked-view#readme) — masks for reveals and shaped content.
-- [React Native Theme Switch Animation](https://github.com/WadhahEssam/react-native-theme-switch-animation/) — animated light/dark theme transitions.
-- [React Native Shine](https://github.com/software-mansion-labs/react-native-shine) — interactive GPU shader effects.
-- [Native Springs Shaders](https://github.com/MatthewSRC/native-springs-shaders) — native shader effects for React Native and Expo.
-
-Use GPU effects only when they support the approved visual or interaction concept. Profile them on a lower-end Android device and provide a reduced-motion or simpler fallback.
-
-## Selection rule
-
-Choose in this order:
-
-`existing project primitive -> built-in API -> focused maintained package -> custom implementation`
-
-Do not select a package because its demo looks impressive. Match it to the required behavior, maintenance, platform support, bundle/native cost, accessibility, and the project’s installed animation stack.
+Record the affected flow on a native target. Inspect at normal speed and frame by frame for flashes, jumps, stale values, clipped springs, replayed entrances, gesture conflicts, wrong hit targets, and keyboard discontinuities. Check rapid interaction, reversal/cancellation, compact screens, iOS, Android, and reduced motion where relevant.

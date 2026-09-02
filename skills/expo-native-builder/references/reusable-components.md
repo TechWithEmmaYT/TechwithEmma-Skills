@@ -1,80 +1,23 @@
-# Reusable Expo UI components
+# Reusable Expo components
 
-Build a small design-system surface from real repeated needs. Do not create a large speculative component library before screens establish the patterns.
+Create components from real repeated needs or to isolate substantial feature behavior. Do not build a speculative component library.
 
-## What belongs where
+## Place components deliberately
 
-- `src/components/ui`: product-wide primitives such as text, button, input, screen, icon, card, alert, loading, empty state, and toaster host.
-- Feature folder: domain components such as an onboarding option, workout set row, subscription plan card, or delivery-status timeline.
-- Route folder: composition used by only one screen and unlikely to gain a second consumer.
+- `src/components/ui`: product-wide primitives such as text, button, input, screen, icon, alert, loading, and empty states.
+- `src/components/onboarding`: shared onboarding data/rendering and focused step bodies such as selection, demo, rating, permission, pledge, progress, and plan fragments.
+- A route folder: composition used by one screen and unlikely to be reused.
 
-Theme tokens control values; reusable components control structure and behavior.
+Theme tokens own values; components own repeated structure and behavior. Keep route files readable and testable, but do not extract trivial markup solely to reduce line count.
 
-## Component contract
+## Component contracts
 
-Define only the dimensions each component genuinely supports:
+Expose only genuine dimensions: semantic variant, approved size, interaction state, typed content/icons, forwarded native props/ref, and a controlled class/style override. Use the project's existing class/style merge helper. Add a variant dependency only when it already exists or repeated complexity justifies an approved installation.
 
-- **variant**: semantic intent such as primary, secondary, outline, ghost, or destructive;
-- **size**: approved component heights, padding, typography, and icon sizes;
-- **state**: default, pressed, focused, selected, disabled, loading, and error where relevant;
-- **content**: label, children, icons, description, or trailing content with clear types;
-- **override**: `className`, `contentClassName`, or `style` for layout adjustments without allowing every caller to replace the component's identity.
+A compact `Screen` primitive may own a full-height semantic root, intentional safe-area edges, background choice, and optional scrolling/keyboard behavior. Do not make it silently own navigation or business state.
 
-Use the project's active styling contract: token-backed class maps for Uniwind or NativeWind, or token-backed style objects for StyleSheet. Reuse its existing class/style merge helper. Add a variant library only when it is already installed or repeated complexity justifies an approved dependency.
-
-## Recommended primitives
-
-Create only what the current product uses:
-
-- `AppText`: typography roles and semantic tones while preserving React Native text props.
-- `Button`: variants, sizes, loading, disabled, pressed feedback, optional icons, and accessible label.
-- `Input`: label, helper/error message, icons/actions, secure-entry behavior, focus/error states, and native input props.
-- `Screen`: background, optional scrolling, intentional safe-area edges, keyboard behavior, and consistent gutters.
-- `Icon`: typed names mapped to the project's cross-platform icon source.
-- `Card` or surface: only when the product has a repeated container language.
-- `Alert`, `EmptyState`, and `LoadingIndicator`: meaningful states with concise copy and an optional recovery action.
-- `AppToaster`: one themed global Sonner Native host when the foundation uses it.
-
-Do not wrap platform controls such as `Switch`, pickers, navigation headers, or native sheets solely to make everything appear under `components/ui`. Wrap them only when the app needs repeated product-specific behavior or styling.
-
-## Screen contract
-
-When the app has multiple routes, a compact `Screen` primitive should guarantee the full-height semantic shell and allow each route to choose its safe-area edges:
-
-```tsx
-import type { PropsWithChildren } from "react";
-import type { Edge } from "react-native-safe-area-context";
-import { SafeAreaView } from "react-native-safe-area-context";
-
-type ScreenProps = PropsWithChildren<{
-  className?: string;
-  edges?: Edge[];
-}>;
-
-export function Screen({
-  children,
-  className,
-  edges = ["top", "right", "bottom", "left"],
-}: ScreenProps) {
-  return (
-    <SafeAreaView
-      edges={edges}
-      className={`flex-1 bg-background ${className ?? ""}`}
-    >
-      {children}
-    </SafeAreaView>
-  );
-}
-```
-
-Adapt this to the project's styling system and forwarded native props. In a StyleSheet project, replace `className` with semantic style objects. A tab screen may omit `bottom`; a native-header screen may omit `top`. For full-bleed artwork, use a full-height semantic outer view and place only the content layer inside `Screen` or `SafeAreaView`. Scrollable screens still need a full-height outer shell; use `contentContainerStyle={{ flexGrow: 1 }}` only when the scroll content itself must stretch.
+Do not wrap platform controls merely for uniformity. Wrap switches, pickers, headers, and sheets only when repeated product behavior or styling requires it.
 
 ## Quality checks
 
-- Forward native props and refs when consumers need them.
-- Keep touch targets at least 44 points and expose accessibility roles, labels, values, and states.
-- Make loading disable duplicate submission without losing the label's meaning.
-- Keep validation messages inline and connect them to the field.
-- Ensure long labels, dynamic type, RTL, light/dark themes, and disabled/error contrast remain usable.
-- Avoid components with many boolean styling flags; prefer a small explicit variant set or feature composition.
-- Do not extract a component merely to shorten one screen.
+Support pressed, focused, selected, disabled, loading, and error states where applicable. Preserve long labels, Dynamic Type, RTL, screen-reader semantics, light/dark themes, 44-point targets, and sufficient contrast. Loading must prevent duplicate actions without hiding meaning; field errors stay beside their inputs.

@@ -1,45 +1,54 @@
-# Native Mobile UI
+# Native Expo UI and keyboard behavior
 
-Use this reference for product direction, spacing, native controls, tabs, pickers, sheets, or choosing Expo UI versus React Native UI.
+Use this reference for mobile hierarchy, safe areas, native controls, tabs, sheets, pickers, forms, and keyboard behavior.
 
 ## Mobile baseline
 
-- Design around one primary user goal and visual entry point.
-- Use hierarchy through spacing, typography, contrast, and grouping before decoration.
-- Keep frequent actions reachable while respecting system gestures, navigation, safe areas, the keyboard, Dynamic Type, and 44-point touch targets.
-- Design the loading, empty, error, success, disabled, and offline states that can occur.
-- Use familiar patterns unless the product benefits from a deliberate alternative.
+- Design around one primary goal and visual entry point.
+- Create hierarchy with typography, spacing, contrast, and grouping before decoration.
+- Follow the existing semantic tokens and a consistent 4-point spacing rhythm.
+- Keep actions reachable while respecting system gestures, navigation, safe areas, Dynamic Type, and 44-point targets.
+- Design relevant loading, populated, empty, error, success, disabled, and offline states.
+- Avoid decorative gradients/glass, floating cards for every section, emoji icons, raw color mixtures, and web patterns copied into native UI.
 
-Use a 4-point spacing palette such as `4, 8, 12, 16, 20, 24, 32, 40, 48, 64`. Internal gaps stay smaller than component gaps; component gaps stay smaller than section gaps. Adapt gutters to compact and large phones. Never import landing-page spacing into mobile screens.
+## Choose native technology per surface
 
-## Direction by product
+Inspect the Expo SDK, Router version, supported platforms, existing navigation, and installed UI packages.
 
-- Finance prioritizes trust, legible numbers, explicit status, and careful destructive actions.
-- Health and wellness use clear, non-judgmental progress and recovery language.
-- Learning uses visible progress, helpful correction, and proportionate celebration.
-- Fitness emphasizes current action, momentum, timers, and readable metrics in motion.
-- Productivity favors organized density, scanning, and predictable repeated actions.
-- Commerce and delivery prioritize imagery, price/status clarity, trust, and fulfillment.
-- Social prioritizes people, identity, privacy, moderation, and creation feedback.
-- AI products make complex actions understandable and reserve glow or processing effects for meaningful moments.
+- Use React Native core plus the active styling system for shared branded surfaces and web support.
+- Use `@expo/ui` only when the control supports every required target and native SwiftUI/Compose behavior is intended.
+- Use Expo Router Native Tabs only when requested and compatible; keep JavaScript tabs when custom behavior is required.
+- Prefer system menus and pickers when they fit. Use the existing bottom-sheet solution rather than adding a competing library.
+- Hide necessary platform differences behind a small component or platform files while keeping business state outside native views.
 
-These are starting expectations, not branding. Follow the approved emotional direction and references.
+Uniwind, NativeWind, and StyleSheet style React Native views; do not assume their APIs style native SwiftUI or Compose components.
 
-## Choose the UI technology per surface
+## Choose navigation by meaning
 
-Inspect the Expo SDK, Router version, platforms, navigation, and installed UI packages.
+- Use `router.push` when Back should return to the current screen.
+- Use `router.replace`, `dismissTo`, or the existing completion boundary after onboarding, authentication, purchase, or another one-way flow so Back cannot reopen finished state.
+- Use a modal for a self-contained task, a sheet for a short interruption, and an overlay only when the underlying screen must remain visible.
+- Keep full-attention flows above tabs; tabs are peers and should not slide between each other.
+- Back undoes navigation or dismisses transient UI; it must not undo an already completed real-world event.
 
-- Use `@expo/ui` when the requested component exists for every required target and native SwiftUI/Compose behavior is desired.
-- Use React Native core plus the active styling system for shared branding, behavior, or web support.
-- Use Expo Router Native Tabs only when explicitly requested and its current SDK/status fits the project; keep JavaScript tabs when custom behavior is required.
-- Use one maintained third-party package only when Expo or React Native lacks the behavior. Verify compatibility and ask before installation.
+Preserve the project's working navigation and deep-link structure. Do not refactor routes merely to enforce this vocabulary.
 
-Prefer native menus for contextual actions and native/platform pickers when they cover the required targets. For bottom sheets, use the existing solution or one maintained system—never competing sheet libraries. Hide necessary platform differences behind a small shared component or platform files while keeping validation and business state outside native views.
+## Safe areas and scrolling
 
-Uniwind, NativeWind, and StyleSheet style React Native surfaces; Expo UI components use their documented props and modifiers. Do not assume Tailwind classes or React Native style objects work on SwiftUI or Compose views.
+Use a full-height semantic root and `react-native-safe-area-context`, never React Native's deprecated `SafeAreaView`. Apply only the edges not owned by a header, tab bar, sheet, or navigator. Put full-bleed background/media outside the safe-area content layer.
 
-## Avoid
+Use `ScrollView` for bounded content, `FlatList`/`SectionList` for growing collections, and avoid same-direction nested scroll views. Pad content above pinned actions and the home indicator.
 
-Avoid floating cards for every section, mixed raw colours/radii, colour-only states, decorative gradients or glass, hidden primary actions, generic empty states, delayed interaction, emoji as interface icons, and web-only component advice copied into React Native.
+## Keyboard handling
 
-Verify every supported native platform and web when in scope. Consult current Expo UI, Router Native Tabs, safe-area, accessibility, Pressable, and list documentation for the project's exact versions.
+First reuse the project's keyboard solution and ordinary React Native behavior. Do not install a keyboard library for every form.
+
+For simple forms, use an appropriate scroll container, `keyboardShouldPersistTaps="handled"`, correct return-key behavior, and enough bottom space to keep focused fields and validation visible. Keep safe-area and keyboard responsibilities separate.
+
+When inputs, validation, or a composer must track the keyboard interactively and the project already uses `react-native-keyboard-controller`, wrap the app once with `KeyboardProvider`. Use `KeyboardAwareScrollView` for obscured fields, `KeyboardStickyView` only for an intentionally attached action/composer, and `KeyboardToolbar` only when previous/next/dismiss controls are needed.
+
+If the library is genuinely required but missing, check Expo compatibility and ask before running `npx expo install react-native-keyboard-controller`. Verify whether Expo Go supports the native module or a development build is required. Test first/last inputs, validation while focused, dismissal, sticky actions, and iOS/Android.
+
+## Verify
+
+Check compact and large phones, long/localized content, RTL when supported, light/dark themes, keyboard-open layouts, screen readers, Dynamic Type, gesture areas, native Back behavior, and every supported platform.

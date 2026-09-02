@@ -1,149 +1,69 @@
 ---
 name: mobile-ui-design
-description: Turn a mobile app idea, plan, codebase, or references into a complete screen inventory, an approved visual direction, an adaptive UI-board prompt, optional image generation, and a portable mobile-design.md handoff. Use when planning or visualizing a mobile product before implementation. Do not use to implement the screens.
+description: Turn a mobile app idea, plan, codebase, or visual references into a complete screen inventory, coherent visual direction, board-ready prompt, optional generated concept, and portable mobile-design.md handoff. Use for product design before implementation; do not implement application screens.
 ---
 
 # Mobile UI Design
 
-Define the mobile product visually before implementation. Work standalone: never assume another skill, framework, image tool, or planning document is available.
+## Preserve the user's product
 
-Tell the user concisely what you intend to inspect or produce before taking action. Do not edit application code while using this skill.
+Extract the user's required screens, flows, content, visual choices, references, exclusions, and output request before proposing anything. Treat explicitly named decisions as locked. A supplied screen list or implementation plan overrides this skill's defaults. Never replace the requested product with a generic template.
 
-## Understand the product
+Inspect the brief, codebase, existing routes, plan, screenshots, assets, fonts, tokens, and design documents. Reuse reliable decisions and do not ask the user to repeat available information. Tell them concisely what will be inspected or produced. Do not edit application code.
 
-Inspect any supplied brief, plan, codebase, screenshots, assets, or references. Reuse reliable decisions already present.
+When useful references are available, study 3–5 strong screens for the same category and screen type. Extract repeated layout, hierarchy, CTA placement, background, navigation, and motion patterns—not one app's pixels, copy, branding, or exact composition. Use fewer references when the user's supplied direction is already decisive.
 
-When important information is missing, ask one compact batch covering only what is necessary:
+## Build the screen inventory
 
-- product purpose and target user;
-- platform or device priorities;
-- required flows or known screens;
-- visual tone, colours, logo, and typography preferences;
-- whether existing references should influence the direction.
+List every screen implied by the actual product and group screens into flows. Include loading, empty, error, success, permission, active-task, or other states as separate designs only when their composition materially differs.
 
-Do not make users repeat information already available. A formal project plan is helpful but never required.
+Do not add onboarding, authentication, subscriptions, or other categories unless requested or required by the product. When onboarding is requested without a defined journey, read [references/onboarding-paywall-design.md](references/onboarding-paywall-design.md) and use its product-personalized default. Show the recommended inventory and assumptions once before locking it.
 
-## Build the complete screen inventory
+## Define one visual direction
 
-List every screen implied by the product and group them into flows. Include states that materially change the experience, such as empty, loading, permission, success, error, or active-task states, only when they deserve a distinct design.
+Create one coherent, product-specific direction unless alternatives are requested:
 
-Show the inventory, call out assumptions, and then continue to the complete prompt. Do not stop merely to ask which image to generate.
+- personality, emotional tone, platform expectations, and primary visual focus;
+- semantic colour roles, contrast, light/dark treatment, and background choice;
+- typography hierarchy and numeric treatment;
+- spacing, radii, borders, elevation, icons, imagery, and component language;
+- motion character, content choreography, accessibility, and platform considerations;
+- the visual qualities borrowed from supplied references without copying branding.
 
-Do not force onboarding, authentication, or any fixed screen category. Select screens from the actual product.
+Choose a plain surface, image-led background, or restrained gradient from the product, user request, existing system, and reference direction. A gradient is optional, not a requirement for onboarding, plans, paywalls, or premium design. When chosen, treat it as screen/flow atmosphere first and keep controls solid unless a gradient control is explicitly intended.
 
-## Define the visual direction
+If custom illustration, mascot, hero, or animated artwork materially improves the concept and no suitable asset exists, read [references/illustration-assets.md](references/illustration-assets.md). Define replaceable image/video slots plus ready-to-use generation and motion prompts. Never substitute complex JSX artwork. Generate assets only when the user explicitly requests or approves it.
 
-Propose one coherent direction containing:
+## Make the product feel complete
 
-- product personality and emotional tone;
-- colour roles, contrast, and light or dark preference;
-- typography character and hierarchy;
-- spacing, shape, elevation, icon, illustration, and motion language;
-- native versus custom interface expectations;
-- accessibility and platform considerations;
-- how supplied references influence the result.
+Populate data-dependent surfaces with believable representative names, messages, charts, progress, plans, plan amounts, trial lengths, due dates, renewal terms, offers, ratings, recommendations, and results. The user must see a complete design; never leave an important surface blank because its backend, catalog, or formula is unfinished. Never place `sample`, `demo`, `mock`, `placeholder`, or `Lorem ipsum` inside the UI.
 
-If a logo is missing, use a neutral wordmark or placeholder treatment. Do not invent a detailed logo and silently make it part of the product identity.
+Representative content is not permission to publish false claims. Record what must later connect to real APIs, formulas, catalog prices, eligibility, analytics, verified ratings/testimonials, legal content, and production data. In the final chat, list those replacements and ask whether the user wants the implementation connected to real backend/store data next.
 
-When the concept depends on custom illustrations, a mascot, or generated hero artwork that does not exist, read [references/illustration-assets.md](references/illustration-assets.md). Define replaceable asset slots and ready-to-use prompts instead of drawing complicated artwork in UI code. Do not generate assets until the user requests or approves generation.
+## Keep one design deliverable
 
-### Interpret gradient requests as background direction
+When a project filesystem is available, create or update `docs/design/mobile-design.md`; for one feature use `docs/design/<feature>-design.md`. Keep one file from `Status: Draft` through `Status: Approved`; do not create separate temporary/final copies or automatically edit `AGENTS.md`.
 
-When the user asks for a gradient, a gradient feel, or a sleek colour blend without naming a component, treat it as the app's background atmosphere first. Apply it full-bleed behind the screen or across the shared flow shell so content, cards, and controls sit over one coherent colour environment. Keep primary buttons solid and high-contrast by default. Use a gradient inside a button only when the user explicitly requests a gradient button or an approved reference clearly makes it part of the control language.
+Read [references/design-deliverable.md](references/design-deliverable.md) for the compact handoff and board-prompt format. If filesystem access is unavailable, maintain the draft in conversation and provide copy-ready Markdown with its intended path.
 
-For a multi-screen flow, decide whether one persistent background should continue behind transparent screen surfaces and subtly evolve with progress, state, or narrative. Specify the gradient's stops, direction, intensity, light and dark treatment, contrast overlays, and which screens intentionally return to a plain background for rest. Do not scatter unrelated gradients across buttons, cards, badges, and icons as a substitute for a background system.
+Before refinement, read the current design document, preserve locked decisions, and change only the requested parts. Show a concise change summary; repeat the complete prompt only when requested.
 
-When the product includes onboarding, a quiz, personalization, or a pre-paywall journey, read [references/onboarding-design.md](references/onboarding-design.md). Design it as a product-specific value journey with varied step bodies, not a repeated questionnaire or a fixed long funnel. Treat length as a rhythm decision and record the approved beat sequence in the handoff.
+## Prepare or generate boards
 
-When the product includes a subscription, free trial, upgrade, or paywall, read [references/paywall-design.md](references/paywall-design.md). Define the value, plan presentation, pricing clarity, dismissal, restore, and important states without choosing or integrating a billing SDK.
+Write a complete board-ready prompt that covers the approved inventory before offering generation. If the user explicitly asked to generate a board, that request is approval—do not ask again after showing the direction. Otherwise offer: refine the prompt, generate a 3–5-screen concept board, or generate a selected numbered full-app board.
 
-References are evidence, not templates. Abstract useful qualities such as density, hierarchy, warmth, or navigation. Never inject competitor names, trademark warnings, or generic legal disclaimers into the generated design prompt unless the user explicitly asks for them.
+Use one row for 1–4 portrait screens and a balanced grid of at most four columns by two rows for 5–8. Split larger inventories into numbered flow-based boards. Generate only the requested board, not every board automatically.
 
-## Populate the design with representative data
+After generation, compare the board with the current design document for required screens/content, hierarchy, typography, colours, spacing, components, representative data, and consistency. Record the real asset path and mismatches. Never claim generation or visual approval without evidence.
 
-For UI concepts, prototypes, prompts, and boards, make every data-dependent surface look complete. Freely invent realistic representative names, balances, purchases, charts, trends, plans, projections, progress, dates, messages, activity, notifications, recommendations, generated results, and other product content when real data or production logic is not yet available.
+## Create the implementation handoff
 
-Do not weaken the design with empty states, vague boxes, `Lorem ipsum`, repeated zeros, or missing charts merely because an API, database, formula, or final copy has not been supplied. Choose data that demonstrates hierarchy, density, state changes, personalization, and the product's best intended experience.
+After user approval, tighten the same document and change its status to `Approved`. Preserve the product summary, screen inventory, locked visual system, interaction and content-motion intent, asset specifications, approved prompt/board paths, representative-data replacements, and unresolved decisions.
 
-Do not put `sample`, `demo`, `mock`, `placeholder`, or similar warnings inside the UI or generated artwork. The screen should look like a polished real product. After presenting the design, tell the user in chat that representative design data was used and should be connected to real APIs, approved formulas, verified claims, and production content before release. Record the same implementation note in the handoff, outside the UI specification.
+Keep the handoff implementation-neutral so Expo/React Native, SwiftUI, Compose, Flutter, or another design workflow can consume it. Design owns what the experience should be; the implementation agent owns code structure, packages, navigation configuration, and runtime verification.
 
-Representative design data is permission to visualize the intended product, not permission to publish false claims. Before production, replace or remove invented ratings, testimonials, customer counts, financial or health calculations, live activity, scarcity, and other factual claims.
+## Quality check
 
-## Keep one project design document
+Confirm the inventory matches the user's product; every ask changes something later; the visual direction can be reproduced; screens contain believable content and relevant states; accessibility and platform needs are recorded; boards stay readable; generated assets actually exist; locked decisions survive refinement; and the approved handoff is concise and self-contained.
 
-When the project filesystem is available, create the real design document as soon as there is enough product context to form the initial inventory and direction:
-
-```text
-docs/design/mobile-design.md
-```
-
-For a feature or flow rather than the whole app, use `docs/design/<feature>-design.md`. Create `docs/design/` when needed. Start the document with `Status: Draft`, use [references/mobile-design-file.md](references/mobile-design-file.md), and update this same file throughout inventory, prompt writing, board generation, and refinement. Do not create an OS-temporary `design-draft.md`, a root-level draft, or separate draft/final copies.
-
-Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative link as soon as the draft is created. Preserve existing instructions and do not copy the design document into `AGENTS.md`.
-
-When the task confines the work to one folder, or the repository is not yours to restructure, keep the document beside the work instead of creating `docs/design/` or editing a root file you were told to leave alone. The document still exists, still follows `references/mobile-design-file.md`, and is still the single source of truth—only its location changes. Say in the final response where it went and where it would normally live, so the owner can move and link it.
-
-Before every refinement, read the project design document, change only what the user requested, preserve locked decisions, and update the stored prompt and status. Show only a concise change summary; print the complete updated prompt again only when the user asks. If no project filesystem is available, maintain the draft in conversation and provide the complete Markdown with its intended project path.
-
-## Always write the complete board prompt
-
-Read [references/board-prompt.md](references/board-prompt.md) and generate the entire board-ready prompt or prompt set before offering image generation. Cover the complete product and screen inventory so the user can copy it elsewhere without additional work. The user should not need to fill placeholders or know design terminology.
-
-The prompt must specify:
-
-- product context and audience;
-- every screen in the approved inventory and its important content;
-- navigation and relationships between screens;
-- visual direction and reusable interface language;
-- the full-screen background treatment and gradient behavior across the flow when gradients are part of the direction;
-- readable board composition and flow-based grouping;
-- legibility, realism, accessibility, and output quality;
-- product-specific visual mistakes to avoid.
-
-Populate the screens with believable representative data whenever it improves the design. Never add in-UI labels that reveal it as sample or placeholder content.
-
-On the initial pass, do not generate an image yet. Present the complete prompt once, then ask the user to choose one concise next action:
-
-1. refine the prompt;
-2. generate a concept board using 3–5 recommended representative screens;
-3. generate one numbered full-app board from the complete prompt set.
-
-If the user already requested a particular board, still show the complete prompt before its first generation. After that, use the latest stored prompt internally and do not repeat it unless requested. Keep a design-system board separate and optional.
-
-## Generate only when requested
-
-Never place more than four portrait screens in one row or more than eight screens on one board. Use one row for 1–4 screens and a balanced grid of up to four columns by two rows for 5–8 screens. Centre an incomplete final row. Split larger inventories into numbered boards grouped by user flow.
-
-If an image-generation tool is available and the user approves one option, generate only the requested board. Do not generate every numbered board automatically.
-
-If no image-generation tool is available, say so after presenting the prompt. Recommend pasting it into [ChatGPT Images] or [Gemini Apps image generation], then ask whether the user wants the prompt refined for concept-board or full-app-board generation. Do not pretend an image was generated or tell the user to switch models without giving them the usable prompt first.
-
-## Review each board
-
-After generation, compare the image with the current project design document: colours, typography, spacing, radii, borders, shadows, required content, representative data, and cross-screen consistency. Record the generated asset path and review outcome in that same document. Report mismatches briefly, then ask the user to approve or refine. In chat—not inside the UI—state that representative data should be replaced or connected before production. Never regenerate automatically.
-
-## Create the handoff
-
-After approval, tighten the existing project design document into a concise, self-contained implementation handoff. Change `Status: Draft` to `Status: Approved`; preserve the product summary, complete screen inventory, locked visual decisions, approved prompt or board paths, interaction notes, assets, representative-data replacement notes, and unresolved decisions.
-
-Update the same file rather than generating another final document. Never leave the approved design only in chat, a hosted artifact, an OS temporary directory, or an agent-specific cloud workspace. The linked `docs/design/...` document is the source of truth from first draft through approval.
-
-The handoff must work with Expo, React Native, SwiftUI, Jetpack Compose, Flutter, another implementation agent, or a design-only workflow. If optional theming or implementation skills are installed, they may consume this file, but never require or assume them.
-
-## Quality checks
-
-Before finishing, confirm:
-
-- the screen inventory represents the actual product;
-- the prompt covers the complete product before any board is generated;
-- the visual direction is specific enough to reproduce;
-- refinements preserve locked tokens and component rules from the project design document;
-- the prompt contains all required screen content and no empty placeholders;
-- data-dependent screens look convincingly populated and contain no in-UI sample, mock, or placeholder labels;
-- no board exceeds four columns or eight screens;
-- competitor names or generic legal warnings were not added to the prompt;
-- no image was generated before prompt approval;
-- the user was offered refine, concept board, or a numbered full-app board after receiving the prompt;
-- optional tools or skills were not presented as dependencies;
-- the design document was created under `docs/design/`, linked from `AGENTS.md`, updated rather than duplicated, and marked `Approved` only after approval;
-- the approved handoff is concise, portable, and implementation-ready.
+Run a mechanical anti-template check: normally one accent family, one neutral family, one approved radius scale, zero unexplained gradients/glass/glow, zero emoji used as interface icons, and one consistent label for each repeated action. Every exception needs a product or brand reason.

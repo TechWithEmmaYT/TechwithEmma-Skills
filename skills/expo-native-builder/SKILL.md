@@ -1,107 +1,99 @@
 ---
 name: expo-native-builder
-description: Design, build, audit, or improve polished Expo and React Native screens using the project's existing Uniwind, NativeWind, or StyleSheet system, native navigation patterns, purposeful motion, restrained gradients, accessible interactions, and complete UI states. Use for direct screen or flow implementation with or without a separate design handoff. Do not use to generate design-board prompts.
+description: Build or improve polished Expo and React Native screens and flows while preserving the user's requested screens, file structure, styling system, navigation, product logic, and visual direction. Use for direct Expo UI implementation, including onboarding and paywalls.
 ---
 
 # Expo Native Builder
 
-Create mobile interfaces that feel intentional, product-specific, and native to the app. Preserve working navigation, data flow, business logic, dependencies, and established design decisions.
+## Preserve the request first
 
-## Get a compact design brief
+Before proposing anything, extract the user's required screens, behavior, visual direction, file locations, references, and exclusions. Treat every explicitly named screen or feature as required. A supplied implementation plan overrides this skill's defaults. Do not replace the requested journey with a generic template.
 
-Inspect existing screens, tokens, assets, fonts, components, and references first. In one compact message, ask only for missing decisions:
+Inspect the existing routes, components, tokens, assets, fonts, dependencies, and business logic before choosing an architecture. Preserve working conventions. Ask only for a missing decision that materially changes the result.
 
-- app category, audience, screen goal, and primary action;
-- primary, secondary, and optional accent colors;
-- neutral/background direction and light, dark, or both modes;
-- typography, density, feeling, or visual references;
-- for onboarding or paywalls, the intended destination and whether monetization, trial, plans, or a dismissible paywall is in scope.
+For a new multi-step onboarding flow, start from this compact structure and adapt it to the user's names:
 
-If a screenshot or established app defines the direction, summarize what was inferred and ask for corrections rather than starting a long interview. If only a primary colour is supplied, propose an accessible supporting palette.
+```text
+src/
+|-- app/
+|   `-- (onboarding)/
+|       |-- _layout.tsx
+|       |-- welcome.tsx
+|       |-- [step].tsx
+|       |-- pledge-result.tsx   optional named route
+|       |-- building.tsx        when a plan/result is generated
+|       |-- plan.tsx            detailed result
+|       |-- paywall.tsx         when monetization is in scope
+|       `-- offer.tsx           optional eligible offer
+`-- components/
+    `-- onboarding/
+        |-- steps.ts
+        |-- state.tsx
+        |-- step-renderer.tsx
+        `-- <focused step components>.tsx
+```
 
-Before changing files, show no more than five short bullets covering the screen/flow, design direction, affected files, components/assets, and verification. Wait for confirmation, then implement only that scope.
+Keep `[step].tsx` small: route validation, step lookup, progress, navigation, and the renderer call. Put substantial step bodies and interactions in `src/components/onboarding`; do not leave one giant route that is hard to test or debug. Do not restructure an existing project merely to match this example.
 
-## Work standalone
-
-Never require or invoke another skill automatically. Recommend `mobile-ui-design` only for design exploration, UI boards, or a portable handoff—not because a direct build lacks mockups. Handle motion, gradients, onboarding, and paywall UI here.
+Before editing, show at most five short bullets covering scope, direction, files, dependencies/assets, and verification. Wait for confirmation, then implement only that scope.
 
 ## Detect the styling system
 
-Inspect `package.json`, Metro/Babel config, `global.css`, generated types, root imports, and existing components.
-
-- Use **Uniwind** when the active project uses `uniwind`, `withUniwindConfig`, and `@import "uniwind"`.
-- Use **NativeWind** when the active project uses `nativewind`, its Metro/Babel setup, or NativeWind theme variables.
-- Use **StyleSheet** when screens use `StyleSheet.create`, theme objects, or inline React Native styles without an active Tailwind binding.
-- If packages overlap, follow the configuration used by the running app or ask one concise question.
-
-Never introduce Tailwind into a StyleSheet project, mix styling providers, or migrate systems unless requested. Use installed versions and the existing package manager.
-
-## Establish the hierarchy
-
-Understand the screen's place in the flow and let one action dominate. Remove unnecessary layers, repeated labels, decorative containers, and hidden interactions. Keep frequent actions reachable without covering content or platform navigation.
-
-## Load guidance only when needed
-
-- For mobile direction, spacing, native controls, tabs, pickers, sheets, or choosing Expo UI versus React Native UI, read [references/native-ui.md](references/native-ui.md).
-- For a multi-step first-run experience, read [references/onboarding-flows.md](references/onboarding-flows.md). Share the shell and navigation, not one forced card layout.
-- For a subscription, trial, upgrade, or paywall surface, read [references/paywall-ui.md](references/paywall-ui.md).
-- Before creating or expanding `components/ui`, read [references/reusable-components.md](references/reusable-components.md).
-- For forms, authentication, chat composers, or screens where the keyboard can cover content or actions, read [references/keyboard-controller.md](references/keyboard-controller.md).
-- For transitions, gestures, scroll effects, animated data, or other motion, read [references/motion-native.md](references/motion-native.md).
-- For full-screen, flow-wide, animated, or image-overlay gradients, read [references/gradient-background.md](references/gradient-background.md).
+Inspect `package.json`, Metro/Babel configuration, global styles, generated types, root imports, and existing screens. Use Uniwind when the running app is configured for Uniwind, NativeWind when its configuration is active, and StyleSheet when the project uses React Native styles or theme objects. If packages overlap, follow the system used by the working screens. Never introduce, mix, or migrate styling systems unless the user requests it.
 
 ## Use the existing design system
 
-Use existing semantic tokens, typography roles, controls, icons, radii, and elevation. Follow a consistent 4-point spacing rhythm: related elements sit closer than separate sections. Use semantic utilities with Uniwind/NativeWind and the existing theme object with StyleSheet; do not scatter raw colours or create a competing system.
+- Reuse semantic tokens, typography, components, icons, radii, and spacing.
+- Use the existing package manager and installed compatible libraries.
+- Preserve navigation, data flow, authentication, backend contracts, and platform behavior.
+- Use realistic populated local states when production data is unavailable, and identify what must later connect to real sources.
 
-If the styling foundation, theme tokens, fonts, or toast infrastructure are missing or broken, report the gap. Offer `expo-uniwind-theme` for Uniwind or `expo-nativewind-theme` for NativeWind as a separate approved change. Do not silently turn a screen request into project-wide configuration work.
+Use a plain semantic surface, an image, or a restrained gradient according to the user's direction, supplied reference, existing design system, and product character. A gradient is allowed when the AI judges it appropriate, but it is never mandatory or an automatic definition of premium. Keep controls solid unless a gradient control is explicitly intended. Read [references/gradient-background.md](references/gradient-background.md) only when a gradient is chosen.
 
+## Load only relevant guidance
+
+- For onboarding, personalization, generated plans, paywalls, or offers, read [references/onboarding-paywall.md](references/onboarding-paywall.md).
+- For native layout, controls, safe areas, keyboard behavior, tabs, sheets, or pickers, read [references/native-ui.md](references/native-ui.md).
+- For custom content animation, gestures, animated values, or motion packages, read [references/motion-native.md](references/motion-native.md).
+- Before expanding shared UI, read [references/reusable-components.md](references/reusable-components.md).
+
+Do not automatically load another skill. Use these references through progressive disclosure.
 
 ## Enforce a complete screen shell
 
-Every route needs a full-height semantic root using the project's `Screen` or `react-native-safe-area-context`, never React Native's deprecated `SafeAreaView`. Apply only edges not already owned by a header, tab bar, sheet, or navigator. Keep full-bleed media/gradients outside and interactive content inside the safe-area layer.
+Every route needs a full-height semantic root using the project's `Screen` or `react-native-safe-area-context`, never React Native's deprecated `SafeAreaView`. Apply only edges not already owned by a header, tab bar, sheet, or navigator. Keep full-bleed backgrounds and media outside the safe-area content layer. Choose `ScrollView`, `FlatList`, or `SectionList` from actual content and virtualization needs, and pad content above pinned actions and the home indicator.
 
-## Implement for React Native
+## Build native-quality screens
 
-- Reuse project components before creating new ones; extract a component only when it has a real second use, establishes a design-system contract, or isolates meaningful complexity.
-- Use `Pressable` states and disabled/loading behavior intentionally.
-- Choose `ScrollView`, `FlatList`, or `SectionList` according to content size and virtualization needs.
-- Keep focused inputs and submission actions reachable without layering keyboard libraries.
-- Respect platform navigation, back behavior, status bars, bottom tabs, sheets, and modals.
-- Use the project's icon system. Do not substitute emoji or text glyphs for interface icons unless the product direction calls for them.
-- Add motion or haptics only for state, orientation, feedback, or completion.
+- Give each screen one dominant purpose and primary action.
+- Use `Pressable` feedback intentionally.
+- Keep touch targets at least 44 points, support Dynamic Type and screen readers, and never rely on color alone.
+- Reuse components before adding abstractions; extract feature components when they isolate meaningful behavior or keep a route readable and testable.
 
-## Apply native-quality polish
+For controls with interaction physics, check existing primitives, Expo/React Native APIs, installed dependencies, and maintained compatible packages before hand-building. Ask before installing. Prefer:
 
-Extract hierarchy and behavior from supplied references without copying branding. Prefer native controls and navigator-owned UI when they fit. Choose push, replace, sheet, or modal from what Back should do; completed one-way flows must not remain reachable. Keep one accent family, one neutral family, and one radius scale.
-
-When custom artwork would materially improve a welcome, result, paywall, or celebration but no approved asset exists, inspect project assets first and avoid recreating complex illustrations with JSX. Build a replaceable image slot with the intended crop and dimensions, use a lightweight temporary visual, and finish the UI. In the final response, provide one shared art direction plus ready-to-paste prompts with filenames, aspect ratios, transparency, safe text space, and theme variants; offer to generate them when the user requests it.
+`existing primitive -> built-in API -> installed dependency -> focused package -> custom`
 
 ## Design every relevant state
 
-Implement reachable loading, populated, empty, error, disabled, selected/pressed, offline, and success states. Keep field errors inline and use the existing toaster only for asynchronous outcomes not tied to one field.
+Implement every reachable state relevant to the requested screen: loading, populated, empty, error, disabled, selected/pressed, offline, and success. Keep field errors beside their controls, preserve input after recoverable failures, and block duplicate submissions while pending. When production data is unavailable, use believable centralized fixtures so the completed UI can be seen and tested; never leave important charts, plans, prices, trials, ratings, testimonials, dates, messages, or results blank. Never display `mock`, `sample`, or placeholder warnings inside the product.
 
-When backend data, formulas, catalog values, or content are not ready, still build a complete populated UI with realistic representative data and working local states. Include the charts, progress, ratings, testimonials, statistics, messages, prices, countdowns, processing, recommendations, and results needed to show the intended product. Keep these values in one fixture, constants file, or replaceable adapter; never show `sample`, `mock`, `placeholder`, or implementation warnings inside the UI.
+## Use real artwork assets
 
-For forms that need validation, use React Hook Form with Zod and `@hookform/resolvers/zod`. Keep the Zod schema as the validation source, show field errors beside their controls, preserve entered values after recoverable failures, and disable duplicate submissions while pending. Install missing packages with the project's package manager instead of guessing versions.
+Inspect existing assets first. When a welcome, onboarding reveal, plan, paywall, celebration, or empty state needs custom illustration or artwork, do not invent a complex replacement from JSX, SVG paths, emoji, or CSS-like shapes. Build a correctly sized replaceable image/video slot and finish the surrounding UI.
 
-Make destructive actions visually distinct and require confirmation when recovery is difficult. Preserve user input after recoverable errors.
+Give the user a ready-to-paste prompt and filename to generate the artwork in ChatGPT Images or their preferred image tool. When the concept needs animated artwork, specify the still/key art first, then give the user a short motion prompt and target video or GIF format for an approved animation tool such as Gemini. Do not claim the asset exists until it is generated and inspected; use a simple temporary visual only when needed to keep the screen runnable.
 
-## Accessibility and responsive checks
+## Motion contract
 
-- Keep interactive targets at least 44 by 44 points.
-- Verify text/background and state contrast in every supported theme.
-- Support font scaling without clipping important text or controls.
-- Provide accessibility labels for icon-only actions and meaningful roles/states.
-- Do not rely on color alone for status.
-- Check compact and large phones, long content/names, keyboard-open layouts, and supported orientations.
+Motion is a required design material for polished onboarding and high-value product moments. Use the installed Reanimated, Gesture Handler, and haptics setup where appropriate. Create original product-specific feedback, explanation, continuity, state change, and completion motion; the absence of a motion reference is not a reason to leave the flow static. Motion must remain purposeful rather than animating every container.
+
+For onboarding, always set the nested Expo Router Stack to `animation: "none"`. Do not animate the route or whole step screen. Each screen choreographs its own internal content: illustration, headline, supporting copy, choices, metrics, charts, progress states, and CTA. Keep controls available immediately, avoid replaying settled content, and provide Reduce Motion behavior that presents the final state without travel or delay.
 
 ## Verify visually and functionally
 
-Use a bounded loop: implement, run or capture the screen, compare it with the approved design and tokens, fix relevant mismatches, then verify again. Stop when the requested UI and relevant checks pass, or report the blocker. Do not expand scope.
+Run relevant typecheck/lint checks, start Expo, and inspect at least one available target. Exercise navigation, Back behavior, keyboard, safe areas, compact screens, Dynamic Type, relevant states, and Reduce Motion. Record motion changes and inspect for flashes, jumps, clipped content, stale values, and broken hit targets.
 
-Run the project's typecheck and lint, then start Expo and inspect at least one native target. Exercise navigation, gestures, keyboard behavior, safe areas, loading/empty/error/success states, theme modes, and touch targets relevant to the change. When motion changed, record the complete affected flow and inspect it at normal speed and frame by frame for flashes, jumps, clipped springs, and keyboard discontinuities. If visual inspection is unavailable, say so instead of claiming a visual match.
+Run a mechanical anti-template check: normally one accent family, one neutral family, one approved radius scale, zero unexplained gradients/glass/glow, zero emoji used as interface icons, and one consistent label for each repeated action. Fix every accidental violation; keep an exception only when the user, product, or established brand system requires it.
 
-Do not treat a missing simulator as the end of visual verification. Work down this ladder and use the first rung available: a native target; a connected device; the web target when `react-native-web` is installed, which renders layout, type scale, colour, and most motion; a static export opened in a browser. Only when every rung fails is the screen unverified—then say plainly that no one has looked at it and list what that leaves unchecked. Compiling, exporting, and passing lint prove a screen builds, never that it looks right; never offer them as evidence of appearance. For a screen whose purpose is visual impact, an unverified appearance is an incomplete deliverable rather than a footnote.
-
-Report completed screens, reused/created components, design tokens followed, commands run, native targets visually checked, and remaining states or platform checks. If representative data was used, explicitly list in the final chat response what must later connect to real APIs, formulas, catalog/pricing, eligibility, verified claims, analytics, or backend state. Keep the handoff concise.
+Build success does not prove visual quality. If no native, device, web, or static visual inspection is available, report the UI as visually unverified. Keep the final handoff concise and list every representative value, formula, price, trial, date, rating, claim, permission, offer, analytics event, purchase action, or backend state still awaiting a production source. Ask whether the user wants to connect the real backend/store catalog and replace those fixtures next.

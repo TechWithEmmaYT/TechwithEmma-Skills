@@ -1,4 +1,4 @@
 interface:
   display_name: "Mobile UI Design"
-  short_description: "Validate mobile UI direction before implementation"
-  default_prompt: "Use $mobile-ui-design to turn my mobile app idea into an approved screen inventory, visual direction, and copy-ready UI board prompt."
+  short_description: "Plan a complete, product-specific mobile experience"
+  default_prompt: "Use $mobile-ui-design to preserve my requested mobile product, define its complete screen inventory and visual direction, and create a concise implementation-ready design handoff."
