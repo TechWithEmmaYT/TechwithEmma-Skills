@@ -1,4 +1,4 @@
-# Premium Onboarding Design
+# Onboarding Design
 
 Use this reference to design onboarding, personalization quizzes, first-run education, and pre-paywall journeys. Decide the experience here; implementation belongs to the builder.
 

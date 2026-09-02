@@ -205,7 +205,7 @@ skills/
 │       ├── board-prompt.md
 │       ├── mobile-design-file.md
 │       ├── paywall-design.md
-│       └── premium-onboarding.md
+│       └── onboarding-design.md
 ├── nodejs-scaffolding/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml

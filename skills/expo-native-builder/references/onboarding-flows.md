@@ -4,7 +4,7 @@ Use this reference to implement questionnaires, first-run education, permissions
 
 When direction is missing, propose one value-first flow and ask the user to correct it once. Length follows rhythm, not a fixed count. Ask whether monetization belongs at the end when unclear; never invent a paywall.
 
-For visual journey decisions, use the supplied design or [the onboarding design reference](mobile-ui-design/references/onboarding-design). This file owns implementation structure.
+For visual journey decisions, use the supplied design or [the onboarding design reference](../../mobile-ui-design/references/onboarding-design.md). This file owns implementation structure.
 
 ## Preserve the experience
 
