@@ -25,6 +25,8 @@ Use `ask -> react -> teach -> reveal -> commit` as rhythm, not a mandatory scree
 
 Keep direct answers, derived values, recommendations, and visible consequences separate. Make calculations pure so Back and edits recompute the journey correctly. Keep believable prototype formulas and claims in one replaceable fixture. Populate every designed chart, forecast, plan date, recommendation, rating, testimonial, and result so the UI is complete and testable; never leave the surface blank because production data is missing.
 
+For welcome screens, follow the user's composition or choose from the product and references; never force a fixed ratio. Support full-bleed, hero-heavy, a larger rounded bottom panel, curved/split surfaces, or overlapping layers, with optional gradients and single/layered shadows. Keep `identity -> visual -> promise -> primary action -> optional secondary action`, safe-area aware and compact-screen responsive.
+
 ## Route and component structure
 
 Use `/onboarding/[step]` when the questions share a shell and need route-derived progress and Back behavior. Validate the route key and redirect unknown values safely. Give distinctive transition/result screens named routes when that keeps their composition clear.

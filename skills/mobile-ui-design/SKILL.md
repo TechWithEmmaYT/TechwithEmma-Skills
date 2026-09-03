@@ -17,7 +17,7 @@ When useful references are available, study 3–5 strong screens for the same ca
 
 List every screen implied by the actual product and group screens into flows. Include loading, empty, error, success, permission, active-task, or other states as separate designs only when their composition materially differs.
 
-Do not add onboarding, authentication, subscriptions, or other categories unless requested or required by the product. When onboarding is requested without a defined journey, read [references/onboarding-paywall-design.md](references/onboarding-paywall-design.md) and use its product-personalized default. Show the recommended inventory and assumptions once before locking it.
+Do not add onboarding, authentication, subscriptions, or other categories unless requested or required by the product. For welcome screens or onboarding, read [references/onboarding-paywall-design.md](references/onboarding-paywall-design.md); when the journey is undefined, use its product-personalized default. Show the recommended inventory and assumptions once before locking it.
 
 ## Define one visual direction
 

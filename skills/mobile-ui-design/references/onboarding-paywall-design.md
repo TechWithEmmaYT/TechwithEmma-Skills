@@ -29,6 +29,8 @@ Choose the welcome archetype from the product: minimal brand/promise, product pr
 
 Whichever archetype fits, the welcome needs a clear identity, concise promise, one strong product-specific visual/preview, one primary action, and a returning-user action when relevant. Show the result the product enables rather than a feature list.
 
+Choose the composition from the user, references, product, and content, not a fixed ratio. It may be full-bleed, hero-heavy, content-heavy with a rounded panel, curved/split, or overlapping. Gradients, radii, and single/layered shadows are optional. Preserve `identity -> visual -> promise -> primary action -> optional secondary action`.
+
 Reuse answers visibly. Acknowledge them through relevant copy, narrowed choices, calculations, imagery, recommendations, and later plan sections. Combining only the user's name with a generic plan is not personalization.
 
 Build value through escalating frames: immediate response, calculation, visualization, acknowledged outcome, and detailed result. Demonstrate the real product with believable UI when it communicates value better than abstract artwork.
