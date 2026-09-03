@@ -59,9 +59,9 @@ Request notifications, health, tracking, photos, camera, or other permissions on
 
 ## Fingerprint pledge and signed result
 
-The default pledge may use a fingerprint-style hold interaction to make an intention feel deliberate. This is a visual hold-to-fill gesture, not biometric authentication or Touch ID unless the user explicitly requests real device authentication.
+When a suitable pledge or personal commitment asks the user to hold, default to a bottom-centred circular control with a fingerprint icon unless the user requests another treatment. Drive the hold and transition from one Reanimated progress value: grow the circle from beneath the finger until it covers the furthest screen corner, reverse it on early release, and complete into a destination already painted the same colour so no cut or stranded overlay remains. This is a visual commitment gesture, not biometric authentication or Touch ID. Adapt or omit it when a hold interaction does not suit the product; do not add a transition dependency when the installed motion stack can implement it cleanly.
 
-The hold must show progress, cancel on early release, work through an accessible tap alternative, and use one progress value for the visual fill and completion. It is never legal consent, account authentication, or payment confirmation.
+Provide visible hold progress, an accessible tap/activation alternative, and a plain button or short fade under Reduce Motion. Never use the hold as legal consent, account authentication, payment confirmation, or the only path through an irreversible action.
 
 After completion, reveal a concise product-specific congratulations screen confirming that the user signed their pledge or oath. Say “oath,” “pledge,” or the approved product term—never “OAuth.” Reuse their name, goal, and chosen commitment. This signed result is a motivational state, not a legal signature. Celebrate once with restrained motion/haptics, then continue to plan building.
 

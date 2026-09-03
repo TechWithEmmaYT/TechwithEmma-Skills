@@ -2,6 +2,8 @@
 
 Use one `docs/design/mobile-design.md` file, or `docs/design/<feature>-design.md` for a scoped flow. Keep `Status: Draft` during exploration and change the same file to `Approved` only after user approval. Do not create separate draft/final copies or edit application code/`AGENTS.md` automatically.
 
+Keep the complete document near 1,000–2,000 words. Preserve reproducible values and coverage: locked requirements, screen inventory, colour and type roles, spacing and shape rules, states, motion, asset prompts, representative data, real-data replacements, and open decisions. Compress shared rules into one source of truth; use one compact entry for ordinary screens and extra detail only for distinct layouts, conversion moments, or complex states. Remove process history, rationale already implied by a decision, rejected options, generic design advice, and repeated per-screen rules before cutting any product or visual requirement. A large approved inventory may exceed the target only when completeness genuinely requires it.
+
 ## Compact handoff
 
 Use only sections relevant to the product:
@@ -47,6 +49,8 @@ Last updated: <date>
 ```
 
 For onboarding/paywalls also record the beat sequence, longest ask run, answer reuse, attribution/rating/permissions, pledge/oath language, plan-building checkpoints, detailed result sections, paywall and offer exits, prices/disclosures, persistent atmosphere, and per-screen content reveal order.
+
+Keep the board prompt compact and standalone. Reuse concise shared visual rules, then give each screen only its unique content, state, emphasis, and action; do not repeat the complete design system under every screen.
 
 ## Board-ready prompt
 

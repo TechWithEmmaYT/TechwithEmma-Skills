@@ -82,7 +82,7 @@ Implement every reachable state relevant to the requested screen: loading, popul
 
 Inspect existing assets first. When a welcome, onboarding reveal, plan, paywall, celebration, or empty state needs custom illustration or artwork, do not invent a complex replacement from JSX, SVG paths, emoji, or CSS-like shapes. Build a correctly sized replaceable image/video slot and finish the surrounding UI.
 
-Give the user a ready-to-paste prompt and filename to generate the artwork in ChatGPT Images or their preferred image tool. When the concept needs animated artwork, specify the still/key art first, then give the user a short motion prompt and target video or GIF format for an approved animation tool such as Gemini. Do not claim the asset exists until it is generated and inspected; use a simple temporary visual only when needed to keep the screen runnable.
+Give the user a ready-to-paste prompt and filename to generate the artwork in ChatGPT Images or their preferred image tool. Carry the approved visual style into the prompt and specify subject, composition, palette, dimensions/aspect ratio, and a transparent background when the asset must layer over the app; otherwise name the intended background. When the concept needs animated artwork, specify the still/key art first, then give the user a short motion prompt and target video or GIF format for an approved animation tool such as Gemini. Do not claim the asset exists until it is generated and inspected; use a simple temporary visual only when needed to keep the screen runnable. In the final handoff, list every temporary slot with its filename and generation prompt.
 
 ## Motion contract
 

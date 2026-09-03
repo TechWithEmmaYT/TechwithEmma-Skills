@@ -44,6 +44,8 @@ Representative content is not permission to publish false claims. Record what mu
 
 When a project filesystem is available, create or update `docs/design/mobile-design.md`; for one feature use `docs/design/<feature>-design.md`. Keep one file from `Status: Draft` through `Status: Approved`; do not create separate temporary/final copies or automatically edit `AGENTS.md`.
 
+Target 1,000–2,000 words for the complete design document. This is a compression target, not permission to omit screens or design decisions. Preserve exact visual values, locked requirements, important states, asset prompts, representative content, and replacement notes. Save space by defining shared rules once, keeping ordinary screens to compact inventory entries, expanding only visually or behaviorally distinct screens, and removing rationale, history, rejected alternatives, and repeated prose. Exceed the range only when the user requests more detail or a materially larger product cannot remain complete within it.
+
 Read [references/design-deliverable.md](references/design-deliverable.md) for the compact handoff and board-prompt format. If filesystem access is unavailable, maintain the draft in conversation and provide copy-ready Markdown with its intended path.
 
 Before refinement, read the current design document, preserve locked decisions, and change only the requested parts. Show a concise change summary; repeat the complete prompt only when requested.
