@@ -14,6 +14,8 @@ Do not force the default when the user supplies a desired flow, screen list, des
 
 ## Pace it as a conversation
 
+Implement monetized onboarding as one shared-state conversational funnel: store each answer, derive later screens and paywall content from it, and recompute dependent data when answers change.
+
 Use `ask -> react -> teach -> reveal -> commit` as rhythm, not a mandatory screen list.
 
 - Keep one idea and one primary action per screen.

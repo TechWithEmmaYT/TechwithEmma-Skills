@@ -12,6 +12,8 @@ Adapt or omit a module when it is irrelevant, unsupported, unsafe, or conflicts 
 
 ## Pace a useful conversation
 
+Treat monetized onboarding as a personalized conversational funnel to the paywall: each answer updates the journey and changes later content, recommendations, results, or the offer.
+
 Start from activation: the first result or action that makes the product useful. Use `ask`, `react`, `teach`, `reveal`, and `commit` as pacing beats, not a fixed screen count.
 
 - Keep one idea and one primary action per screen.
