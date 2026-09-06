@@ -52,6 +52,8 @@ Use a plain semantic surface, an image, or a restrained gradient according to th
 
 ## Load only relevant guidance
 
+For welcome screens, onboarding, and paywalls, always read both [references/onboarding-paywall.md](references/onboarding-paywall.md) and [references/motion-native.md](references/motion-native.md), even when the user does not explicitly request animation.
+
 - For onboarding, personalization, generated plans, paywalls, or offers, read [references/onboarding-paywall.md](references/onboarding-paywall.md).
 - For native layout, controls, safe areas, keyboard behavior, tabs, sheets, or pickers, read [references/native-ui.md](references/native-ui.md).
 - For custom content animation, gestures, animated values, or motion packages, read [references/motion-native.md](references/motion-native.md).
@@ -80,11 +82,17 @@ Implement every reachable state relevant to the requested screen: loading, popul
 
 ## Use real artwork assets
 
+When missing artwork would materially improve a screen, ask early whether the user has an illustration or wants a generation prompt; identify the screen, purpose, and filename. Bundle related asset requests and continue independent UI work while awaiting assets. Keep recurring characters and poses in one consistent visual family. Distinguish UI animation, movement of an existing still, and animation within the artwork; only the last needs an animated asset. Do not postpone this conversation until final handoff.
+
 Inspect existing assets first. When a welcome, onboarding reveal, plan, paywall, celebration, or empty state needs custom illustration or artwork, do not invent a complex replacement from JSX, SVG paths, emoji, or CSS-like shapes. Build a correctly sized replaceable image/video slot and finish the surrounding UI.
 
 Give the user a ready-to-paste prompt and filename to generate the artwork in ChatGPT Images or their preferred image tool. Carry the approved visual style into the prompt and specify subject, composition, palette, dimensions/aspect ratio, and a transparent background when the asset must layer over the app; otherwise name the intended background. When the concept needs animated artwork, specify the still/key art first, then give the user a short motion prompt and target video or GIF format for an approved animation tool such as Gemini. Do not claim the asset exists until it is generated and inspected; use a simple temporary visual only when needed to keep the screen runnable. In the final handoff, list every temporary slot with its filename and generation prompt.
 
 ## Motion contract
+
+This skill works independently of `mobile-ui-design` or any design document. Follow an approved design when available; otherwise choose the welcome pattern, paywall story, artwork needs, and motion behavior from the product and existing app. Use the reference recipes as adaptable defaults, not mandatory effects or a fixed journey.
+
+Before implementation, include a compact motion specification in the existing scope summary or project design notes: `moment -> trigger -> moving elements / fixed anchors -> timing or spring -> settled state -> interruption / replay -> Reduce Motion`. Implement and verify it; generic fades on every screen do not substitute for meaningful product demonstrations and feedback.
 
 Motion is a required design material for polished onboarding and high-value product moments. Use the installed Reanimated, Gesture Handler, and haptics setup where appropriate. Create original product-specific feedback, explanation, continuity, state change, and completion motion; the absence of a motion reference is not a reason to leave the flow static. Motion must remain purposeful rather than animating every container.
 

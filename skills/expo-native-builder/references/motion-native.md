@@ -30,6 +30,27 @@ Do not wrap an interactive control in an entrance that can leave its visual posi
 
 For moving numbers, keep units static, use tabular figures, drive gesture-linked digits from shared values, and commit React state on snap. Under Reduce Motion, set final values immediately.
 
+## Adaptable motion recipes
+
+Choose only recipes that explain this product. Invent another sequence when it communicates better. Starting values below are implementation defaults, not measurements from reference videos: press feedback around 80–140 ms, content entrances 180–300 ms with 40–80 ms offsets, and explanatory reveals 350–650 ms. Tune on device; keep actions usable and reading time user-controlled. Use restrained springs for direct manipulation or selection, timing for deliberate reveals, and one shared progress value for coordinated effects.
+
+| Moment | Default behavior and implementation intent |
+|---|---|
+| Welcome | Introduce the visual anchor, then the promise; keep the CTA anchored. For product-led artwork, cycle a small stack of cards using translation, scale, and layering; pause after a readable demonstration. |
+| Before/after | Reveal aligned images through a clipped mask driven by one progress value; attach a divider to the same value. Keep labels readable and offer a static comparison under Reduce Motion. |
+| Conversation | Reveal short messages in meaningful groups; respond immediately to a selected reply. Scroll only when the user is near the bottom, preserve history, and show messages immediately under Reduce Motion. Avoid compulsory typing delays. |
+| Answer selection | Update the selected border/check immediately, then animate the related insight or preview. Replace an interrupted animation with the latest answer's target; do not queue stale responses. |
+| Chart or calculation | Build the line, bars, or dot grid alongside its derived number; reveal the explanation after the relationship is visible. Keep units and axes stable; settle immediately under Reduce Motion. |
+| Detail inspection | Reveal one or two magnified crops over a stable image to explain a specific detail. Use matching source crops, not invented differences; remove zoom travel under Reduce Motion. |
+| Expand and return | Expand a selected thumbnail from measured bounds into a focused card while preserving its source space. Confirm Save with a state change, then return to the source. Keep focus and hit targets attached to the active control; use an immediate detail state under Reduce Motion. |
+| Product benefit | Let a demonstrated action reveal its consequence: earned credit updates a balance, a photo receives messages, or a preview changes. Sequence meaningful feedback rather than decorative particles; distinguish a demonstration from a real completed action. |
+| Commitment and setup | Apply the hold-fill behavior in the onboarding reference; then resolve progress/checkpoints from actual state. Stop on cancellation or error, and celebrate completion once. |
+| Result and paywall | Introduce the main result, then supporting evidence. Carry its visual identity into the paywall; plan selection updates the indicator, total, trial terms, and CTA from one selected-plan state. Keep billing copy legible throughout. |
+
+For each selected recipe, define the resting state and replay policy. Back restores answers and settled reveals; only replay a demonstration when useful or explicitly requested. Disable automatic cycles under Reduce Motion, pause them offscreen, and cancel pending work when leaving. Do not hide navigation or purchasing controls behind an entrance sequence.
+
+When studying a video, separate recorded effects from inferred implementation: note approximate sequence/timing, distinguish recording cursor/tap overlays from app feedback, and never infer actual haptics or gesture physics from pictures. Frame sequences support motion analysis but do not establish live playback or exact easing. Transfer the behavior, not competitor assets, copy, or claims.
+
 ## Choose difficult controls carefully
 
 Use `existing project primitive -> built-in API -> installed dependency -> maintained focused package -> custom`.

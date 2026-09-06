@@ -12,6 +12,21 @@ Adapt every beat to the product. A calorie tracker should ask only questions tha
 
 Do not force the default when the user supplies a desired flow, screen list, design, or implementation plan. Follow their sequence and omissions exactly. Remove a default module when it is irrelevant, unsupported, unsafe, or conflicts with the product.
 
+## Choose the welcome from the product
+
+Default to one clear promise, one strong visual or product preview, one primary action, and a returning-user action when relevant. Choose the composition independently when no approved design exists:
+
+| Pattern | Use when |
+|---|---|
+| Brand or mascot | Character and familiarity help establish trust or explain the journey. |
+| Product preview | Seeing the actual result or interaction explains the value fastest. |
+| Photography and outcome | The product benefits from a relatable activity or aspiration. |
+| Illustration and typography | A narrative or emotional concept needs a distinctive visual. |
+| Minimal promise | The job is clear and extra education adds little. |
+| Authentication first | Account access is necessary immediately for the requested journey. |
+
+A carousel, gradient, mascot, and social proof are optional. If a carousel is useful, give each panel a distinct lesson and retain accessible manual navigation. Ask for missing artwork early using the asset guidance in `SKILL.md`.
+
 ## Pace it as a conversation
 
 Use `ask -> react -> teach -> reveal -> commit` as rhythm, not a mandatory screen list.
@@ -90,6 +105,23 @@ When the task is UI-only or the store catalog is not connected, create one belie
 Closing the paywall goes to the declared free/exit destination or one approved eligible offer. The offer must address a different objection, show exact price/cadence/renewal, avoid invented scarcity, appear once per decision journey, and provide a visible decline that leaves the funnel.
 
 Keep purchase pending/cancel/error/success and restore states explicit. Store-sheet cancellation is a quiet return. Never claim entitlement before confirmation.
+
+## Choose one paywall story
+
+Use the product's value and the user's current context to choose a primary pattern; these are alternatives, not sections to combine automatically:
+
+| Pattern | Composition and behavior |
+|---|---|
+| Feature comparison | Concise free/paid differences with a stable comparison layout; tier selection updates the relevant benefits and billing. |
+| Personalized outcome | Carry the user's goal, result, or plan into a focused hero; make the unlocked value specific. |
+| Trial timeline | Explain today, any supported reminder, and the charge date in reading order. Never promise a reminder the app cannot deliver. |
+| Simple plan choice | A short value statement and clearly differentiated options; selection updates the full billed amount and cadence together. |
+| Product or mascot hero | One memorable visual demonstrates the benefit; keep its motion separate from stable purchase controls. |
+| Bundle | Explain the included products and combined value before showing the relevant plans. |
+
+A single viewport is a default, not a reason to shrink text or clip disclosures. Allow scrolling on compact screens, with large text, or when the approved value story needs it; keep the CTA reachable without covering terms. When there is no preceding onboarding result, use the current feature or upgrade context instead of inventing a personalized plan.
+
+Do not copy a reference's ratings, promised outcomes, discounts, countdowns, or multiple-offer sequence. Use verified production values or the declared representative fixture. A selected plan is not a purchase; cancellation returns quietly to the current selection. Verify close/decline, Restore, billing updates, and any eligible-offer exit independently of animation.
 
 ## Background and internal content motion
 
