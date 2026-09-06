@@ -29,6 +29,8 @@ A carousel, gradient, mascot, and social proof are optional. If a carousel is us
 
 ## Pace it as a conversation
 
+Implement monetized onboarding as one shared-state conversational funnel: store each answer, derive later screens and paywall content from it, and recompute dependent data when answers change.
+
 Use `ask -> react -> teach -> reveal -> commit` as rhythm, not a mandatory screen list.
 
 - Keep one idea and one primary action per screen.
@@ -39,6 +41,8 @@ Use `ask -> react -> teach -> reveal -> commit` as rhythm, not a mandatory scree
 - Use a moving progress bar or honest phase progress; never display a misleading `Step N of M`.
 
 Keep direct answers, derived values, recommendations, and visible consequences separate. Make calculations pure so Back and edits recompute the journey correctly. Keep believable prototype formulas and claims in one replaceable fixture. Populate every designed chart, forecast, plan date, recommendation, rating, testimonial, and result so the UI is complete and testable; never leave the surface blank because production data is missing.
+
+For welcome screens, follow the user's composition or choose from the product and references; never force a fixed ratio. Support full-bleed, hero-heavy, a larger rounded bottom panel, curved/split surfaces, or overlapping layers, with optional gradients and single/layered shadows. Keep `identity -> visual -> promise -> primary action -> optional secondary action`, safe-area aware and compact-screen responsive.
 
 ## Route and component structure
 

@@ -12,6 +12,8 @@ Adapt or omit a module when it is irrelevant, unsupported, unsafe, or conflicts 
 
 ## Pace a useful conversation
 
+Treat monetized onboarding as a personalized conversational funnel to the paywall: each answer updates the journey and changes later content, recommendations, results, or the offer.
+
 Start from activation: the first result or action that makes the product useful. Use `ask`, `react`, `teach`, `reveal`, and `commit` as pacing beats, not a fixed screen count.
 
 - Keep one idea and one primary action per screen.
@@ -28,6 +30,8 @@ Vary step bodies: product previews, centered insights, cards/chips, sliders/rule
 Choose the welcome archetype from the product: minimal brand/promise, product preview or photography, outcome plus social proof, authentication-first when genuinely required, or a short educational carousel. Do not default every app to a mascot, gradient, carousel, or sign-in wall.
 
 Whichever archetype fits, the welcome needs a clear identity, concise promise, one strong product-specific visual/preview, one primary action, and a returning-user action when relevant. Show the result the product enables rather than a feature list.
+
+Choose the composition from the user, references, product, and content, not a fixed ratio. It may be full-bleed, hero-heavy, content-heavy with a rounded panel, curved/split, or overlapping. Gradients, radii, and single/layered shadows are optional. Preserve `identity -> visual -> promise -> primary action -> optional secondary action`.
 
 Reuse answers visibly. Acknowledge them through relevant copy, narrowed choices, calculations, imagery, recommendations, and later plan sections. Combining only the user's name with a generic plan is not personalization.
 

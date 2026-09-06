@@ -52,9 +52,7 @@ Use a plain semantic surface, an image, or a restrained gradient according to th
 
 ## Load only relevant guidance
 
-For welcome screens, onboarding, and paywalls, always read both [references/onboarding-paywall.md](references/onboarding-paywall.md) and [references/motion-native.md](references/motion-native.md), even when the user does not explicitly request animation.
-
-- For onboarding, personalization, generated plans, paywalls, or offers, read [references/onboarding-paywall.md](references/onboarding-paywall.md).
+- For welcome screens, onboarding, personalization, generated plans, paywalls, or offers, read [references/onboarding-paywall.md](references/onboarding-paywall.md).
 - For native layout, controls, safe areas, keyboard behavior, tabs, sheets, or pickers, read [references/native-ui.md](references/native-ui.md).
 - For custom content animation, gestures, animated values, or motion packages, read [references/motion-native.md](references/motion-native.md).
 - Before expanding shared UI, read [references/reusable-components.md](references/reusable-components.md).
