@@ -94,3 +94,15 @@ Use haptics only for meaningful user-caused selection, pledge completion, plan c
 Record the activation moment, resolved screen inventory, beat sequence, answer dependencies, derived values, attribution/rating/permission purpose, pledge language, plan sections, paywall/offer exits, representative sources, background treatment, content choreography, accessibility, and unresolved decisions.
 
 Check that every screen earns its place; no question is collected and forgotten; the detailed result visibly combines answers; pricing/disclosures are legible; optional permissions and exits preserve agency; no representative claim is presented as production truth; and the journey activates the real product after monetization or dismissal.
+
+## Pledge through result: states and visual phases
+
+When appropriate to the product, use `pledge -> confirmation -> building -> clean plan result -> paywall -> optional eligible offer`; an approved sequence takes precedence. Design these as distinct moments rather than treating a loading screen or answer summary as the complete result.
+
+Specify the fingerprint pledge's resting, holding, cancelled, and completed states. A circle grows from beneath the finger while held; early release reverses it. Full coverage becomes the same-colour confirmation surface, followed by the personalized confirmation text. Mark the origin, fill colour, approximate hold duration, reveal order, and direct accessible/Reduce Motion alternative. These are interaction specifications, not biometric authentication. Never require a still image to communicate the entire transition.
+
+For the result, design one scrollable story: personalized outcome hero and artwork -> plan-ready confirmation -> brief answer-based target -> concrete stages/weeks -> first action or product preview -> CTA into purchase. Each milestone needs a short title, practical action, and credible benefit; use small coordinated illustrations when useful. Choose the number of stages from the product. Keep spacing generous and hierarchy varied; an answer recap alone is insufficient. Show top and lower scroll positions when needed, with a reachable CTA and explicit content order.
+
+Define visual phases with exact background/foreground colours and asset treatments. The early questions may stay quiet; commitment can use its fill colour; the result can introduce a richer outcome-focused surface. Carry the result's background family, typography, artwork style, and personalized artifact into the paywall. The optional offer may change emphasis while retaining that identity. A continuous journey permits intentional phase colour changes; it does not require one background for every screen. Gradients remain optional.
+
+Ask early for missing hero or milestone illustrations, or offer generation prompts as one coordinated asset set. Record phase boundaries, shared elements, section reveal order, and static reduced-motion states in the handoff. Do not copy promotional countdowns or claims from references into the default result.

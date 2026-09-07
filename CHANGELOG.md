@@ -22,6 +22,8 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 
 ### Changed
 
+- Strengthened standalone `expo-native-builder` with automatic onboarding motion guidance, adaptable welcome/paywall patterns, early artwork requests, and motion recipes including a guarded fingerprint hold-to-fill implementation blueprint.
+- Added clean personalized plan results and coordinated result/paywall/offer visual phases to `expo-native-builder` and `mobile-ui-design`; design handoffs now specify pledge states and standalone ChatGPT screen prompts, including scroll positions and shared visual values.
 - Added flexible welcome-screen composition guidance to `mobile-ui-design` and `expo-native-builder`, covering hero/content proportions, rounded or curved panels, overlapping layers, optional shadows and gradients, and responsive action hierarchy.
 - Added a "Search for the control before building it" rule to `expo-native-builder` so pickers, carousels, sheets, sliders, and similar interaction-heavy controls are looked up on npm before being hand-written in JSX, with a package catalogue for wheel and ruler pickers in `motion-native.md`.
 - Reworked `fullstack-monorepo-setup` around the standard `eslint-config`, `typescript-config`, and Tailwind `ui` packages; shadcn/ui is now an explicit opt-in, and Expo guidance covers Metro, pnpm installs, native dependency integrity, and app-local EAS Build configuration.

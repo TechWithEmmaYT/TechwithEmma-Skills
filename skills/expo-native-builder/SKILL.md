@@ -103,3 +103,7 @@ Run relevant typecheck/lint checks, start Expo, and inspect at least one availab
 Run a mechanical anti-template check: normally one accent family, one neutral family, one approved radius scale, zero unexplained gradients/glass/glow, zero emoji used as interface icons, and one consistent label for each repeated action. Fix every accidental violation; keep an exception only when the user, product, or established brand system requires it.
 
 Build success does not prove visual quality. If no native, device, web, or static visual inspection is available, report the UI as visually unverified. Keep the final handoff concise and list every representative value, formula, price, trial, date, rating, claim, permission, offer, analytics event, purchase action, or backend state still awaiting a production source. Ask whether the user wants to connect the real backend/store catalog and replace those fixtures next.
+
+## Pledge and result handoff
+
+For a fingerprint pledge, plan building, or a result leading into purchase, read both motion and onboarding-paywall references even when the task covers only that moment. Implement the approved design's visual phases and motion states when supplied. Without a design document, choose them using this skill's own defaults; never require another skill to proceed.

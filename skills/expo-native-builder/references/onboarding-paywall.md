@@ -138,3 +138,19 @@ Background treatment is a design decision. Use a plain semantic surface, image-l
 ## Verify the complete journey
 
 Test resolved paths, answer edits, Back/forward behavior, invalid routes, progress, calculations, rapid taps, keyboard, permissions, pledge cancellation/completion, Reduce Motion, plan failure/retry, detailed result continuity, compact screens, paywall close, offer decline, purchase/restore states, and final activation. Report every representative formula, rating, testimonial, attribution event, price, trial, charge date, offer, permission, analytics event, or backend contract awaiting a production source, then ask whether the user wants those fixtures connected to the real backend/store products next.
+
+## Clean result and coordinated purchase phase
+
+For a personalized journey, the adaptable sequence is `pledge -> commitment confirmation -> building -> plan result -> paywall -> optional eligible offer`. Preserve an approved alternative. Building resolves actual checkpoints and leads to a visible result; do not jump directly from a spinner to pricing or copy prototype timers as production work.
+
+Make the result a clean, scrollable explanation of what the user will do and receive:
+
+1. Product-specific artwork, personalized outcome headline, and a clear plan-ready confirmation.
+2. A compact target or explanation connecting the plan to earlier answers.
+3. Meaningful stages or weeks: short title, concrete action, expected benefit stated honestly, and a small illustration when useful. Derive the stages from the product, not a mandatory four-week template.
+4. A concise first action or product preview and optional edit action.
+5. One reachable CTA into the paywall; its label reflects that the plan is already built and does not imply payment.
+
+Use varied section hierarchy, generous spacing, and restrained milestone surfaces; avoid rendering every answer as an equally prominent card. Reveal sections once as they become visible, preserve reading position, and keep a pinned CTA clear of content and the home indicator. Ask for coordinated hero/milestone artwork when missing.
+
+The result can introduce a new visual phase after a quieter opening journey. Define explicit background/foreground tokens per phase: opening, commitment fill/confirmation, and result/purchase. The result and paywall should share a background family, artwork style, typography, and one personalized artifact; an offer may vary emphasis within that family. Persistent layout does not mean an identical background colour on every route: render the destination's phase without a blank frame or whole-screen route animation. Follow exact approved phase colours when provided. Do not automatically add gradients, countdowns, discount blocks, or a second sales story to the result.

@@ -69,3 +69,7 @@ Keep the handoff implementation-neutral so Expo/React Native, SwiftUI, Compose, 
 Confirm the inventory matches the user's product; every ask changes something later; the visual direction can be reproduced; screens contain believable content and relevant states; accessibility and platform needs are recorded; boards stay readable; generated assets actually exist; locked decisions survive refinement; and the approved handoff is concise and self-contained.
 
 Run a mechanical anti-template check: normally one accent family, one neutral family, one approved radius scale, zero unexplained gradients/glass/glow, zero emoji used as interface icons, and one consistent label for each repeated action. Every exception needs a product or brand reason.
+
+## Design the complete onboarding payoff
+
+Whenever the scope includes a pledge, generated plan, result, or connected paywall, read [references/onboarding-paywall-design.md](references/onboarding-paywall-design.md), even when the journey is already specified. Design the interaction states, clean result, and visual continuity into purchase before writing image prompts. This skill supplies a complete platform-neutral design without requiring Expo Native Builder; any implementation agent can consume it. For separately generated screen images, use the per-screen prompt guidance in [references/design-deliverable.md](references/design-deliverable.md).

@@ -84,3 +84,13 @@ For a concept board, select 3–5 screens from different parts of the real journ
 An explicit request to generate counts as approval. Otherwise show the complete prompt, then offer refinement, a concept board, or one numbered full-app board. Generate only the approved board. After generation, compare it with this document, record the actual file path, and note mismatches without silently regenerating.
 
 During refinement, preserve locked decisions and update this same document. Show concise changes unless the user asks to see the full prompt. Approved handoffs keep only current decisions and implementation-relevant information.
+
+## Separate screen images and motion states
+
+When the user wants to generate each screen in ChatGPT, provide a complete copy-ready prompt per requested screen, not only a multi-screen board prompt. Each independently pasted prompt must include the essential shared style values, its visual phase's exact colours, asset/character description, screen-specific copy, content hierarchy, controls, and output framing. Reference the same approved image when the generator supports it; never rely on an unavailable previous chat for consistency.
+
+For a long result, name captures `result-top`, `result-milestones`, and `result-bottom` as needed and state that they are scroll positions of one screen. Preserve content continuity, spacing, and CTA behavior across captures. In the paywall prompt explicitly carry the result's palette, artwork family, and personal outcome, then specify plan selection and billing content. Give the offer its own related emphasis only when it is in scope.
+
+For the pledge, specify the resting screen and same-colour completed destination; provide a separate intermediate hold-state prompt only when requested or needed to explain the design. These are states of one interaction, not extra onboarding steps. Keep motion notes beside the prompts: trigger, origin, moving elements, fixed anchors, approximate duration, cancellation, completion, replay, and Reduce Motion. A generated still validates composition, not animation.
+
+Review separately generated screens together for phase colours, character consistency, typography, proportions, result/paywall continuity, and complete scroll content. The approved handoff must retain these explicit specifications so an implementation agent does not have to infer behavior from screenshots or invent a replacement design.
