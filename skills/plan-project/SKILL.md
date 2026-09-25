@@ -85,8 +85,30 @@ docs/plans/YYYY-MM-DD-short-feature-name.md
 
 Create `docs/plans/` when needed. Use the project's local date and a short, stable kebab-case name. Update the same file as the plan changes instead of creating duplicates.
 
+If `docs/` is a published documentation site — a `docusaurus.config.*`, `mkdocs.yml`, `mint.json`, `.vitepress/`, or a similar generator config sits inside or beside it — internal plans do not belong in the build. Use `plans/` at the repository root instead, or a directory the site's config excludes, and say which was chosen and why.
+
 Never leave the implementation plan only in chat, a hosted artifact, a temporary directory, or an agent-specific cloud workspace. A cloud artifact may be offered as an additional copy, but the project file is required whenever filesystem access is available.
 
-Add or update a concise `Project documents` section in the root `AGENTS.md` with a relative Markdown link to the plan. Preserve all existing instructions and do not copy the full plan into `AGENTS.md`. If the repository already uses another agent instruction file, do not replace it; the saved project document remains the source of truth.
+## Register the plan so agents actually read it
 
-When filesystem access is unavailable, provide the complete Markdown and clearly state the intended project path so the user can save it there.
+Writing the file is not enough. A plan no tool loads changes nothing, and the failure is silent — the plan looks saved and correctly linked while every later agent ignores it.
+
+Add the pointer to the instruction file the project's tools actually load, resolved in this order:
+
+1. If a root `CLAUDE.md` exists, update that file. Claude Code reads `CLAUDE.md` and ignores `AGENTS.md` whenever both are present, so a pointer written only to `AGENTS.md` is invisible in these projects.
+2. Otherwise, if a root `AGENTS.md` exists, update that file.
+3. Otherwise create `AGENTS.md`, the cross-tool convention, and add a `CLAUDE.md` whose only line is `@AGENTS.md` so both resolution paths reach the same content.
+
+Also update `.cursor/rules/*.mdc` or `.github/copilot-instructions.md` when the repository already uses them.
+
+Write an imperative pointer with its trigger under a `Project documents` heading, never a bare link — an agent that reads a link without a reason to open it usually will not:
+
+```markdown
+## Project documents
+
+- Before planning or implementing any feature, read [<plan title>](docs/plans/<file>.md). It is the source of truth for scope, data model, and delivery decisions.
+```
+
+Preserve every existing instruction, and never copy the plan's contents into the instruction file. Because plan filenames carry a date, keep exactly one current entry: when a later plan supersedes an earlier one, update that entry rather than appending a second link, and remove or mark links to superseded plans so the section cannot rot into a list of stale paths.
+
+When filesystem access is unavailable, provide the complete Markdown, state the intended project path, and give the user the exact `Project documents` block to paste into their instruction file.

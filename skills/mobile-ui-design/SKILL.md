@@ -42,7 +42,11 @@ Representative content is not permission to publish false claims. Record what mu
 
 ## Keep one design deliverable
 
-When a project filesystem is available, create or update `docs/design/mobile-design.md`; for one feature use `docs/design/<feature>-design.md`. Keep one file from `Status: Draft` through `Status: Approved`; do not create separate temporary/final copies or automatically edit `AGENTS.md`.
+When a project filesystem is available, create or update `docs/design/mobile-design.md`; for one feature use `docs/design/<feature>-design.md`. Keep one file from `Status: Draft` through `Status: Approved`; do not create separate temporary/final copies.
+
+Writing the file is not enough: register it in the instruction file the project's tools actually load, or later agents will never open it. If a root `CLAUDE.md` exists, update that file — Claude Code reads `CLAUDE.md` and ignores `AGENTS.md` whenever both are present. Otherwise update a root `AGENTS.md`, or create one and add a `CLAUDE.md` whose only line is `@AGENTS.md`. Under a `Project documents` heading, add one imperative pointer with its trigger — `Before implementing any screen, read [<title>](docs/design/<file>.md)` — never a bare link. Preserve every existing instruction, never copy the document into it, and keep one current entry per document. Also update `.cursor/rules/*.mdc` or `.github/copilot-instructions.md` when the repository already uses them.
+
+If `docs/` is a published documentation site, write the design outside the build instead and say where it went.
 
 Target 1,000–2,000 words for the complete design document. This is a compression target, not permission to omit screens or design decisions. Preserve exact visual values, locked requirements, important states, asset prompts, representative content, and replacement notes. Save space by defining shared rules once, keeping ordinary screens to compact inventory entries, expanding only visually or behaviorally distinct screens, and removing rationale, history, rejected alternatives, and repeated prose. Exceed the range only when the user requests more detail or a materially larger product cannot remain complete within it.
 

@@ -31,6 +31,11 @@
     "database-design",
     "postgresql",
     "mongodb",
-    "redis"
+    "redis",
+    "web-design",
+    "web-ui",
+    "landing-page",
+    "dashboard",
+    "nextjs"
   ]
 }

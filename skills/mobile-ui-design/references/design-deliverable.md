@@ -1,6 +1,10 @@
 # Mobile design deliverable
 
-Use one `docs/design/mobile-design.md` file, or `docs/design/<feature>-design.md` for a scoped flow. Keep `Status: Draft` during exploration and change the same file to `Approved` only after user approval. Do not create separate draft/final copies or edit application code/`AGENTS.md` automatically.
+Use one `docs/design/mobile-design.md` file, or `docs/design/<feature>-design.md` for a scoped flow. Keep `Status: Draft` during exploration and change the same file to `Approved` only after user approval. Do not create separate draft/final copies or edit application code automatically.
+
+Writing the file is not enough: register it in the instruction file the project's tools actually load, or later agents will never open it. If a root `CLAUDE.md` exists, update that file — Claude Code reads `CLAUDE.md` and ignores `AGENTS.md` whenever both are present. Otherwise update a root `AGENTS.md`, or create one and add a `CLAUDE.md` whose only line is `@AGENTS.md`. Under a `Project documents` heading, add one imperative pointer with its trigger — `Before implementing any screen, read [<title>](docs/design/<file>.md)` — never a bare link. Preserve every existing instruction, never copy the document into it, and keep one current entry per document. Also update `.cursor/rules/*.mdc` or `.github/copilot-instructions.md` when the repository already uses them.
+
+If `docs/` is a published documentation site, write the design outside the build instead and say where it went.
 
 Keep the complete document near 1,000–2,000 words. Preserve reproducible values and coverage: locked requirements, screen inventory, colour and type roles, spacing and shape rules, states, motion, asset prompts, representative data, real-data replacements, and open decisions. Compress shared rules into one source of truth; use one compact entry for ordinary screens and extra detail only for distinct layouts, conversion moments, or complex states. Remove process history, rationale already implied by a decision, rejected options, generic design advice, and repeated per-screen rules before cutting any product or visual requirement. A large approved inventory may exceed the target only when completeness genuinely requires it.
 

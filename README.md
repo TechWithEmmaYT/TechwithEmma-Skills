@@ -144,6 +144,16 @@ npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill mobile-ui-design
 
 The complete instructions are in [`skills/mobile-ui-design/SKILL.md`](skills/mobile-ui-design/SKILL.md).
 
+### Web UI Design
+
+Turns a website or web app idea, plan, codebase, or references into a complete surface inventory across marketing, authentication, and application screens, one coherent visual direction, and copy-ready section board prompts. It works standalone and can optionally produce a portable `web-design.md` handoff.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill web-ui-design
+```
+
+The complete instructions are in [`skills/web-ui-design/SKILL.md`](skills/web-ui-design/SKILL.md).
+
 ### Plan Database
 
 Inspects a product or codebase and proposes a concise database diagram, ORM choice, query-backed indexes, Redis decision, and MVP-to-scale plan.
@@ -232,9 +242,19 @@ skills/
 │   └── references/
 │       ├── database-plan-template.md
 │       └── managed-redis.md
-└── plan-project/
+├── plan-project/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+└── web-ui-design/
     ├── SKILL.md
-    └── agents/openai.yaml
+    ├── agents/openai.yaml
+    └── references/
+        ├── app-shell-design.md
+        ├── auth-design.md
+        ├── design-deliverable.md
+        ├── landing-page-design.md
+        ├── motion-and-responsive.md
+        └── visual-direction.md
 site/
 ├── index.html
 ├── app.js

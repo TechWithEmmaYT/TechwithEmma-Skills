@@ -19,8 +19,11 @@ This project follows [Semantic Versioning](https://semver.org/). Changes that al
 - `expo-uniwind-theme` for Tailwind CSS v4 semantic tokens, light/dark/system themes, platform selectors, Expo Router navigation colors, fonts, and optional toast feedback.
 - `mobile-ui-design` for building a complete mobile screen inventory and an adaptive prompt-only, concept-board, or full-app-board handoff without requiring other skills.
 - `plan-database` for concise database diagrams, query-backed indexes, Redis decisions, and trigger-based MVP-to-scale planning.
+- `web-ui-design` for planning marketing, authentication, and application surfaces as one web system, with a named macrostructure, reproducible token values, measured spacing and container rules, section headings written as claims, responsive and state coverage, and per-section board prompts.
 
 ### Changed
+
+- Fixed plan and design document registration across `plan-project`, `mobile-ui-design`, and `web-ui-design`. Pointers were written only to `AGENTS.md`, which Claude Code ignores whenever a `CLAUDE.md` is present, so saved plans and design handoffs were silently invisible to later agents. All three now resolve the instruction file the project actually loads, write an imperative pointer with its trigger instead of a bare link, keep one current entry per document, and avoid writing internal documents into a published `docs/` site.
 
 - Strengthened standalone `expo-native-builder` with automatic onboarding motion guidance, adaptable welcome/paywall patterns, early artwork requests, and motion recipes including a guarded fingerprint hold-to-fill implementation blueprint.
 - Added clean personalized plan results and coordinated result/paywall/offer visual phases to `expo-native-builder` and `mobile-ui-design`; design handoffs now specify pledge states and standalone ChatGPT screen prompts, including scroll positions and shared visual values.
