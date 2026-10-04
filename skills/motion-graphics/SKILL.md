@@ -114,6 +114,8 @@ Read [references/shot-design.md](references/shot-design.md) for beat structures,
 
 **"Make me a launch video" means a full-length film, not a teaser.** Default to **45–75 seconds** and build the whole thing. Shipped launch films sit in that range because it is what a product story needs: a hook, three to five capabilities each actually demonstrated, a payoff, and a lockup. Eight seconds holds four shots and cannot carry a product.
 
+**And default to 16:9 at 1920x1080.** A launch film's home is YouTube, a website hero, an X post and an email — all landscape. Render vertical and square only when the user asks for them or names a social-first destination, and when you do, reframe from the same timeline rather than cropping. The short-form explainer is the exception: it is 9:16 by definition. A UI-morph loop is often best at 1:1, since the container is centred and the canvas is plain.
+
 Go shorter only when the user says so — a named duration, "teaser", "short", "quick", a platform with a hard limit, or an explicit budget constraint. Never shorten silently to save render time or tokens; a 20-second film delivered against an unspecified brief is a worse outcome than a longer render, and the user cannot tell from the file that it was cut short.
 
 If the brief is genuinely ambiguous and a wrong guess would waste the production, ask once, in the same message as the rest of the brief-back, and name the default you will otherwise use. Under "go all out", do not ask — take the long default.
@@ -176,7 +178,9 @@ Never claim a render, a score, or a visual approval without having run the comma
 
 ## Deliver every format from one timeline
 
-Write scenes against a layout function rather than fixed pixels, then render 9:16, 1:1, and 16:9 from the same timeline, reframing type and UI per format. Never crop a 16:9 render down to vertical, and never promise arbitrary reframing from one finished render.
+Write scenes against a layout function rather than fixed pixels so any aspect ratio can be rendered from one timeline, reframing type and UI per format. Never crop a finished render to another shape, and never promise arbitrary reframing from one output.
+
+Render only what was asked for. A launch film ships 16:9 at 1920x1080 by default; add 9:16 and 1:1 when the user names a social destination. Rendering three formats triples the time for two files nobody requested.
 
 Take the frame rate from the brief rather than defaulting to 60. 60 fps suits fast camera moves and UI motion; 30 is right for narration-led short form and halves both render time and file size; match the source when editing existing footage. Render only the formats that were asked for.
 

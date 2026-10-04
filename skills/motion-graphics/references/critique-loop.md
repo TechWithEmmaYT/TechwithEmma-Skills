@@ -52,8 +52,10 @@ done
 A contact sheet finds composition problems. Three narrower views find the rest:
 
 ```bash
-# Phone test: how it reads at the size it will actually be watched
-ffmpeg -v error -y -i out/final.mp4 -vf "fps=1,scale=360:-1,tile=5x3" -frames:v 1 out/phone.png
+# Small-size test: check at the width this format is actually watched at.
+#   16:9 long form  -> 640 px (feed autoplay, email, small embed)
+#   9:16 short form -> 360 px (phone, full screen)
+ffmpeg -v error -y -i out/final.mp4 -vf "fps=1,scale=640:-1,tile=3x3" -frames:v 1 out/small.png
 
 # Strip: 12 consecutive frames around a fast action, to catch pops and overlaps
 ffmpeg -v error -y -ss 4.1 -i out/final.mp4 -vf "scale=320:-1,tile=12x1" -frames:v 1 out/strip.png
@@ -65,7 +67,9 @@ ffmpeg -v error -y -stream_loop 1 -i out/final.mp4 -c copy out/loop_check.mp4
 ffmpeg -v error -y -ss 1.2 -i out/final.mp4 -frames:v 1 out/poster.png
 ```
 
-The phone test is the one most often skipped and the one that catches the most. Type that is elegant at full size is frequently illegible at 360 px, and that is the size the video is watched at.
+The small-size test is the one most often skipped and the one that catches the most. Type that is elegant at full size is frequently illegible once scaled down.
+
+**Match the width to the format.** A 16:9 launch film is watched on a laptop, a TV, a site hero and an autoplaying feed card — check it at 640 px, not at 360. A 9:16 short really is watched on a phone, so 360 px is right there. Testing a landscape film at phone width condemns type that was never going to be seen that small, and testing a vertical film at 640 px passes captions that will be unreadable in the feed.
 
 ## The rubric
 
@@ -74,7 +78,7 @@ Score each out of 10, with a timestamp for anything below 8:
 | Criterion | Failing looks like |
 | --- | --- |
 | Hook | Nothing in the first 2 seconds that would stop a scroll |
-| Readability at 360 px | Any caption or UI label that cannot be read |
+| Readability at delivery width | Any caption or UI label that cannot be read at 640 px (16:9) or 360 px (9:16) |
 | Motion quality | Sliding, linear moves, pops, dead frames, unintended overshoot |
 | Variety | A stretch over 4 seconds with no new information |
 | Composition | Crowded edges, floating elements, inconsistent margins |
@@ -111,7 +115,7 @@ Re-render narrowly. Re-rendering the whole film for a fix at 00:14 is what makes
 Deliver and state plainly:
 
 - `out/final.mp4` for each requested format, with real durations.
-- `out/poster.png` and `out/contact.png`.
+- `out/poster.png`, `out/contact.png` and `out/small.png`.
 - `out/loop_check.mp4` when the film loops.
 - A short `README.md` with the commands to re-render and change the film.
 - The list of any representative values, so nothing invented is mistaken for real.
