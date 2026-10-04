@@ -14,6 +14,26 @@ The repository also includes Claude Code plugin metadata in [`.claude-plugin/plu
 
 ## Current skills
 
+### Motion Graphics
+
+Plans and renders motion graphics videos — launch films, UI-morph loops, showreels, vertical explainers, and edits of supplied footage — with a cross-platform capability preflight, a spec and shotlist on a beat grid, a twelve-recipe scene-pattern library, the signature devices of shipped launch films, a deterministic `seek(t)` renderer, real captured product assets, two-pass-normalised synthesized sound, and a defect-driven frame critique before delivery.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill motion-graphics
+```
+
+The complete instructions are in [`skills/motion-graphics/SKILL.md`](skills/motion-graphics/SKILL.md).
+
+### Motion Launch
+
+Creates reference-led motion graphics, product launch films, UI demos, showreels and short-form explainers with timed animation, audio, editable source and inspected renders.
+
+```bash
+npx skills add TechWithEmmaYT/TechwithEmma-Skills --skill motion-launch
+```
+
+The complete instructions are in [`skills/motion-launch/SKILL.md`](skills/motion-launch/SKILL.md).
+
 ### Eve Agent Builder
 
 Adds a production Vercel Eve application agent to an existing Next.js, React, Node.js, or MERN project, with authenticated app tools, approvals, schedules, evals, and shared sidebar/full-page `useEveAgent` interfaces.

@@ -1,6 +1,6 @@
 {
   "name": "techwithemma-skills",
-  "description": "Production-minded skills for Node.js, mobile UI planning, Expo design and app assets, and full-stack monorepos",
+  "description": "Production-minded skills for Node.js, mobile UI planning, Expo design and app assets, full-stack monorepos, and code-rendered motion video",
   "version": "0.1.0",
   "author": {
     "name": "TechWithEmma"
@@ -36,6 +36,12 @@
     "web-ui",
     "landing-page",
     "dashboard",
-    "nextjs"
+    "nextjs",
+    "motion-graphics",
+    "launch-video",
+    "video-rendering",
+    "ffmpeg",
+    "playwright",
+    "short-form-video"
   ]
 }
