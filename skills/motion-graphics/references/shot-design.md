@@ -152,13 +152,20 @@ Ask it literally: *someone who has never heard of this, seeing it mid-scroll wit
 
 ### Lead with the logo, or earn it
 
-Three of the six films studied open on the mark; three never show it until the end. The split is not stylistic:
+**For a brand launch film, the default is mark-then-wordmark.** It is the most common opening in shipped launch films and the safest: a launch exists to attach a product to a name, so leading with the name is doing the film's job rather than delaying it. Choose it unless there is a specific reason below not to — and the agent makes that call itself rather than asking.
 
-**Open on the mark** when the name carries weight — a known brand, or a release where the name *is* the news. The pattern is consistent: the mark lands alone, the wordmark extends from it (usually rightward, on a stiffer spring than the mark), both hold about a second, then the wordmark dissolves or blurs out rather than cutting, so the mark reads as persisting underneath. Then the film starts properly. It costs 1–1.5s and buys legitimacy.
+The pattern is consistent across the films that use it: the mark lands alone, centred, on a Heavy or Display spring. The wordmark extends from it — usually rightward, on a stiffer spring, starting 0.1–0.2s later so the two read as one gesture rather than two events. Both hold about a second. Then the wordmark dissolves or blurs out rather than cutting, so the mark reads as persisting underneath while the film begins. Total cost 1–1.5s.
 
-**Skip it** when the audience does not know the name yet and something else is more persuasive — the output, the problem, the command. An unknown wordmark in the first second is a logo nobody can read spending your most valuable two seconds. Put it at the end instead, where the film has earned it, and where recognition is the point rather than the obstacle.
+**Deviate when one of these is true:**
 
-A useful test: if the name were replaced with a competitor's, would the opening still work? If yes, the name is doing no work and should not be first.
+- **The audience does not know the name and something else is more persuasive.** An unrecognised wordmark in the first second is a logo nobody can read, spending the most valuable two seconds in the film. Open on the output, the problem, or the command, and put the lockup at the end where the film has earned it.
+- **The product's output is more impressive than its name.** Open inside the result and reveal the tool afterwards.
+- **The film is a capability demo rather than a brand moment** — a developer tool, an install, a workflow. Open on the command or the interaction.
+- **The brand explicitly opens another way.** A supplied brand guide overrides this.
+
+A useful test: if the name were swapped for a competitor's, would the opening still work? If yes, the name is doing no work and should not be first.
+
+Whatever is chosen, record it in `docs/spec.md` as a decision with its reason. "Mark-then-wordmark, because this is a named launch for an audience that already knows the brand" is a plan; opening on a logo because every film does is not.
 
 ### Opening devices
 
