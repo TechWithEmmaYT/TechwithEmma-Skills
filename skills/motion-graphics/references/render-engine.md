@@ -14,6 +14,8 @@
 
 ## The render contract
 
+This reference implements the custom Canvas route. Framework routes use their native contracts.
+
 The page exposes one function. `window.seek(t)` paints the complete frame for time `t` in seconds and returns when the frame is ready. Everything else follows from that:
 
 - No state carried between frames. Calling `seek(9.5)` straight after `seek(0.1)` must produce the same pixels as playing through.
@@ -26,7 +28,7 @@ The payoff is that any frame can be rendered independently, a fix costs one line
 
 ## House rules file
 
-Write this into `motion/CLAUDE.md` so later sessions inherit it:
+For Canvas projects, adapt this into `motion/CLAUDE.md` so later sessions inherit it. For frameworks, record the native render command and timeline contract instead:
 
 ```markdown
 # Motion studio rules
@@ -49,9 +51,9 @@ Write this into `motion/CLAUDE.md` so later sessions inherit it:
 
 ## Gate before showing anything
 1. Render a contact sheet and look at it.
-2. Score hook, readability at 360px, motion, variety, brand accuracy, sound sync.
-3. Fix the three worst problems. Repeat until every score is 8+.
-4. Only then run the full render.
+2. Inspect a draft animatic and intermediate transition frames; check reading time and interactions.
+3. Log timestamped defects, fix them and re-inspect affected seconds.
+4. Run the final render after material defects are resolved; report remaining limitations.
 ```
 
 ## The film page
@@ -278,11 +280,4 @@ Never use `will-change` on anything the camera scales — it rasterises at the p
 
 ## When to use a framework instead
 
-Plain canvas plus Playwright has zero dependencies and total control, and is the right default. Switch when the user asks, or when the shape of the work demands it:
-
-- **Remotion** (React) for a series, a template others will reuse, or data-driven videos where the content changes but the film does not. Preview with `npx remotion studio`, render with `npx remotion render`.
-- **HyperFrames** (HTML + GSAP) when the film is essentially a web page with choreography, or when the team already thinks in DOM and CSS.
-
-Both still need the same discipline: deterministic time, springs instead of easing curves, a beat grid, and a critique loop. Say which route is in use before building, because switching later means rewriting every scene.
-
-Check each framework's current documentation before running its commands rather than copying setup lines from an article; both projects have changed their CLI, and Remotion's spring options in particular differ by version. Never install a second framework to satisfy this skill — if the project has neither, route A needs nothing beyond Playwright.
+Use the route table in `../SKILL.md` as the source of truth: Canvas is the default; HyperFrames is the second choice when its HTML composition tools materially help; Remotion is for an explicit request or an existing Remotion project. When selecting a framework, load its available skill and current official documentation. Use its native timeline and renderer while preserving deterministic time, asset readiness, sound sync and visual review.

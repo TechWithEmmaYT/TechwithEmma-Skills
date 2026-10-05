@@ -1,9 +1,11 @@
 ---
 name: motion-graphics
-description: Produce motion graphics videos rendered entirely from code — product launch films, feature announcements, UI-morph loops, showreels, animated explainers, and vertical short-form videos — using a deterministic seek(t) renderer, headless Chromium frame capture, closed-form springs, beat-locked synthesized sound, and a frame-critique loop. Use when the user asks for a launch video, product reel, promo video, motion graphics, animated explainer, teaser, demo video, or short-form video, with or without an existing brand.
+description: Create product launch videos, UI demos, motion graphics, explainers and short-form films with a request-appropriate render route, real product assets, choreographed interactions, sound and visual review. Use for launch videos, product reels, promos, animated explainers, teasers, demo videos and more.
 ---
 
 # Motion Graphics
+
+Act as a motion designer and product-launch director. Build a film through actions, transformations and visual continuity. Do not default to presentation slides of headings, bullets and screenshots with entrance effects. Title cards and still holds are useful when they support the story or give the viewer time to understand a result.
 
 ## Contents
 
@@ -75,7 +77,7 @@ Three short files, before any animation code:
 - `docs/style_guide.md` — the look in values precise enough to reproduce: palette hexes, type family and weight and tracking, shot lengths, transitions, camera, texture.
 - `docs/shotlist.md` — one row per shot: start, end, beat, what is on screen, how text enters and exits, camera move, SFX cue, asset. Times rounded to the frame so a cut never lands inside a motion-blur group.
 
-Before writing shots, choose the **opening, the middle and the ending as three separate decisions**, and record which three and why. Decide these yourself; do not ask. For a brand launch film the default opening is mark-then-wordmark — the mark lands, the name extends from it on a stiffer spring, both hold, then the wordmark dissolves as the film begins — because a launch exists to attach a product to a name. The opening is not picked from a menu: name the first question this audience actually has — what's new, what would it do for me, is it for me, what does it work on, can it really make something good, how do I get it — and answer that in two seconds. The device follows from the question. Whether the logo comes first follows from whether the name carries weight for this audience; an unknown wordmark in the first second wastes the most valuable two seconds in the film. The options and when each applies are in [references/shot-design.md](references/shot-design.md#choose-an-opening-a-middle-and-an-ending-separately).
+Before writing shots, choose the opening, middle and ending separately. Base the opening on the audience's first question and the product's strongest visual evidence. A logo reveal, typed request, result-first shot or visual metaphor can each work; none is mandatory. Record what earns attention in the first two seconds and how it leads into the demonstration. For each interaction, specify starting state → action → response → result → readable hold. Design neighbouring scenes together: specify what persists, transforms or carries attention across the join, with shared boundary position, scale and motion direction. A transition should develop the previous state, not merely decorate the gap between unrelated scenes. Read [references/product-choreography.md](references/product-choreography.md) for UI films and [references/shot-design.md](references/shot-design.md) for structure.
 
 Keep each to about a screen; a spec longer than that stops being read, including by the agent that wrote it. Read [references/production-plan.md](references/production-plan.md) for the filled example, the shotlist table, the autonomy rules, and the director's brief that films over 60 seconds need.
 
@@ -124,18 +126,17 @@ State the chosen duration in `docs/spec.md` with the reason, so a 20-second choi
 
 ## Choose the render route once
 
-Decide before building, say which and why, record it in `docs/spec.md` and `motion/CLAUDE.md`, and never switch mid-film — switching means rewriting every shot.
+Default to **Canvas + seek(t) + Playwright**. Choose the route before building and record the reason in `docs/spec.md`. Honour an explicit user choice and preserve an existing suitable video project.
 
-| Route | Choose when |
-| --- | --- |
-| **Canvas + `seek(t)` + Playwright** | Default. Zero dependencies, total control, and what an unguided model picks anyway |
-| **Remotion** (React) | The user asks · the repo has it · a template or series where content changes but the film does not |
-| **HyperFrames** (HTML + GSAP) | The user asks · the repo has it · the piece is DOM- and CSS-shaped |
-| **Node canvas rigs** | The look is hand-drawn — watercolour, paper, ink, visible brush texture |
-| **An existing editor or compositing project** | Real footage, an exact edit, or a localised replacement in a film the user owns. Preserve the original timeline rather than rebuilding it |
-| **3D, driven by the chosen renderer** | The brief needs believable device sides, lens changes, occlusion, or a camera orbit. A skewed screenshot cannot produce those |
+| Preference | Route | Choose when |
+| --- | --- | --- |
+| 1 — default | **Canvas + seek(t) + Playwright** | A self-contained code-rendered film, custom graphics, UI choreography or procedural animation can be built directly. Keep this route unless another has a concrete advantage for the request. |
+| 2 | **HyperFrames (HTML)** | Reusable HTML/CSS components, complex DOM layouts or framework-managed media and timelines materially simplify the requested film. It is an option, not a mandatory upgrade for every UI video. |
+| 3 | **Remotion (React)** | The user asks for Remotion or an existing Remotion project should be continued. If React reuse offers a substantial advantage otherwise, explain the proposed choice rather than silently making it the default. |
 
-Never install a framework to satisfy this skill; route A needs nothing beyond Playwright. Verify a framework's current CLI and API against its own docs rather than copied examples. Read [references/render-engine.md](references/render-engine.md).
+For footage-led or exact edits, preserve the existing editor/compositor timeline. Use drawing rigs for hand-drawn work and real 3D where perspective, occlusion or camera orbits require it; these can supply assets or layers to the selected pipeline.
+
+Install only necessary dependencies within the task's authorization and environment permissions. If the chosen route is unavailable, disclose the fallback and its visual tradeoffs. When using a framework, read its available skill and current official docs; use its native timeline and render contract instead of imposing the Canvas capture loop. Existing brand and reference information should answer creative setup questions where possible. Prototype the hardest interaction and scene handoff before extending the film.
 
 ## Get a reference, or go find one
 
@@ -152,7 +153,7 @@ Use one primary reference, plus at most one secondary for a specific element suc
 
 ## Resolve the assets before animating
 
-Most of what appears on screen is drawn in code, not sourced: device frames, browser chrome, cursors, charts, loaders, mascots, icons, gradients, grain, and all type. Real product UI is captured from the live URL with Playwright and never redrawn from imagination. Only photographic images, 3D renders, character art, live footage, and natural voiceover need an outside generator.
+Reuse the actual product's components, markup, styles, fonts and assets when available. For animated UI, prefer source components or faithful reconstructions of observed states; use screenshots for static proof and recordings for real interactions. Never invent product functionality or pass imagined UI off as real. Sanitize private data and record representative content. Graphics, mascots and device assets should serve the product story; choose code, existing assets or generation according to the shot.
 
 Probe in order — connected image or video MCP servers, then API keys in `.env`, then free fallbacks, then redesign the shot so it does not need the asset, and only then ask the user. List the asset manifest in `docs/spec.md` before animating so a wrong screen is caught early.
 
@@ -162,7 +163,7 @@ Representative data is allowed where real data is unavailable, but never put `sa
 
 ## Build on the seek(t) contract
 
-Every film is a pure function of time. `window.seek(t)` paints the exact frame for moment `t` with no state carried between frames, no CSS transitions, no timers, no `requestAnimationFrame` during render, and seeded noise instead of `Math.random`. That rule is what makes a render reproducible, a one-line fix cheap, and frame 812 renderable without simulating the 811 before it.
+Every generated frame must be reproducible from timeline time. Canvas uses `window.seek(t)`; Remotion uses its frame-driven composition model; HyperFrames uses its native seek-safe timeline. Use the selected framework's contract rather than requiring the same function name everywhere. Avoid wall-clock timers, unseeded randomness and accumulated state during rendering; await fonts and assets. The custom renderer examples below apply to Canvas only.
 
 Read [references/render-engine.md](references/render-engine.md) for the page skeleton, the capture loop, subframe motion blur, the determinism check, and format-aware layout. Read [references/motion-language.md](references/motion-language.md) for spring presets with measured overshoot, multi-target `track()`, text and transition recipes, and the banned-defaults list.
 
@@ -172,7 +173,7 @@ Sound is where a code-rendered film stops reading as a tech demo. Cuts land on b
 
 ## Look at your own frames before showing anything
 
-Render a contact sheet, open it, and judge it as a harsh motion director rather than its author. Films that work are three or more critique rounds, not one shot. Score hook, phone-size readability, motion quality, variety, composition, brand accuracy, and sound sync out of 10; fix the three worst problems; re-render only the affected seconds; repeat until every score is 8 or above. Read [references/critique-loop.md](references/critique-loop.md).
+Before extending a UI film, render a short draft containing its opening, one complete interaction and a transition. Inspect stills and intermediate transition frames, then inspect a low-resolution animatic of the whole timeline before the final encode. Check settled reading time, input state changes, cursor causality, clipping and continuity. Contact sheets establish layout, not motion or audio quality. Log timestamped defects, fix the most consequential ones and re-inspect affected seconds. Stop when the checks find no new material defects; report remaining weaknesses without inflating scores. Read [references/critique-loop.md](references/critique-loop.md).
 
 Never claim a render, a score, or a visual approval without having run the command and looked at the output.
 
@@ -188,6 +189,6 @@ Deliver `out/final.mp4` per format, `out/poster.png`, `out/contact.png`, `out/lo
 
 ## Quality check
 
-Confirm the film matches the requested subject and duration; the hook lands inside 2 seconds; no 2-second stretch is static; every product screen is real; every claim and number is confirmed or listed for replacement; motion uses springs with overshoot only where intended; the render is deterministic across two runs; audio sits at the target loudness with cuts on the beat; type stays readable at 360 px wide; and the last frame sets up the first when the piece loops.
+Confirm the film matches the requested subject and duration; the hook lands inside 2 seconds; holds have a reading or story purpose; every product screen is grounded in the actual product; every claim and number is confirmed or listed for replacement; motion uses springs with overshoot only where intended; the render is deterministic across two runs; audio sits at the target loudness with cuts on the beat; type stays readable at the intended viewing size (check 640 px landscape and 360 px vertical as baselines); and the last frame sets up the first when the piece loops.
 
-Run the anti-template check before declaring it finished: no centred title on a gradient, no shot where everything simply fades in, no corner labels or frame borders, no glow on UI chrome, no generic particle burst, one display face and one UI face, one accent colour. Every exception needs a brand reason recorded in `docs/style_guide.md`.
+Run the anti-template check: every scene and graphic should serve this product. Gradients, centred type, logos, fades and celebration effects are choices, not automatic failures. Use them when the reference, brand or story supports them; avoid substituting them for a demonstration. Keep a coherent type and colour system and record the visual rationale in `docs/style_guide.md`.

@@ -81,7 +81,8 @@ Ending:  the live CTA (next step is to open the app).
 </structure>
 
 <build>
-Route: canvas + seek(t) + Playwright. No framework in this repo and no series planned.
+Route: canvas + seek(t) + Playwright for this custom-drawn single-container morph.
+Canvas remains the default. Consider HyperFrames when HTML component reuse materially helps; use Remotion when requested or already established. Follow the route table in SKILL.md.
 Springs: snappy (320/30) for cursor and controls, default (170/26) for the container,
 heavy (90/18) for the wordmark. No overshoot on type.
 Assets: screenshots of /inbox, /board and /insights captured with Playwright; logo from

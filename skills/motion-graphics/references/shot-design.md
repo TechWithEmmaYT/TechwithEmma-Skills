@@ -55,10 +55,10 @@ The structure for the default length:
 ```
 0:00-0:02  Hook. The problem, the result, or the product's single most striking image.
 0:02-0:06  The product arrives. The UI assembles rather than fading in.
-0:06-0:20  Three to five features. Each one: a claim in type, then the real UI doing it,
-           with a cursor causing the change. One feature per 3-4 seconds.
-0:20-0:24  One number that proves it works, counted up, with its unit.
-0:24-end   Logo lockup, one line of positioning, the call to action.
+0:06-0:40  Three to five features. Each one: a claim in type, then the real UI doing it,
+           with a cursor causing the change. Allow enough time for action, result and reading.
+0:40-0:48  Payoff: a useful result or a confirmed metric, if relevant.
+0:48-end   Logo lockup, one line of positioning, the call to action.
 ```
 
 What separates the good ones: the claim and its proof share the screen, so the viewer never has to take a sentence on trust. Make each benefit visible on the same demonstration asset rather than cutting to an unrelated screen — holding one artefact while it changes is what makes a feature list feel like a product instead of a brochure.
@@ -152,11 +152,11 @@ Ask it literally: *someone who has never heard of this, seeing it mid-scroll wit
 
 ### Lead with the logo, or earn it
 
-**For a brand launch film, the default is mark-then-wordmark.** It is the most common opening in shipped launch films and the safest: a launch exists to attach a product to a name, so leading with the name is doing the film's job rather than delaying it. Choose it unless there is a specific reason below not to — and the agent makes that call itself rather than asking.
+Choose mark-then-wordmark when brand recognition or the announcement makes identity a useful opening. Choose a request, result or product-specific metaphor when that communicates value faster. Neither logo-first nor logo-last is a universal rule.
 
 The pattern is consistent across the films that use it: the mark lands alone, centred, on a Heavy or Display spring. The wordmark extends from it — usually rightward, on a stiffer spring, starting 0.1–0.2s later so the two read as one gesture rather than two events. Both hold about a second. Then the wordmark dissolves or blurs out rather than cutting, so the mark reads as persisting underneath while the film begins. Total cost 1–1.5s.
 
-**Deviate when one of these is true:**
+**Prefer another opening when one of these is true:**
 
 - **The audience does not know the name and something else is more persuasive.** An unrecognised wordmark in the first second is a logo nobody can read, spending the most valuable two seconds in the film. Open on the output, the problem, or the command, and put the lockup at the end where the film has earned it.
 - **The product's output is more impressive than its name.** Open inside the result and reveal the tool afterwards.
@@ -205,7 +205,7 @@ The first two seconds decide whether the rest is watched, and they have to work 
 
 Strong hooks: the result before the explanation; a number that should not be possible; the problem stated in five words of huge type; one striking image with no text at all; a familiar interface doing something unfamiliar.
 
-Weak hooks: a logo; the product name; "introducing"; a slow fade from black; a sentence that needs the second sentence.
+Weak hooks delay understanding without earning curiosity: an unexplained logo held too long, a slow empty fade, or copy that only becomes meaningful in the following scene. Judge the opening in context, not by a banned-device list.
 
 ## The closing line
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Motion Graphics"
   short_description: "Produce launch films and motion videos rendered from code"
-  default_prompt: "Use $motion-graphics to plan and render a motion graphics video for my product — capability preflight, a spec and shotlist on a beat grid, a deterministic seek(t) renderer with real product assets, synthesized sound, and a frame-critique pass before delivery."
+  default_prompt: "Use $motion-graphics to plan and render a motion graphics video for my product — capability preflight, a spec and shotlist on a beat grid, a request-appropriate renderer with real product assets, complete UI interactions, synthesized sound, and a draft motion review before delivery."

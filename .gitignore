@@ -3,10 +3,7 @@ web-skill-example/
 web-ui-design
 __pycache__/
 tmp/
+tmp/notion-launch-video/
 _resources
-
-
-
-and why did the skill not use hyperframe or remotion they are heavy or not good am asking this one it did it did well on first try 
-also learn from  this notion launch
-'/Users/mac/Techwithemma-apps/3d-studio/notion-launch-made -by-someone.mp4' see this person notion launch comepare with what the agent did 
+_resource
+expo-app-assets.zip

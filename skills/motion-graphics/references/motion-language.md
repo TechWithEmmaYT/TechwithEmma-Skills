@@ -123,11 +123,13 @@ Typing a headline with a visible caret, and embedding real UI chips inside a run
 
 ## Transitions between shots
 
-**A transition is a shot, not a gap between shots.** The weakest films cut or crossfade; the strong ones spend half a second on a designed event that carries meaning across the join. Budget for them in the shotlist with their own start and end times.
+**Design the join between shots.** Use a cut, fade, shared object, mask or camera move according to story and tone. Describe outgoing state, incoming state, timing and any persistent object in the shotlist. A simple cut can be stronger than an elaborate transition.
+
+For connected product sequences, first read [product-choreography.md](product-choreography.md#make-scenes-flow-into-one-another): design how the outgoing state becomes the incoming state before selecting an effect.
 
 Pick a small set and repeat it. A different transition on every cut reads as a template demo rather than a film.
 
-- **Hard cut on the beat.** The default, and always correct on a downbeat. Round the cut to a whole frame so motion blur never smears it.
+- **Hard cut on the beat.** Useful for a clear change of idea; align to a beat when it supports pacing and comprehension. Round the cut to a whole frame so motion blur never smears it.
 - **Match cut.** A shape, colour field, or UI element continues across the join in the same screen position. The strongest transition available and the only one that makes a film feel authored.
 - **The swept mass.** A shaped field — a halftone dot wave, a solid form, a blurred band — sweeps across frame, inverts the background behind it, and carries the outgoing type out with it. Described in full below.
 - **Camera through the interface.** The camera pushes into a region of the UI until the surrounding chrome passes the frame edges and the content becomes the new scene. No cut at all: the viewer travels from the tool into its output.

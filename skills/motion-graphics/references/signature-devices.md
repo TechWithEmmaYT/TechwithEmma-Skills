@@ -63,7 +63,7 @@ Keep chips at cap height, vertically centred on the baseline, with the same radi
 
 ## The word slot
 
-A stable phrase with one word swapping: `Jockey lets ___` cycling teams, developers, agents. Or a role list where the selected item settles and the rest stay secondary.
+A stable phrase with one word swapping: `Built for ___` cycling teams, developers, agents. Or a role list where the selected item settles and the rest stay secondary.
 
 Hold the fixed words completely still. Only the slot moves, clipped to its own viewport so words enter and leave without disturbing the line. Measure the widest variant and reserve that width, or the sentence reflows on every swap and the stillness is lost.
 
