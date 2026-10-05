@@ -14,6 +14,21 @@
 
 If the user supplies a track, measure it and cut the picture to what is actually there. If they do not, synthesize the score in code on the same timeline as the picture, which means the grid is chosen rather than detected and no audio analysis library is needed at all.
 
+Effects are a separate decision from the score: synthesize them, source them for this product,
+or fall back to the bundled CC0 set at `assets/sfx/` — see
+[assets-and-generation.md](assets-and-generation.md#sound-effects-make-source-or-fall-back).
+Prefer synthesis when the film has a designed sonic identity, since the effects can then share
+the score's tuning and decay. Two rules hold whichever route you take:
+
+- **Randomise across variants.** One keypress sound repeated per character is the sound of a
+  machine typing, not a person. Vary it, seeded by character index so the render stays
+  deterministic.
+- **Align the cue to the START of the motion**, not its resolution — clicks at the press,
+  reveals at the payoff.
+
+Volumes that work: music bed 0.30–0.40, effects 0.55–0.85, both lower for a restrained tone.
+Never put the bed above 0.5.
+
 Decide this in the plan, because it determines whether numpy and librosa need installing. Never make someone install audio analysis for a film whose score the agent is writing.
 
 ## Measuring a supplied track
@@ -62,6 +77,26 @@ A tempo estimate is not a beat grid. Align the significant reveals and cuts to a
 With no supplied track the tempo is a decision, so write the grid into the spec and build both picture and sound from it. A serviceable score for a 20–30 second film is four layers, all cheap to synthesize: a sub-bass pulse on downbeats, a filtered noise or short-decay percussion layer on beats, a sustained pad or drone for the body, and a simple melodic motif of three to five notes that returns at the end card.
 
 Compose against the structure rather than looping one bar: drop the pad for the two seconds before the main reveal so the reveal has somewhere to arrive, and leave the last bar thinner so the end card is not fighting a full mix.
+
+## Density: how often something should happen
+
+Measured across four shipped launch films, an audio event lands **every 0.24–0.34 seconds** —
+roughly two per beat at 100 BPM. That is denser than it sounds when you are writing the cue
+list, and it is the gap most synthesized scores fall into.
+
+A score can measure correct on every other axis and still be half as eventful as it needs to
+be. One case: bass/mid/air balance at 58/35/7%, continuity and dynamic range both inside the
+shipped range, loudness exactly on target — and one onset every 0.57s. Nothing was wrong with
+the sound; there was simply not enough of it. **Balance is not density.** Check both.
+
+Count the cues against the duration before rendering:
+
+```bash
+node scripts/measure_film.mjs out/final.mp4    # reports onset density and cue-to-event lock
+```
+
+Notion 3.7 lands 93% of its visual events within 100ms of an audio onset. Aim for that: every
+significant picture change gets a hit, and the gaps between get the score's own events.
 
 ## Sound effects
 

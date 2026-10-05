@@ -6,6 +6,7 @@
 - [Capture the real product](#capture-the-real-product)
 - [Extract the brand](#extract-the-brand)
 - [Icons and logos](#icons-and-logos)
+- [Sound effects: make, source, or fall back](#sound-effects-make-source-or-fall-back)
 - [The generator probe](#the-generator-probe)
 - [Generate then trace](#generate-then-trace)
 - [Voiceover](#voiceover)
@@ -72,11 +73,70 @@ Pull the font family from the computed style and fetch the matching family from 
 
 ## Icons and logos
 
-The product's own logo comes from `/favicon.svg`, the `og:image`, the nav `<img>`, or a press-kit page — prefer SVG so it stays sharp under a camera push.
+**Go and get the real mark. Do not draw an approximation.** A hand-drawn "Stripe-ish" or
+"Canva-ish" shape is the clearest possible signal that a film was made by someone who did not
+look. Sourcing a logo is research, and it takes about ten seconds per brand — budget for it in
+the plan rather than treating it as an obstacle.
 
-Third-party brand marks (model logos, platform icons, integration grids) come from Simple Icons, which ships thousands of brand SVGs with no key. General UI icons come from Lucide. Both are fetchable from a CDN and recolourable, which matters because an icon row that does not share the film's accent looks pasted in.
+Work down this list and stop at the first that returns a usable file:
 
-Respect trademark: use a brand's real mark when showing a genuine integration, and never alter it, imply a partnership that does not exist, or build a competitor comparison the user has not approved.
+1. **Simple Icons** — thousands of brand SVGs, no key, one URL per brand. The right default
+   for an integration row, because every mark arrives as a single-path SVG you can recolour to
+   the film's accent.
+   ```bash
+   curl -sL https://cdn.simpleicons.org/stripe -o assets/icons/stripe.svg
+   curl -sL https://cdn.simpleicons.org/canva  -o assets/icons/canva.svg
+   ```
+2. **The brand's own site.** Try `/favicon.svg` first, then the `<link rel="icon">` target, the
+   `og:image`, the nav `<img>`, and finally a `/press`, `/brand`, `/newsroom` or `/about/brand`
+   page — most companies publish a logo kit with the usage rules attached.
+   ```bash
+   curl -sL https://stripe.com/favicon.ico -o assets/icons/stripe.ico
+   # or pull whatever the page actually references
+   curl -sL https://stripe.com | grep -oE '<link[^>]+rel="[^"]*icon[^"]*"[^>]*>'
+   ```
+   Favicons are often 32px — fine for a chip at 48px, too small for anything the camera pushes
+   into. Prefer the press kit's SVG when the mark appears large.
+3. **Search the web for it.** An ordinary image search for `"<brand> logo svg"` or
+   `"<brand> press kit"` finds the official asset for almost every company. Use whatever search
+   or fetch tool the environment allows, download the file, and open it to confirm it is the
+   current mark rather than a fan recreation or a retired version.
+4. **General UI icons** — Lucide, from a CDN, for anything that is not a brand: arrows, files,
+   check marks, chevrons.
+5. **Ask the user**, naming the specific brands you could not source. One line, with the shot
+   it is for. Users frequently have the logo kit already.
+
+Prefer SVG everywhere so marks stay sharp under a camera push, and recolour them to the film's
+accent — an icon row in its native brand colours looks pasted into a film that has one accent.
+
+**Respect trademark.** Use a brand's real mark only when showing a genuine integration, never
+alter the mark itself, never imply a partnership that does not exist, and never build a
+competitor comparison the user has not approved. When a mark cannot be cleared, use the brand's
+name as plain text beside a neutral geometric glyph rather than inventing a lookalike — and say
+in the handoff that the names need clearing.
+
+## Sound effects: make, source, or fall back
+
+Three ways to get an effect, in the order they usually produce the better film:
+
+1. **Synthesize it to the film's own palette.** A click, pop, thump and whoosh are a few lines
+   each and cost nothing — `sound-design.md` has the voices. Synthesis wins when the film has a
+   designed sonic identity, because the effects can share the score's tuning and decay.
+2. **Source something real for this specific product.** A recorded transient has detail no
+   synthesizer gives for free. Search a CC0 library — freesound.org, OpenGameArt, Kenney — for
+   the exact gesture, and check the licence on each file rather than assuming the site's
+   default applies to everything on it.
+3. **Use the bundled set** at `assets/sfx/` when neither is worth the time. 16 CC0 files —
+   `click/`, `land/`, `hit/`, `type/` — which is a floor, not a palette. See
+   `assets/sfx/README.md`.
+
+**The bundle is a convenience, not a default.** A film that always reaches for the same
+packaged clicks sounds like every other film that did. Decide per film which of the three
+routes fits, and record the choice in the spec.
+
+Whichever route: copy the files a film actually uses into that project, list them in the asset
+manifest with their source and licence, and resolve paths once rather than referencing a
+directory outside the project from a render.
 
 ## The generator probe
 

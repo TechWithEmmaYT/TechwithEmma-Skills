@@ -7,6 +7,7 @@
 - [Values with more than one target](#values-with-more-than-one-target)
 - [Type in motion](#type-in-motion)
 - [Transitions between shots](#transitions-between-shots)
+- [The inversion cut](#the-inversion-cut)
 - [The swept mass, in detail](#the-swept-mass-in-detail)
 - [Camera through the interface](#camera-through-the-interface)
 - [Camera](#camera)
@@ -119,17 +120,18 @@ Text is the main actor in a launch film, so it needs more than a fade.
 
 Set `textRendering` and explicit tracking; canvas defaults are loose for display sizes. One display face and one UI face for the whole film.
 
-Typing a headline with a visible caret, and embedding real UI chips inside a running sentence, are the two highest-value type devices in current launch films and neither is expensive. Both are implemented in [signature-devices.md](signature-devices.md).
+Typing a headline with a visible caret, and embedding real UI chips inside a running sentence, are the two highest-value type devices in current launch films and neither is expensive. Both are implemented in [recipes.md](recipes.md).
 
 ## Transitions between shots
 
 **Design the join between shots.** Use a cut, fade, shared object, mask or camera move according to story and tone. Describe outgoing state, incoming state, timing and any persistent object in the shotlist. A simple cut can be stronger than an elaborate transition.
 
-For connected product sequences, first read [product-choreography.md](product-choreography.md#make-scenes-flow-into-one-another): design how the outgoing state becomes the incoming state before selecting an effect.
+For connected product sequences, first read [story.md](story.md#make-scenes-flow-into-one-another): design how the outgoing state becomes the incoming state before selecting an effect.
 
 Pick a small set and repeat it. A different transition on every cut reads as a template demo rather than a film.
 
 - **Hard cut on the beat.** Useful for a clear change of idea; align to a beat when it supports pacing and comprehension. Round the cut to a whole frame so motion blur never smears it.
+- **The inversion cut.** A hard cut where the ground flips — light to dark, or back — in a single frame. Described below. This is the highest-impact transition available and the most commonly under-used.
 - **Match cut.** A shape, colour field, or UI element continues across the join in the same screen position. The strongest transition available and the only one that makes a film feel authored.
 - **The swept mass.** A shaped field — a halftone dot wave, a solid form, a blurred band — sweeps across frame, inverts the background behind it, and carries the outgoing type out with it. Described in full below.
 - **Camera through the interface.** The camera pushes into a region of the UI until the surrounding chrome passes the frame edges and the content becomes the new scene. No cut at all: the viewer travels from the tool into its output.
@@ -137,13 +139,45 @@ Pick a small set and repeat it. A different transition on every cut reads as a t
 - **Mask push.** A rectangle or circle wipes the next shot in, its edge aligned to a layout gutter.
 - **The container that never cuts.** One element morphs through every state while its content swaps behind a short blur. This carries an entire film on its own.
 
+### The inversion cut
+
+**Measured in four shipped launch films, the ground change happens AT a hard cut, in one
+frame — not inside a transition.** Notion 3.7 goes from a cream document UI to near-black in a
+single frame, four times, each on the beat. Muse cuts from a full-colour 3D grid to a black end
+card in one frame. These are the films' biggest moments and the reason they have any.
+
+The recipe is almost nothing:
+
+1. Outgoing shot is light, settled, and has finished saying its thing.
+2. One frame later the ground is dark and the next shot is **already in motion** — type mid-way
+   through a word-level reveal, chips still arriving, a caret already blinking. No settling-in
+   period, no entrance from zero.
+3. A hit lands on the same frame.
+
+The incoming shot being mid-animation is what stops the cut reading as a slide change. Nothing
+starts at rest after an inversion cut.
+
+Use it two to four times in a 60-second film, on act boundaries. It costs nothing to render and
+it is the difference between a peak change of 0.07 and 1.00 — see
+[review.md](review.md).
+
+**Prefer this over a smooth transition for any palette change the film is structured around.**
+A swept mass across the same boundary is prettier and reads as roughly one tenth the event. If
+the piece is built on two registers, the moment it switches between them is the biggest moment
+it has; spending it on a 0.5s wipe gives it away.
+
+The swept mass below is still the right choice when the transition itself should carry
+meaning — something travelling, a texture that belongs to the brand, a residue that ties two
+shots into one sequence. It is a device for continuity, not for impact. Do not reach for it
+because it feels more designed than a cut.
+
 ### The swept mass, in detail
 
 The most reusable of these, measured from a shipped film that uses it three times in five seconds:
 
 1. A textured mass — a halftone dot field whose dot size varies across a gradient — enters from a frame corner on a Default spring, large enough to cross the whole frame.
 2. As it passes over the outgoing word, that word **smears horizontally in the sweep's direction**, driven by the sweep velocity rather than a fixed blur. The type is being carried, not faded.
-3. The mass covers the frame and the background **inverts** — white to black, or the reverse. The palette change happens inside the transition, not at a cut.
+3. The mass covers the frame and the background **inverts** — white to black, or the reverse, inside the sweep. Note that this softens the inversion to roughly a tenth of the event a hard cut would produce; take it only when the sweep itself is carrying meaning, and read [the inversion cut](#the-inversion-cut) first.
 4. The incoming word arrives already smeared and resolves to sharp over about 0.15s.
 5. The mass does not fully exit. It settles as a decorative arc at the frame edge, becoming part of the new composition.
 

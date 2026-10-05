@@ -9,6 +9,7 @@ Act as a motion designer and product-launch director. Build a film through actio
 
 ## Contents
 
+- [Read only what this job needs](#read-only-what-this-job-needs)
 - [Preserve the user's film](#preserve-the-users-film)
 - [Run three gates in order](#run-three-gates-in-order)
 - [Gate 1: capability preflight](#gate-1-capability-preflight)
@@ -25,6 +26,40 @@ Act as a motion designer and product-launch director. Build a film through actio
 - [Look at your own frames before showing anything](#look-at-your-own-frames-before-showing-anything)
 - [Deliver every format from one timeline](#deliver-every-format-from-one-timeline)
 - [Quality check](#quality-check)
+
+## Read only what this job needs
+
+Nine references, about 2,200 lines. Reading all of them for every job wastes the budget the film
+needs; reading none produces the generic output this skill exists to prevent. Find the row that
+matches the job, read those, and leave the rest until the job turns.
+
+| The job | Read, in order |
+| --- | --- |
+| **Launch film / product reel** (the default) | `planning` · `story` · `recipes` · `motion-language` · `render-engine` · `sound-design` · `review` |
+| Short-form explainer, 9:16 | `other-formats` · `story` · `sound-design` · `review` |
+| UI morph loop | `story` · `motion-language` · `render-engine` · `review` |
+| Showreel / engine test | `recipes` · `motion-language` · `render-engine` |
+| "Make one like this" from a supplied reference | `planning` **first** (reference intake lives there) · then the row for the film type |
+| Supplied footage, or an exact edit | `other-formats` **first** — most of this skill's defaults are wrong for it |
+| Needs real logos, screenshots, photos, voice | `assets-and-generation` |
+
+What each one holds:
+
+| File | Holds |
+| --- | --- |
+| `planning` | the three plan files, install commands, autonomy rules, reading a reference |
+| `story` | beat grid, film types, openings and endings, the words, and UI choreography |
+| `recipes` | twelve scene patterns, and the devices that give one a voice |
+| `motion-language` | springs, type in motion, transitions, camera, colour, banned defaults |
+| `render-engine` | the `seek(t)` contract, capture loop, motion blur, determinism, layout |
+| `sound-design` | the grid, synthesis, effects, density, the mix |
+| `assets-and-generation` | capture, brand extraction, sourcing real logos, generators, fallbacks |
+| `other-formats` | 9:16 narration-led explainers, and anything built on supplied footage |
+| `review` | the critique loop, and the measurement pass that catches a flat film |
+
+**`planning` and `review` are needed on almost every job and are the two most often skipped
+under time pressure.** A film built without a written shotlist drifts; a film reviewed by eye
+alone passes while being flat. Skipping either is a decision — record it in `docs/review_log.md`.
 
 ## Preserve the user's film
 
@@ -65,7 +100,7 @@ For route A, the `playwright` npm package is required — it is the capture driv
 
 Only fall back to `npx playwright install chromium` (~150 MB) when no suitable browser exists, and ask before running it. Downloading a second browser onto a machine that already has one wastes time and frequently fails behind a proxy or in a sandbox. numpy and librosa are needed **only** when the user supplies a track that must be beat-matched — a synthesized score sets its own BPM, so the grid is already known. An image, video, or voice generator is needed only for a shot that cannot be drawn or captured.
 
-Put the result in the plan's `<requirements>` block, not in a throwaway message, so installs are approved along with the film. Degrade and say what was degraded when a gap has a fallback; stop and ask when it blocks everything. The per-platform install commands are in [references/production-plan.md](references/production-plan.md#requirements-and-install-commands).
+Put the result in the plan's `<requirements>` block, not in a throwaway message, so installs are approved along with the film. Degrade and say what was degraded when a gap has a fallback; stop and ask when it blocks everything. The per-platform install commands are in [references/planning.md](references/planning.md#requirements-and-install-commands).
 
 If there is no shell at all and the work is chat-only, say plainly that no MP4 can be produced there, then deliver the complete project and the exact commands to run. Never describe a render that did not happen.
 
@@ -77,9 +112,9 @@ Three short files, before any animation code:
 - `docs/style_guide.md` — the look in values precise enough to reproduce: palette hexes, type family and weight and tracking, shot lengths, transitions, camera, texture.
 - `docs/shotlist.md` — one row per shot: start, end, beat, what is on screen, how text enters and exits, camera move, SFX cue, asset. Times rounded to the frame so a cut never lands inside a motion-blur group.
 
-Before writing shots, choose the opening, middle and ending separately. Base the opening on the audience's first question and the product's strongest visual evidence. A logo reveal, typed request, result-first shot or visual metaphor can each work; none is mandatory. Record what earns attention in the first two seconds and how it leads into the demonstration. For each interaction, specify starting state → action → response → result → readable hold. Design neighbouring scenes together: specify what persists, transforms or carries attention across the join, with shared boundary position, scale and motion direction. A transition should develop the previous state, not merely decorate the gap between unrelated scenes. Read [references/product-choreography.md](references/product-choreography.md) for UI films and [references/shot-design.md](references/shot-design.md) for structure.
+Before writing shots, **write the one sentence the film states about the product**, then choose the opening, middle and ending separately. Shipped launch films reach a complete positioning sentence within 3–10 seconds and only then start demonstrating; the sentence, built across several shots or held with one word cycling, is what makes an opening read as one thought instead of a sequence of cards. Numbered chapter labels do not do that job — see [references/story.md](references/story.md#the-measured-opening-grammar). Base the opening on the audience's first question and the product's strongest visual evidence. A logo reveal, typed request, result-first shot or visual metaphor can each work; none is mandatory. Record what earns attention in the first two seconds and how it leads into the demonstration. For each interaction, specify starting state → action → response → result → readable hold. Design neighbouring scenes together: specify what persists, transforms or carries attention across the join, with shared boundary position, scale and motion direction. A transition should develop the previous state, not merely decorate the gap between unrelated scenes. Read [references/story.md](references/story.md) for UI films and [references/story.md](references/story.md) for structure.
 
-Keep each to about a screen; a spec longer than that stops being read, including by the agent that wrote it. Read [references/production-plan.md](references/production-plan.md) for the filled example, the shotlist table, the autonomy rules, and the director's brief that films over 60 seconds need.
+Keep each to about a screen; a spec longer than that stops being read, including by the agent that wrote it. Read [references/planning.md](references/planning.md) for the filled example, the shotlist table, the autonomy rules, and the director's brief that films over 60 seconds need.
 
 ## Gate 3: approval, and when to skip it
 
@@ -98,7 +133,7 @@ Ask a blocking question only when proceeding would waste the whole render: no pr
 - **Exact edit** — reproduce the same shots, timing, motion, people, and audio, changing only what the user named. This is an edit, not an animation, and most of this skill's defaults are wrong for it.
 - **Footage-led** — the user has real footage and wants it cut, with motion graphics built around it.
 
-The last two are covered by [references/footage-editing.md](references/footage-editing.md). Read it before touching supplied media, and never invent graphics or narration for footage that has not been inspected.
+The last two are covered by [references/other-formats.md](references/other-formats.md). Read it before touching supplied media, and never invent graphics or narration for footage that has not been inspected.
 
 ## Name the film type
 
@@ -106,11 +141,11 @@ Five types with different structures, pacing, and sound. Name the one in scope; 
 
 - **Launch film** — music-led, no narration, feature statements over real product UI. The default for "make a video for my product".
 - **UI morph** — 15–25s, one container that never cuts, morphing state to state with a cursor driving every change and the last frame equal to the first.
-- **Short-form explainer** — 9:16, 60–150s, narration-led with word-level captions and a CTA end card. Read [references/short-form-video.md](references/short-form-video.md).
+- **Short-form explainer** — 9:16, 60–150s, narration-led with word-level captions and a CTA end card. Read [references/other-formats.md](references/other-formats.md).
 - **Showreel** — 10–20s, technique-led, no product. Proves the engine works; contains no idea, so it is a poor deliverable.
 - **Story film** — 45s and up, narrative rather than feature list, with chapters and a score. Needs a director's brief and multiple sessions; say so before starting.
 
-Read [references/shot-design.md](references/shot-design.md) for beat structures, the hook, the end card, and how to write the words, and [references/motion-patterns.md](references/motion-patterns.md) for twelve ready scene recipes — pick one by the viewer's takeaway. Read [references/signature-devices.md](references/signature-devices.md) for the recurring moves in shipped launch films — typed carets, inline chips, word slots, travelling objects — with implementations; a film using none of them will read as assembled rather than designed.
+Read [references/story.md](references/story.md) for beat structures, the hook, the end card, and how to write the words, and [references/recipes.md](references/recipes.md) for twelve ready scene recipes — pick one by the viewer's takeaway. Read [references/recipes.md](references/recipes.md) for the recurring moves in shipped launch films — typed carets, inline chips, word slots, travelling objects — with implementations; a film using none of them will read as assembled rather than designed.
 
 ## Default to long form
 
@@ -147,9 +182,9 @@ Without a reference the output converges every time on the same film: centred ti
 3. The user's own site, app, past videos, or image library — the strongest option, because nobody else can copy it.
 4. Sourced automatically from a launch-video directory such as [whatships.com](https://whatships.com), naming which film's grammar is being copied.
 
-With no reference at all, pick a structure from [references/motion-patterns.md](references/motion-patterns.md) and proceed; the patterns are self-contained and browsing examples is optional.
+With no reference at all, pick a structure from [references/recipes.md](references/recipes.md) and proceed; the patterns are self-contained and browsing examples is optional.
 
-Use one primary reference, plus at most one secondary for a specific element such as captions. Take the reference's grammar; never its content, logo, characters, or claims. Read [references/reference-intake.md](references/reference-intake.md) for how to inspect a reference honestly and turn it into `docs/style_guide.md`.
+Use one primary reference, plus at most one secondary for a specific element such as captions. Take the reference's grammar; never its content, logo, characters, or claims. Read [references/planning.md](references/planning.md) for how to inspect a reference honestly and turn it into `docs/style_guide.md`.
 
 ## Resolve the assets before animating
 
@@ -173,9 +208,17 @@ Sound is where a code-rendered film stops reading as a tech demo. Cuts land on b
 
 ## Look at your own frames before showing anything
 
-Before extending a UI film, render a short draft containing its opening, one complete interaction and a transition. Inspect stills and intermediate transition frames, then inspect a low-resolution animatic of the whole timeline before the final encode. Check settled reading time, input state changes, cursor causality, clipping and continuity. Contact sheets establish layout, not motion or audio quality. Log timestamped defects, fix the most consequential ones and re-inspect affected seconds. Stop when the checks find no new material defects; report remaining weaknesses without inflating scores. Read [references/critique-loop.md](references/critique-loop.md).
+Before extending a UI film, render a short draft containing its opening, one complete interaction and a transition. Inspect stills and intermediate transition frames, then inspect a low-resolution animatic of the whole timeline before the final encode. Check settled reading time, input state changes, cursor causality, clipping and continuity. Contact sheets establish layout, not motion or audio quality. Log timestamped defects, fix the most consequential ones and re-inspect affected seconds. Stop when the checks find no new material defects; report remaining weaknesses without inflating scores. Read [references/review.md](references/review.md).
 
 Never claim a render, a score, or a visual approval without having run the command and looked at the output.
+
+**Then measure what looking cannot show.** Every frame of a flat film is correct, which is why reviewing stills never catches one:
+
+```bash
+node scripts/measure_film.mjs out/final.mp4 refs/reference.mp4
+```
+
+Peak frame-to-frame change under about 0.15 means nothing in the film ever detonates and it will read as tasteful rather than exciting, however good the frames are. Shipped launch films reach 0.28–1.00. Read [references/review.md](references/review.md) for the benchmarks and the fixes.
 
 ## Deliver every format from one timeline
 
@@ -189,6 +232,6 @@ Deliver `out/final.mp4` per format, `out/poster.png`, `out/contact.png`, `out/lo
 
 ## Quality check
 
-Confirm the film matches the requested subject and duration; the hook lands inside 2 seconds; holds have a reading or story purpose; every product screen is grounded in the actual product; every claim and number is confirmed or listed for replacement; motion uses springs with overshoot only where intended; the render is deterministic across two runs; audio sits at the target loudness with cuts on the beat; type stays readable at the intended viewing size (check 640 px landscape and 360 px vertical as baselines); and the last frame sets up the first when the piece loops.
+Confirm the film matches the requested subject and duration; the hook lands inside 2 seconds and its display type fills a quarter to a third of frame height; the film has two to four moments visibly bigger than everything around them, with peak frame-to-frame change at 0.28 or above; holds have a reading or story purpose; every product screen is grounded in the actual product; every claim and number is confirmed or listed for replacement; motion uses springs with overshoot only where intended; the render is deterministic across two runs; audio sits at the target loudness with cuts on the beat; type stays readable at the intended viewing size (check 640 px landscape and 360 px vertical as baselines); and the last frame sets up the first when the piece loops.
 
 Run the anti-template check: every scene and graphic should serve this product. Gradients, centred type, logos, fades and celebration effects are choices, not automatic failures. Use them when the reference, brand or story supports them; avoid substituting them for a demonstration. Keep a coherent type and colour system and record the visual rationale in `docs/style_guide.md`.
